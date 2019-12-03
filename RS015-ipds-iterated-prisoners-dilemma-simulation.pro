@@ -18,11 +18,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+<<<<<<< Updated upstream
     specimen.cpp
 
 HEADERS += \
     mainwindow.h \
     specimen.h
+=======
+    simstate.cpp
+
+HEADERS += \
+    mainwindow.h \
+    simstate.h
+>>>>>>> Stashed changes
 
 FORMS += \
     mainwindow.ui
