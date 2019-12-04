@@ -1,7 +1,6 @@
 #ifndef SIMULATION_H
 #define SIMULATION_H
 
-#include <vector>
 #include "specimen.h"
 #include "simstate.h"
 #include "estrategy.h"
@@ -10,6 +9,7 @@ class Simulation
 {
 public:
     Simulation(int foodNo, std::vector<std::vector<Specimen*>> &specimen, int specimenNo, std::vector<SimState> &graphInfo);
+    Simulation();
 
 
 private:
