@@ -4,6 +4,10 @@
 #ifndef TITFORTAT_H
 #define TITFORTAT_H
 
+/* TitForTat is a strategy that essentially copies
+ * opponent's last move. It starts by cooperating, and
+ * every next move it playes what the given opponent
+ * played last. */
 
 class TitForTat : public Specimen
 {

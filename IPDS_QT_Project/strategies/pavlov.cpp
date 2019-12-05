@@ -2,11 +2,6 @@
 
 Pavlov::Pavlov() : Specimen() {}
 
-/*  T > R > P > S
- *  Temptation
- *      Reward
- *          Punishment
- *               Sucker */
 bool Pavlov::isCooperating(int enemyID){
     if(rewardedOrPunished.count(enemyID)>0){
         if(rewardedOrPunished[enemyID]==true)

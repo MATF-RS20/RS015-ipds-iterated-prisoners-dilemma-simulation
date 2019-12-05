@@ -3,6 +3,9 @@
 #ifndef RANDOM_H
 #define RANDOM_H
 
+/* AllRandom always chooses whether to cooperate or deflect
+ * randomly. It does not take into account previous encounters. */
+
 class AllRandom : public Specimen
 {
 public:

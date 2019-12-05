@@ -3,6 +3,9 @@
 #ifndef TWOTITSFORTAT_H
 #define TWOTITSFORTAT_H
 
+/* TwoTitsForTat is a more punishing version of TitForTat.
+ * It starts by cooperating, but every time the opponent deflects,
+ * TwoTitsForTat will deflect next two rounds. */
 
 class TwoTitsForTat : public Specimen
 {
