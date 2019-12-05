@@ -17,10 +17,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += $$files(*.h) \
     $$files(strategies/*.h) \ \
-    graphics.h
+    graphics.h \
+    strategies/random.h \
+    strategies/strategies/titfortat.h \
+    strategies/titfortat.h \
+    strategies/titfortwotats.h \
+    strategies/twotitsfortat.h
 
 SOURCES += $$files(*.cpp) \
-    $$files(strategies/*.cpp) \
+    $$files(strategies/*.cpp) \ \
+    strategies/random.cpp \
+    strategies/strategies/titfortat.cpp \
+    strategies/titfortat.cpp \
+    strategies/titfortwotats.cpp \
+    strategies/twotitsfortat.cpp
 
 FORMS += \
     mainwindow.ui
