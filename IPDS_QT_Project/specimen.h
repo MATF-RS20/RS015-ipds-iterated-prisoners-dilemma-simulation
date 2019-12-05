@@ -12,6 +12,14 @@ public:
 
     virtual ~Specimen() = default;
 
+    Specimen(Specimen& s);
+
+    Specimen& operator=(Specimen& s);
+
+    Specimen(Specimen&& s);
+
+    Specimen& operator=(Specimen&& s);
+
     /* Checks whether specimen will choose to cooperate
      * with a certain enemy based on the particular specimen's
      * strategy and past experiences. */
