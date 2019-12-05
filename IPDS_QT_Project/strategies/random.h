@@ -3,10 +3,10 @@
 #ifndef RANDOM_H
 #define RANDOM_H
 
-class Random : public Specimen
+class AllRandom : public Specimen
 {
 public:
-    Random();
+    AllRandom();
     bool isCooperating(int enemyID) override;
 };
 

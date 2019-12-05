@@ -16,21 +16,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 HEADERS += $$files(*.h) \
-    $$files(strategies/*.h) \ \
-    graphics.h \
-    strategies/random.h \
-    strategies/strategies/titfortat.h \
-    strategies/titfortat.h \
-    strategies/titfortwotats.h \
-    strategies/twotitsfortat.h
+    $$files(strategies/*.h)
 
 SOURCES += $$files(*.cpp) \
-    $$files(strategies/*.cpp) \ \
-    strategies/random.cpp \
-    strategies/strategies/titfortat.cpp \
-    strategies/titfortat.cpp \
-    strategies/titfortwotats.cpp \
-    strategies/twotitsfortat.cpp
+    $$files(strategies/*.cpp)
 
 FORMS += \
     mainwindow.ui

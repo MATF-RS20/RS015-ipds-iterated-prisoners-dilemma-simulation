@@ -1,9 +1,9 @@
 #include "random.h"
 #include <stdlib.h> /* srand, rand */
 
-Random::Random() : Specimen() {}
+AllRandom::AllRandom() : Specimen() {}
 
-bool isCooperating(int){
+bool AllRandom::isCooperating(int){
     if(rand() % 2 == 0)
         return true;
     else
