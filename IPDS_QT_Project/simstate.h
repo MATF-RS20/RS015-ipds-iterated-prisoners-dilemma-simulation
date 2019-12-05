@@ -1,7 +1,7 @@
+#include <vector>
+
 #ifndef SIMSTATE_H
 #define SIMSTATE_H
-
-#include <vector>
 
 class SimState
 {

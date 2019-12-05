@@ -1,8 +1,7 @@
-#ifndef DOVE_H
-#define DOVE_H
-
 #include "specimen.h"
 
+#ifndef DOVE_H
+#define DOVE_H
 
 class Dove : public Specimen
 {

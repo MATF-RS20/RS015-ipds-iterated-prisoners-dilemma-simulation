@@ -1,9 +1,8 @@
+#include "graphics.h"
+
 #ifndef SPECIMEN_H
 #define SPECIMEN_H
 
-#include <QGraphicsScene>
-#include <QPainter>
-#include <QStyleOption>
 
 class Specimen
 {

@@ -1,8 +1,7 @@
-#ifndef HAWK_H
-#define HAWK_H
-
 #include "specimen.h"
 
+#ifndef HAWK_H
+#define HAWK_H
 
 class Hawk : public Specimen
 {

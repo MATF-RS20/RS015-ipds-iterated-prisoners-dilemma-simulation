@@ -1,7 +1,5 @@
 #include "graphicSpecimen.hpp"
-#include <QGraphicsScene>
-#include <QPainter>
-#include <QStyleOption>
+#include "graphics.h"
 
 #include <cmath>
 

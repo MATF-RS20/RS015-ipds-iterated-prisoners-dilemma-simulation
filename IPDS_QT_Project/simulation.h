@@ -1,9 +1,9 @@
-#ifndef SIMULATION_H
-#define SIMULATION_H
-
 #include "specimen.h"
 #include "simstate.h"
 #include "estrategy.h"
+
+#ifndef SIMULATION_H
+#define SIMULATION_H
 
 class Simulation
 {
