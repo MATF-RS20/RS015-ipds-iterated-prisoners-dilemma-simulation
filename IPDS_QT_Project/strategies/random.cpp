@@ -9,3 +9,5 @@ bool AllRandom::isCooperating(int){
     else
         return false;
 }
+
+void AllRandom::update(outcome,int){}

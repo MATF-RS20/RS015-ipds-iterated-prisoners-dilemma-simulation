@@ -10,6 +10,7 @@ class TitForTat : public Specimen
 public:
     TitForTat();
     bool isCooperating(int enemyID) override;
+    void update(outcome res, int enemyID) override;
 
 private:
     std::map<int,bool> mapCooperated;

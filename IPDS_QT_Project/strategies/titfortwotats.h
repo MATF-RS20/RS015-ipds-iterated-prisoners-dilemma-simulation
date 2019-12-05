@@ -10,6 +10,7 @@ public:
     TitForTwoTats();
 
     bool isCooperating(int enemyID) override;
+    void update(outcome res, int enemyID) override;
 
 private:
     std::map<int,int> mapDeflectionInARow;

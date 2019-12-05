@@ -1,4 +1,5 @@
 #include "graphics.h"
+#include "eoutcome.h"
 
 #ifndef SPECIMEN_H
 #define SPECIMEN_H
@@ -23,6 +24,8 @@ public:
      * with a certain enemy based on the particular specimen's
      * strategy and past experiences. */
     virtual bool isCooperating(int enemyID) = 0;
+
+    virtual void update(outcome res, int enemyID) = 0;
 
     /* Unique identifier of a speciman */
     const unsigned specimenID;
