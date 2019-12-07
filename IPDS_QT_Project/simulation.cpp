@@ -18,6 +18,7 @@ Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
         }
     }
 
+    m_graphInfo.push_back(specimenNoInfo);
 }
 
 Simulation::~Simulation()

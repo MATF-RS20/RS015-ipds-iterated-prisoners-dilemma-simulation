@@ -30,7 +30,6 @@ public:
      */
     std::shared_ptr<Specimen> specimenFactory(int indicator);
 
-
     void simulate();
     void playRound();
     void log();
@@ -39,13 +38,14 @@ private:
     // Number of foods used in that exact simulation
     const int m_foodNo;
 
-    /* Matrix of pointers to Specimen objects that are
-     * currently active in the Simulation.
-     * Use estrategy enum to access particular row
-     * that represent Specimen of certain kind
+    /* Matrix of pointers to all the active specimen
+     * on the current field.
      *
-     * Example:
-     * m_specimen[Dove][0]
+     * Each row represents group of specimen of the same
+     * kind, we know which is which by using estrategy
+     *
+     * shared_ptr is used for the easier memory management
+     * i might change that later to unique_ptr if needed
      *
      */
     std::vector<std::vector<std::shared_ptr<Specimen>>> m_specimen;
