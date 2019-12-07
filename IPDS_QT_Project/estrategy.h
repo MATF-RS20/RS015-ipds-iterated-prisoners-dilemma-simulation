@@ -7,13 +7,13 @@
  * COUNT must always be the last in enum. */
 
 enum strategy {
-    Random,
-    Dove,
-    Hawk,
-    TitForTat,
-    TitForTwoTats,
-    TwoTitsForTat,
-    Pavlov,
+    E_DOVE,
+    E_HAWK,
+    E_PAVLOV,
+    E_RANDOM,
+    E_TITFORTAT,
+    E_TITFORTWOTATS,
+    E_TWOTITSFORTAT,
     COUNT
 };
 

@@ -9,8 +9,27 @@ class Simulation
 {
 public:
 
+    /* To create a simulation you only need to give it food
+     * number and vector of numbers of all different specimen
+     *
+     * e.g.:
+     * specimenNoInfo[E_DOVE] returns the initial number of
+     * dove specimen, where E_DOVE is enum from estrategy.h
+     *
+     * Initializing other attributes is encapsulated
+     *
+     */
     Simulation(int foodNo, std::vector<int> &specimenNoInfo);
     ~Simulation();
+
+    /* Simple implementation of a famous design pattern:
+     * Factory Method
+     *
+     * Method accepts indicator and decides which object to
+     * create
+     */
+    std::shared_ptr<Specimen> specimenFactory(int indicator);
+
 
     void simulate();
     void playRound();
