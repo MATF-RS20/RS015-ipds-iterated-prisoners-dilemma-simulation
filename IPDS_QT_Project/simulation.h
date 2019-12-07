@@ -1,5 +1,4 @@
 #include "specimen.h"
-#include "simstate.h"
 #include "estrategy.h"
 #include <memory>
 
