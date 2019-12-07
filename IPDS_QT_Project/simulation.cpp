@@ -1,16 +1,15 @@
 #include "simulation.h"
+#include <algorithm>
+#include <thread>
 
-Simulation::Simulation(int foodNo, std::vector<std::vector<Specimen*>> &specimen, int specimenNo, std::vector<std::vector<int>> &graphInfo)
-    : m_foodNo(foodNo), m_specimen(specimen), m_specimenNo(specimenNo), m_graphInfo(graphInfo)
-{}
-
-Simulation::Simulation(int foodNo, std::vector<std::vector<Specimen*>> &specimen, std::vector<std::vector<int>> &graphInfo)
-    : m_foodNo(foodNo), m_specimen(specimen), m_specimenNo(0), m_graphInfo(graphInfo)
+Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
+    : m_foodNo(foodNo)
 {
-    for(std::vector<Specimen*> v : specimen)
-    {
-        m_specimenNo += v.size();
-    }
+    m_specimenNo = std::accumulate(std::begin(specimenNoInfo), std::end(specimenNoInfo), 0);
+    m_graphInfo.push_back(specimenNoInfo);
+
+    // TODO: implement creating objects, possibly in different threads?
+
 }
 
 Simulation::~Simulation()
