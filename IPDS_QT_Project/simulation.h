@@ -8,9 +8,15 @@
 class Simulation
 {
 public:
-    Simulation(int foodNo, std::vector<std::vector<Specimen*>> &specimen, int specimenNo, std::vector<SimState> &graphInfo);
-    Simulation();
+    // Case: accepts a number of intended specimen at the beggining
+    Simulation(int foodNo, std::vector<std::vector<Specimen*>> &specimen, int specimenNo, std::vector<std::vector<int>> &graphInfo);
+    // Case: manually counts specimen
+    Simulation(int foodNo, std::vector<std::vector<Specimen*>> &specimen, std::vector<std::vector<int>> &graphInfo);
+    ~Simulation();
 
+    void simulate();
+    void playRound();
+    void log();
 
 private:
     // Number of foods used in that exact simulation
@@ -33,7 +39,7 @@ private:
 
     /* ????
      */
-    std::vector<SimState> m_graphInfo;
+    std::vector<std::vector<int>> m_graphInfo;
 };
 
 #endif // SIMULATION_H
