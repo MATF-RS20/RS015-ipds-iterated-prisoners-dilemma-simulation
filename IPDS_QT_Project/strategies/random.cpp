@@ -2,7 +2,7 @@
 #include <stdlib.h> /* srand, rand */
 #include <time.h>
 
-AllRandom::AllRandom() : Specimen() {
+AllRandom::AllRandom() : Specimen(Qt::GlobalColor::darkRed, "TODO") {
     srand(time(NULL));
 }
 

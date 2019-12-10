@@ -2,7 +2,9 @@
 
 #include <cmath>
 
-Specimen::Specimen() : specimenID(ID){
+Specimen::Specimen(QColor color, std::string imgPath)
+    : specimenID(ID), color(color), imgPath(imgPath)
+{
     ID++;
 }
 Specimen::Specimen(std::string imgPath) : specimenID(ID),imgPath(imgPath){

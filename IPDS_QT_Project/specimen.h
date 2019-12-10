@@ -15,7 +15,7 @@
 class Specimen : public QGraphicsItem
 {
 public:
-    Specimen();
+    Specimen(QColor color, std::string imgPath);
 
     virtual ~Specimen() = default;
 
@@ -55,9 +55,9 @@ public:
 
     /* Color coding and appearance image
      * for specific strategies */
-    //TODO: Maybe static in derived classes rather than here?
-    QColor color;
-    std::string imgPath;
+
+    const QColor color;
+    const std::string imgPath;
 
 private:
     /* Used to ensure IDs are unique */

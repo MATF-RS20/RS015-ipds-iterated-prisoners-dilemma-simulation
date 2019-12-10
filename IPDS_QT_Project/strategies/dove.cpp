@@ -1,6 +1,7 @@
 #include "dove.h"
 
-Dove::Dove() : Specimen("a") {}
+
+Dove::Dove() : Specimen(Qt::GlobalColor::cyan, "TODO") {}
 
 bool Dove::isCooperating(int){
     return true;

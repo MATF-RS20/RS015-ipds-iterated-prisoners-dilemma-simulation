@@ -1,6 +1,6 @@
 #include "hawk.h"
 
-Hawk::Hawk() : Specimen() {}
+Hawk::Hawk() : Specimen(Qt::GlobalColor::red, "TODO") {}
 
 bool Hawk::isCooperating(int){
     return false;
