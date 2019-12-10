@@ -1,12 +1,18 @@
+#include <QGraphicsItem>
+#include "specimen.h"
+#include "simulation.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #ifndef GRAPHICSPECIMEN_HPP
 #define GRAPHICSPECIMEN_HPP
 
-#include <QGraphicsItem>
 
-class graphicSpecimen : public QGraphicsItem
+
+class graphicSim : public QGraphicsItem, public Simulation
 {
 public:
-    graphicSpecimen();
+    //TODO add simulation constructor and store in private field
+    graphicSim(int foodNo, std::vector<int> &specimenNoInfo);
 
     /*boundry clipping function that determines if the QGraphicsItem should be drawn*/
     QRectF boundingRect() const override;
@@ -22,12 +28,19 @@ public:
     /*function that is triggered when this object is clicked*/
     void mousePressEvent(QGraphicsSceneMouseEvent * event) override;
 
+    /////////////////
+    void drawGraphIter();
+    /////////////////
+
+
 protected:
 
     /*function that is used for iterated animation, is called for every change*/
     void advance(int step) override;
 
 private:
+
+    MainWindow m_window;
     qreal  m_xPosition;
     qreal  m_yPosition;
     qreal  m_lookAngle;

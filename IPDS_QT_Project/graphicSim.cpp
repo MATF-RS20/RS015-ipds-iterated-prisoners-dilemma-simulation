@@ -1,6 +1,7 @@
-#include "graphicSpecimen.hpp"
+#include "graphicSim.hpp"
 #include "graphics.h"
-
+#include "specimen.h"
+#include "simulation.h"
 #include <cmath>
 
 static const double PI = 3.14159265358979323846264338327950288419717;
@@ -22,18 +23,18 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-graphicSpecimen::graphicSpecimen()
-  : m_lookAngle(0.0)
-  , m_speed(0.0)
-  , m_globalAngle(0.0)
-  , m_color(qrand() % 256, qrand() % 256, qrand() % 256)
+graphicSim::graphicSim(int foodNo, std::vector<int> &specimenNoInfo)
+    :Simulation(foodNo,specimenNoInfo)
 {
     /*sets the clockwise rotation angle, default is 0*/
     setRotation(qrand() % (360 * 16));
+
+    /* Draws the initial state of food and specimen */
+
 }
 
 
-QRectF graphicSpecimen::boundingRect() const
+QRectF graphicSim::boundingRect() const
 {
     qreal adjust = -0.5;
     return QRectF(-18 - adjust, -22 - adjust,
@@ -41,7 +42,7 @@ QRectF graphicSpecimen::boundingRect() const
 }
 
 
-QPainterPath graphicSpecimen::shape() const
+QPainterPath graphicSim::shape() const
 {
     /*class for storing and drawing graphical shapes*/
     QPainterPath path;
@@ -50,7 +51,7 @@ QPainterPath graphicSpecimen::shape() const
     return path;
 }
 
-void graphicSpecimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
+void graphicSim::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
     Q_UNUSED(option)
 
@@ -65,10 +66,12 @@ void graphicSpecimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     if (details >= .75)
     {
         //TODO add details
+
     }
 }
 
-void graphicSpecimen::advance(int step)
+
+void graphicSim::advance(int step)
 {
     /*if the step is 0, the scene is getting ready for rendering,
       if the step is 1, the scene is being drawn*/
@@ -92,10 +95,12 @@ void graphicSpecimen::advance(int step)
     setPos(mapToParent(0, -(3 + sin(m_speed) * 3)));
 }
 
-void graphicSpecimen::mousePressEvent(QGraphicsSceneMouseEvent * event)
+void graphicSim::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
     Q_UNUSED(event)
 
     delete this;
 }
+
+
 
