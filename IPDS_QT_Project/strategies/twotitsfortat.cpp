@@ -1,6 +1,6 @@
 #include "twotitsfortat.h"
 
-TwoTitsForTat::TwoTitsForTat() : Specimen() {}
+TwoTitsForTat::TwoTitsForTat() : Specimen(Qt::GlobalColor::darkYellow, "TODO") {}
 
 bool TwoTitsForTat::isCooperating(int enemyID){
     if(mapCooperatedCount.count(enemyID)>0){

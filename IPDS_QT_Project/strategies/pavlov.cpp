@@ -1,6 +1,6 @@
 #include "pavlov.h"
 
-Pavlov::Pavlov() : Specimen() {}
+Pavlov::Pavlov() : Specimen(Qt::GlobalColor::darkBlue, "TODO") {}
 
 bool Pavlov::isCooperating(int enemyID){
     if(rewardedOrPunished.count(enemyID)>0){

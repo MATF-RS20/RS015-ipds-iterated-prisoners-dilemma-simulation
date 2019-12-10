@@ -8,7 +8,7 @@ Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
     : m_foodNo(foodNo)
 {
     m_specimenNo = std::accumulate(std::begin(specimenNoInfo), std::end(specimenNoInfo), 0);
-    m_graphInfo.push_back(specimenNoInfo);
+    m_graphInfo.update(specimenNoInfo);
 
     for(unsigned i = 0; i < specimenNoInfo.size(); i++)
     {
@@ -18,7 +18,7 @@ Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
         }
     }
 
-    m_graphInfo.push_back(specimenNoInfo);
+    m_graphInfo.update(specimenNoInfo);
 }
 
 Simulation::~Simulation()

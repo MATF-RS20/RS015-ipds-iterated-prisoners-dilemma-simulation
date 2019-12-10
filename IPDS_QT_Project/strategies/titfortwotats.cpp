@@ -1,6 +1,6 @@
 #include "titfortwotats.h"
 
-TitForTwoTats::TitForTwoTats() : Specimen() {}
+TitForTwoTats::TitForTwoTats() : Specimen(Qt::GlobalColor::darkGreen, "TODO") {}
 
 bool TitForTwoTats::isCooperating(int enemyID){
     if(mapDeflectionInARow.count(enemyID)>0){

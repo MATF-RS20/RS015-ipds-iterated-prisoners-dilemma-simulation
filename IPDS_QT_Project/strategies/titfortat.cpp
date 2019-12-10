@@ -1,6 +1,6 @@
 #include "titfortat.h"
 
-TitForTat::TitForTat() : Specimen() {}
+TitForTat::TitForTat() : Specimen(Qt::GlobalColor::green, "TODO") {}
 
 bool TitForTat::isCooperating(int enemyID){
     if(mapCooperated.count(enemyID)>0){

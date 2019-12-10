@@ -15,7 +15,7 @@
 class Specimen
 {
 public:
-    Specimen();
+    Specimen(QColor color, std::string imgPath);
 
     virtual ~Specimen() = default;
 
@@ -43,7 +43,6 @@ public:
 
     /* Color coding and appearance image
      * for specific strategies */
-    //TODO: Maybe static in derived classes rather than here?
     const QColor color;
     const std::string imgPath;
 
