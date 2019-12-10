@@ -23,9 +23,8 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-graphicSim::graphicSim(int foodNo, std::vector<int> &specimenNoInfo, MainWindow window)
+graphicSim::graphicSim(int foodNo, std::vector<int> &specimenNoInfo)
     :Simulation(foodNo,specimenNoInfo)
-    ,m_window(window)
 {
     /*sets the clockwise rotation angle, default is 0*/
     setRotation(qrand() % (360 * 16));
@@ -67,6 +66,7 @@ void graphicSim::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     if (details >= .75)
     {
         //TODO add details
+
     }
 }
 
@@ -102,8 +102,5 @@ void graphicSim::mousePressEvent(QGraphicsSceneMouseEvent * event)
     delete this;
 }
 
-void graphicSim::drawGraphIter()
-{
 
-}
 

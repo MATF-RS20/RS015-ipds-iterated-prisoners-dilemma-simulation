@@ -14,6 +14,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
 
+    ~MainWindow();
+
     MainWindow(const MainWindow& mw);
 
     MainWindow operator=(const MainWindow& mwOther);

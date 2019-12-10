@@ -59,6 +59,9 @@ public:
     const QColor color;
     const std::string imgPath;
 
+protected:
+    void advance(int step) override;
+
 private:
     /* Used to ensure IDs are unique */
     static unsigned ID;

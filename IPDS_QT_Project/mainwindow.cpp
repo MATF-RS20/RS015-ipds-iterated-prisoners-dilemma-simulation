@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+
     MainWindow::plot();
 
 }
@@ -22,6 +23,7 @@ void MainWindow::plot()
     }
     // create graph and assign data to it:
     ui->plotWidget->addGraph();
+
     ui->plotWidget->graph(0)->setData(x, y);
     // give the axes some labels:
     ui->plotWidget->xAxis->setLabel("x");

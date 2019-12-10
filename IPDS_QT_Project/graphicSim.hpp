@@ -12,7 +12,7 @@ class graphicSim : public QGraphicsItem, public Simulation
 {
 public:
     //TODO add simulation constructor and store in private field
-    graphicSim(int foodNo, std::vector<int> &specimenNoInfo, MainWindow window);
+    graphicSim(int foodNo, std::vector<int> &specimenNoInfo);
 
     /*boundry clipping function that determines if the QGraphicsItem should be drawn*/
     QRectF boundingRect() const override;
