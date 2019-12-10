@@ -1,6 +1,6 @@
 #include "graphics.h"
 #include "eoutcome.h"
-
+#include <QGraphicsItem>
 #ifndef SPECIMEN_H
 #define SPECIMEN_H
 
@@ -12,7 +12,7 @@
  * strategies. */
 
 
-class Specimen
+class Specimen : public QGraphicsItem
 {
 public:
     Specimen();
@@ -20,12 +20,24 @@ public:
     virtual ~Specimen() = default;
 
     Specimen(Specimen& s);
+    Specimen(std::string imgPath);
 
     Specimen& operator=(Specimen& s);
 
     Specimen(Specimen&& s);
 
     Specimen& operator=(Specimen&& s);
+
+    /* Defines rough boundries for this graphic item */
+    QRectF boundingRect() const override;
+
+    /* Defines precise shape for this graphic item */
+    QPainterPath shape() const override;
+
+    /* Draws the bloody thing */
+    void paint(QPainter *painter,
+               const QStyleOptionGraphicsItem *option,
+               QWidget *widget) override;
 
     /* Checks whether specimen will choose to cooperate
      * with a certain enemy based on the particular specimen's
@@ -44,8 +56,8 @@ public:
     /* Color coding and appearance image
      * for specific strategies */
     //TODO: Maybe static in derived classes rather than here?
-    const QColor color;
-    const std::string imgPath;
+    QColor color;
+    std::string imgPath;
 
 private:
     /* Used to ensure IDs are unique */

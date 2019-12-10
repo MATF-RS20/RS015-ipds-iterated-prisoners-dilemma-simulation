@@ -13,9 +13,23 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+
+    MainWindow(const MainWindow& mw);
+
+    MainWindow operator=(const MainWindow& mwOther);
+
+    void plot();
+
+
+private slots:
+    void on_pushButtonPlay_clicked();
+
+    void on_pushButtonStop_clicked();
+
+    void on_pushButtonPause_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QVector<double> xs,ys;
 };
 #endif // MAINWINDOW_H
