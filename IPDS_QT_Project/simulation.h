@@ -1,5 +1,6 @@
 #include "specimen.h"
 #include "estrategy.h"
+#include "statehistory.h"
 #include <memory>
 
 #ifndef SIMULATION_H
@@ -34,7 +35,7 @@ public:
     void playRound();
     void log();
 
-private:
+protected:
     // Number of foods used in that exact simulation
     const int m_foodNo;
 
@@ -55,9 +56,8 @@ private:
 
     /* Keeps info on all previous rounds and number
      * of each type of specimen at that moment
-     *
      */
-    std::vector<std::vector<int>> m_graphInfo;
+    StateHistory m_graphInfo;
 };
 
 #endif // SIMULATION_H
