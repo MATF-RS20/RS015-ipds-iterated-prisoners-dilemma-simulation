@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     MainWindow::plot();
 
+
 }
 
 void MainWindow::plot()
@@ -54,3 +55,5 @@ void MainWindow::on_pushButtonPause_clicked()
 {
 
 }
+
+

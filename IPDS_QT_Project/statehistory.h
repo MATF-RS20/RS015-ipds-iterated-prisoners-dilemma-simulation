@@ -13,6 +13,8 @@ public:
 
     std::vector<int> getIteration(unsigned iterationNo);
 
+    std::vector<std::vector<int>> getAllIterations();
+
 protected:
     std::vector<std::vector<int> > graphInfo;
 };

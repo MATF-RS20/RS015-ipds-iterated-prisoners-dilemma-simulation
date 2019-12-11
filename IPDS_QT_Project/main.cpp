@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "graphics.h"
 #include "graphicSim.hpp"
+#include "simulation.h"
 #include <QtGui>
 #include <QApplication>
 #include <QGraphicsView>
@@ -15,17 +16,15 @@ int main(int argc, char *argv[])
 
     qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
 
-    // Inicijalizujemo scenu
+
     QGraphicsScene scene;
     scene.setSceneRect(-300, -300, 600, 600);
-
-    // Iskljucujemo indeksiranje pozicija elemenata scene
-    // Usled ovoga, pretraga elemenata je linearne slozenosti.
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
 
     std::vector<int> specimenNoInfo;
     graphicSim* gs = new graphicSim(foodCount,specimenNoInfo);
-    scene.addItem(gs);
+    gs
+    //scene.addItem(gs);
 
     QGraphicsView view(&scene);
 

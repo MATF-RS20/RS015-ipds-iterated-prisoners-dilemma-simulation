@@ -17,10 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += $$files(*.h) \
     $$files(strategies/*.h) \
-    $$files(*.hpp)
+    $$files(*.hpp) \
+    food.h
 
 SOURCES += $$files(*.cpp) \
-    $$files(strategies/*.cpp)
+    $$files(strategies/*.cpp) \
+    food.cpp
 
 FORMS += \
     mainwindow.ui

@@ -21,8 +21,27 @@ Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
     m_graphInfo.update(specimenNoInfo);
 }
 
-Simulation::~Simulation()
-{}
+
+Simulation::Simulation(const Simulation& other)
+{
+//    this->m_specimenNo = other.m_specimenNo;
+//    this->m_foodNo = other.m_foodNo;
+//    int numOfStrats = other.m_specimen.size();
+//    for(int i=0; i<numOfStrats ; ++i)
+//    {
+
+//        for(int j = 0; j < ; j++)
+//        {
+//            m_specimen[i].push_back(specimenFactory(i));
+//        }
+//    }
+
+
+}
+Simulation& Simulation::operator=(const Simulation& other)
+{
+
+}
 
 std::shared_ptr<Specimen> Simulation::specimenFactory(int indicator)
 {

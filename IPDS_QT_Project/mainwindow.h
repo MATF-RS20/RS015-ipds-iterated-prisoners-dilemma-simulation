@@ -30,6 +30,8 @@ private slots:
 
     void on_pushButtonPause_clicked();
 
+    void on_displayWidget_customContextMenuRequested(const QPoint &pos);
+
 private:
     Ui::MainWindow *ui;
     QVector<double> xs,ys;

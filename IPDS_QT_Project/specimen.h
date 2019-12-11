@@ -17,7 +17,7 @@ class Specimen : public QGraphicsItem
 public:
     Specimen(QColor color, std::string imgPath);
 
-    virtual ~Specimen() = default;
+    virtual ~Specimen() override = default;
 
     Specimen(Specimen& s);
     Specimen(std::string imgPath);
