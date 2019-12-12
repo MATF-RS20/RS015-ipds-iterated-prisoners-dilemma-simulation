@@ -13,6 +13,7 @@ StateHistory& StateHistory::operator=(const StateHistory &other)
 void StateHistory::update(std::vector<int> iterationInfo)
 {
     m_innerGraphInfo.push_back(iterationInfo);
+    m_iterationNo++;
 }
 
 std::vector<int> StateHistory::getIteration(unsigned iterationNo) const
@@ -32,4 +33,8 @@ std::vector<int> StateHistory::getByStrategy(strategy s) const {
         res.push_back(iteration[static_cast<int>(s)]);
     }
     return res;
+}
+
+int StateHistory::iterationNo() const {
+    return m_iterationNo;
 }

@@ -18,23 +18,28 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::plot()
 {
-    QVector<double> x(COUNT);
+    StateHistory sh = m_gs->graphInfo();
+    QVector<double> x(sh.iterationNo());
     std::iota(x.begin(), x.end(), 0);
-    std::vector<int> y_tmp = m_gs->graphInfo().getByStrategy(E_DOVE);
-    QVector<double> y;
-    for(int i : y_tmp){
-        y.append(static_cast<double>(i));
-    }
-    // create graph and assign data to it:
-    ui->plotWidget->addGraph();
 
-    ui->plotWidget->graph(0)->setData(x, y);
-    // give the axes some labels:
-    ui->plotWidget->xAxis->setLabel("x");
-    ui->plotWidget->yAxis->setLabel("y");
-    // set axes ranges, so we see all data:
-    ui->plotWidget->xAxis->setRange(-1, 1);
-    ui->plotWidget->yAxis->setRange(0, 1);
+    for(int i=0; i<COUNT; i++){
+        ui->plotWidget->addGraph();
+
+        std::vector<int> y_tmp = sh.getByStrategy(static_cast<strategy>(i));
+        QVector<double> y;
+        for(int i : y_tmp){
+            y.append(static_cast<double>(i));
+        }
+
+        ui->plotWidget->graph(i)->setData(x, y);
+
+        ui->plotWidget->xAxis->setLabel("Iteration");
+        ui->plotWidget->yAxis->setLabel("Specimen");
+
+        ui->plotWidget->xAxis->setRange(0, sh.iterationNo());
+        ui->plotWidget->yAxis->setRange(0, 200); // HACK: Hardcoded random value
+    }
+
     ui->plotWidget->replot();
 }
 

@@ -21,8 +21,11 @@ public:
 
     std::vector<std::vector<int>> getAllIterations();
 
+    int iterationNo() const;
+
 protected:
     std::vector<std::vector<int>> m_innerGraphInfo;
+    int m_iterationNo = 0;
 };
 
 #endif // STATEHISTORY_H
