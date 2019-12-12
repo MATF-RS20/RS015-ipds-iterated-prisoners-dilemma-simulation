@@ -37,5 +37,7 @@ private:
     GraphicSim* m_gs;
     Ui::MainWindow* ui;
     QGraphicsView* m_view;
+    QGraphicsScene* m_scene;
+    bool m_playing;
 };
 #endif // MAINWINDOW_H

@@ -135,8 +135,8 @@
      <rect>
       <x>360</x>
       <y>20</y>
-      <width>151</width>
-      <height>41</height>
+      <width>86</width>
+      <height>38</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -148,7 +148,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QSlider" name="slider">
+      <widget class="QSlider" name="foodSlider">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

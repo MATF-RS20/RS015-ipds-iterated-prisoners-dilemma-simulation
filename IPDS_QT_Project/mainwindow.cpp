@@ -9,16 +9,21 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     MainWindow::plot();
+
+    qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
+    m_scene = new QGraphicsScene();
+    m_scene->setSceneRect(-300, -300, 600, 600);
+    m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 }
 
 void MainWindow::plot()
 {
-    // generate some data:
-    QVector<double> x(101), y(101); // initialize with entries 0..100
-    for (int i=0; i<101; ++i)
-    {
-      x[i] = i/50.0 - 1; // x goes from -1 to 1
-      y[i] = x[i]*x[i]; // let's plot a quadratic function
+    QVector<double> x(COUNT);
+    std::iota(x.begin(), x.end(), 0);
+    std::vector<int> y_tmp = m_gs->graphInfo().getByStrategy(E_DOVE);
+    QVector<double> y;
+    for(int i : y_tmp){
+        y.append(static_cast<double>(i));
     }
     // create graph and assign data to it:
     ui->plotWidget->addGraph();
@@ -36,42 +41,43 @@ void MainWindow::plot()
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete m_scene;
 }
 
 
 void MainWindow::on_pushButtonPlay_clicked()
 {
-    qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
+    if(!m_playing){
+        QSlider* foodSlider = ui->centralwidget->findChild<QSlider*>("foodSlider");
+        int foodCount = foodSlider->value();
 
-    QGraphicsScene* scene = new QGraphicsScene();
-    scene->setSceneRect(-300, -300, 600, 600);
-    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+        /* TODO: get specimenNoInfo from GUI */
+        std::vector<int> specimenNoInfo{1,2,3,4,5,6,7};
 
-    QSlider *slider = ui->verticalLayout->findChild<QSlider *>("foodSlider");
-    int foodCount = 5;//slider->value();
+        m_gs = new GraphicSim(foodCount, specimenNoInfo);
 
-    /* TODO: get specimenNoInfo from GUI */
-    std::vector<int> specimenNoInfo{1,2,3,4,5,6,7};
+        /* Adding items of type specimen to the scene*/
+        m_gs->addItems(*m_scene);
 
-    m_gs = new GraphicSim(foodCount, specimenNoInfo);
+        m_view = new QGraphicsView(m_scene);
 
-    /* Adding items of type specimen to the scene*/
-    m_gs->addItems(*scene);
+        m_view->setWindowTitle("Simulacija");
+        m_view->resize(600, 400);
+        m_view->show();
 
-    m_view = new QGraphicsView(scene);
-
-    //view.setDragMode(QGraphicsView::ScrollHandDrag);
-
-    m_view->setWindowTitle("Simulacija");
-    m_view->resize(600, 400);
-    m_view->show();
-
-    std::cout << "Play";
+        m_playing = true;
+    }
 }
 
 void MainWindow::on_pushButtonStop_clicked()
 {
-    std::cout << "Stop";
+    if(m_playing){
+        m_view->close();
+        delete m_view;
+        delete m_gs;
+
+        m_playing = false;
+    }
 }
 
 void MainWindow::on_pushButtonPause_clicked()

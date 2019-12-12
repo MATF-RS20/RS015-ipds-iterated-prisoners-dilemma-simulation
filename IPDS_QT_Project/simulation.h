@@ -38,6 +38,10 @@ public:
     void playRound();
     void log();
 
+    const StateHistory graphInfo() const{
+        return m_graphInfo;
+    }
+
 protected:
     // Number of foods used in that exact simulation
     int m_foodNo;
