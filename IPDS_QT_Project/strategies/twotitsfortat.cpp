@@ -1,6 +1,9 @@
 #include "twotitsfortat.h"
 
-TwoTitsForTat::TwoTitsForTat() : Specimen(Qt::GlobalColor::darkYellow, "TODO") {}
+const QColor TwoTitsForTat::color = Qt::GlobalColor::darkYellow;
+const std::string TwoTitsForTat::imgPath = "TODO";
+
+TwoTitsForTat::TwoTitsForTat() : Specimen() {}
 
 bool TwoTitsForTat::isCooperating(int enemyID){
     if(mapCooperatedCount.count(enemyID)>0){

@@ -1,5 +1,8 @@
 #include "graphicSim.h"
 #include "graphics.h"
+#include "strategiesheaders.h"
+#include "ui_mainwindow.h"
+#include <iostream>
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H

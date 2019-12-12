@@ -12,6 +12,12 @@ public:
     Dove();
     bool isCooperating(int enemyID) override;
     void update(outcome res, int enemyID) override;
+
+    /* Color coding and appearance image
+     * for specific strategies */
+
+    static const QColor color;
+    static const std::string imgPath;
 };
 
 #endif // DOVE_H

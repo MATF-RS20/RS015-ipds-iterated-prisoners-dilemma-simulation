@@ -1,6 +1,9 @@
 #include "hawk.h"
 
-Hawk::Hawk() : Specimen(Qt::GlobalColor::red, "TODO") {}
+const QColor Hawk::color = Qt::GlobalColor::red;
+const std::string Hawk::imgPath = "TODO";
+
+Hawk::Hawk() : Specimen() {}
 
 bool Hawk::isCooperating(int){
     return false;

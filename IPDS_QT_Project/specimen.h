@@ -15,7 +15,7 @@
 class Specimen : public QGraphicsItem
 {
 public:
-    Specimen(QColor color, std::string imgPath);
+    Specimen();
 
     virtual ~Specimen() override = default;
 
@@ -52,12 +52,6 @@ public:
 
     /* Unique identifier of a speciman */
     const unsigned specimenID;
-
-    /* Color coding and appearance image
-     * for specific strategies */
-
-    const QColor color;
-    const std::string imgPath;
 
 protected:
     void advance(int step) override;

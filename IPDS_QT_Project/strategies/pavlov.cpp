@@ -1,6 +1,10 @@
 #include "pavlov.h"
 
-Pavlov::Pavlov() : Specimen(Qt::GlobalColor::darkBlue, "TODO") {}
+const QColor Pavlov::color = Qt::GlobalColor::darkBlue;
+const std::string Pavlov::imgPath = "TODO";
+
+
+Pavlov::Pavlov() : Specimen() {}
 
 bool Pavlov::isCooperating(int enemyID){
     if(rewardedOrPunished.count(enemyID)>0){

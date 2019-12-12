@@ -3,16 +3,12 @@
 #include <iostream>
 #include <cmath>
 
+unsigned Specimen::ID = 0;
 
-Specimen::Specimen(QColor color, std::string imgPath)
-    : specimenID(ID), color(color), imgPath(imgPath)
+Specimen::Specimen() : specimenID(ID)
 {
     ID++;
 }
-Specimen::Specimen(std::string imgPath) : specimenID(ID),imgPath(imgPath){
-    ID++;
-}
-unsigned Specimen::ID = 0;
 
 Specimen::Specimen(Specimen& s) : QGraphicsItem(),specimenID(s.ID) {}
 
@@ -39,6 +35,8 @@ QPainterPath Specimen::shape() const
 void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
+    Q_UNUSED(widget)
+
     painter->drawRoundedRect(0, 0, 10, 10, 5, 5);
     double angle = this->specimenID * ( (2*M_PI) / ID );
     std::cout << "ID:" << ID << "\n" << "staticCount:" << this->specimenID <<"\n" <<std::endl;

@@ -12,6 +12,9 @@ public:
     Hawk();
     bool isCooperating(int enemyID) override;
     void update(outcome res, int enemyID) override;
+
+    static const QColor color;
+    static const std::string imgPath;
 };
 
 #endif // HAWK_H

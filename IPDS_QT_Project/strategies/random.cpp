@@ -2,7 +2,10 @@
 #include <stdlib.h> /* srand, rand */
 #include <time.h>
 
-AllRandom::AllRandom() : Specimen(Qt::GlobalColor::darkRed, "TODO") {
+const QColor AllRandom::color = Qt::GlobalColor::darkRed;
+const std::string AllRandom::imgPath = "TODO";
+
+AllRandom::AllRandom() : Specimen() {
     srand(time(NULL));
 }
 

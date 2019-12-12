@@ -1,6 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -33,12 +31,47 @@ void MainWindow::plot()
 
         ui->plotWidget->graph(i)->setData(x, y);
 
-        ui->plotWidget->xAxis->setLabel("Iteration");
-        ui->plotWidget->yAxis->setLabel("Specimen");
-
-        ui->plotWidget->xAxis->setRange(0, sh.iterationNo());
-        ui->plotWidget->yAxis->setRange(0, 200); // HACK: Hardcoded random value
     }
+
+    QPen pen;
+    for(int i=0; i<COUNT; i++){
+        strategy s = static_cast<strategy>(i);
+        switch(s){
+            case E_DOVE:
+                pen.setColor(Dove::color);
+            break;
+            case E_HAWK:
+                pen.setColor(Hawk::color);
+            break;
+            case E_PAVLOV:
+                pen.setColor(Pavlov::color);
+            break;
+            case E_RANDOM:
+                pen.setColor(AllRandom::color);
+            break;
+            case E_TITFORTAT:
+                pen.setColor(TitForTat::color);
+            break;
+            case E_TITFORTWOTATS:
+                pen.setColor(TitForTwoTats::color);
+            break;
+            case E_TWOTITSFORTAT:
+                pen.setColor(TwoTitsForTat::color);
+            break;
+            default:
+            break;
+        }
+    }
+//    bluePen.setColor(QColor(30, 40, 255, 150));
+//    bluePen.setWidthF(4);
+//    ui->plotWidget->graph(0)->setPen(bluePen);
+
+
+    ui->plotWidget->xAxis->setLabel("Iteration");
+    ui->plotWidget->yAxis->setLabel("Specimen");
+
+    ui->plotWidget->xAxis->setRange(0, sh.iterationNo());
+    ui->plotWidget->yAxis->setRange(0, 200); // HACK: Hardcoded random value
 
     ui->plotWidget->replot();
 }

@@ -1,6 +1,9 @@
 #include "titfortat.h"
 
-TitForTat::TitForTat() : Specimen(Qt::GlobalColor::green, "TODO") {}
+const QColor TitForTat::color = Qt::GlobalColor::green;
+const std::string TitForTat::imgPath = "TODO";
+
+TitForTat::TitForTat() : Specimen() {}
 
 bool TitForTat::isCooperating(int enemyID){
     if(mapCooperated.count(enemyID)>0){
