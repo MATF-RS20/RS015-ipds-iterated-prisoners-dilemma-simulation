@@ -47,3 +47,8 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
 }
 
+void Specimen::advance(int step)
+{
+    return;
+}
+
