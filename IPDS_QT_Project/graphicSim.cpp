@@ -7,8 +7,8 @@
 #include "specimen.h"
 #include "simulation.h"
 #include "estrategy.h"
-#include <QRandomGenerator>
 #include <cmath>
+#include <cstdlib>
 
 static const double PI = 3.14159265358979323846264338327950288419717;
 static const double TWO_PI = 2.0 * PI;
@@ -95,10 +95,12 @@ void graphicSim::initializeFood(int foodNo)
         //TODO clean up this blasphemous random number generation and pi representation
         //TODO tweak size of r to match window size
 
-        randr = QRandomGenerator::global()->generateDouble();
+
+        randr = static_cast<double>(qrand())/RAND_MAX;
         double r = randr*sqrt(centerX*centerX+centerY*centerY);
 
-        randa = QRandomGenerator::global()->generateDouble();
+
+        randa = static_cast<double>(qrand())/RAND_MAX;
         double tmpX = r * std::cos(randa*2*M_PI);
         double tmpY = r * std::sin(randa*2*M_PI);
 
