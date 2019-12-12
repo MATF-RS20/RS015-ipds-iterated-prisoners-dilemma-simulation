@@ -14,25 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 }
 
-void MainWindow::plot()
-{
-    StateHistory sh = m_gs->graphInfo();
-    QVector<double> x(sh.iterationNo());
-    std::iota(x.begin(), x.end(), 0);
-
-    for(int i=0; i<COUNT; i++){
-        ui->plotWidget->addGraph();
-
-        std::vector<int> y_tmp = sh.getByStrategy(static_cast<strategy>(i));
-        QVector<double> y;
-        for(int i : y_tmp){
-            y.append(static_cast<double>(i));
-        }
-
-        ui->plotWidget->graph(i)->setData(x, y);
-
-    }
-
+void MainWindow::setPlotColors(){
     QPen pen;
     for(int i=0; i<COUNT; i++){
         strategy s = static_cast<strategy>(i);
@@ -61,11 +43,30 @@ void MainWindow::plot()
             default:
             break;
         }
+        ui->plotWidget->graph(i)->setPen(pen);
     }
-//    bluePen.setColor(QColor(30, 40, 255, 150));
-//    bluePen.setWidthF(4);
-//    ui->plotWidget->graph(0)->setPen(bluePen);
+}
 
+void MainWindow::plot()
+{
+    StateHistory sh = m_gs->graphInfo();
+    QVector<double> x(sh.iterationNo());
+    std::iota(x.begin(), x.end(), 0);
+
+    for(int i=0; i<COUNT; i++){
+        ui->plotWidget->addGraph();
+
+        std::vector<int> y_tmp = sh.getByStrategy(static_cast<strategy>(i));
+        QVector<double> y;
+        for(int i : y_tmp){
+            y.append(static_cast<double>(i));
+        }
+
+        ui->plotWidget->graph(i)->setData(x, y);
+
+    }
+
+    setPlotColors();
 
     ui->plotWidget->xAxis->setLabel("Iteration");
     ui->plotWidget->yAxis->setLabel("Specimen");

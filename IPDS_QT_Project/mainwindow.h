@@ -42,5 +42,7 @@ private:
     QGraphicsView* m_view;
     QGraphicsScene* m_scene;
     bool m_playing;
+
+    void setPlotColors();
 };
 #endif // MAINWINDOW_H
