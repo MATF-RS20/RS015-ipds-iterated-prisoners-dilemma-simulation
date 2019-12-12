@@ -1,3 +1,4 @@
+#include "graphicSim.h"
 #include "graphics.h"
 
 #ifndef MAINWINDOW_H
@@ -33,7 +34,8 @@ private slots:
 
 private:
 
-    Ui::MainWindow *ui;
-    QVector<double> xs,ys;
+    GraphicSim* m_gs;
+    Ui::MainWindow* ui;
+    QGraphicsView* m_view;
 };
 #endif // MAINWINDOW_H

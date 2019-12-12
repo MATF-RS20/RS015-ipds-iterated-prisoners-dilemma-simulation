@@ -8,10 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
     MainWindow::plot();
-
-
 }
 
 void MainWindow::plot()
@@ -44,6 +41,31 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButtonPlay_clicked()
 {
+    qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
+
+    QGraphicsScene* scene = new QGraphicsScene();
+    scene->setSceneRect(-300, -300, 600, 600);
+    scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+
+    QSlider *slider = ui->verticalLayout->findChild<QSlider *>("foodSlider");
+    int foodCount = 5;//slider->value();
+
+    /* TODO: get specimenNoInfo from GUI */
+    std::vector<int> specimenNoInfo{1,2,3,4,5,6,7};
+
+    m_gs = new GraphicSim(foodCount, specimenNoInfo);
+
+    /* Adding items of type specimen to the scene*/
+    m_gs->addItems(*scene);
+
+    m_view = new QGraphicsView(scene);
+
+    //view.setDragMode(QGraphicsView::ScrollHandDrag);
+
+    m_view->setWindowTitle("Simulacija");
+    m_view->resize(600, 400);
+    m_view->show();
+
     std::cout << "Play";
 }
 

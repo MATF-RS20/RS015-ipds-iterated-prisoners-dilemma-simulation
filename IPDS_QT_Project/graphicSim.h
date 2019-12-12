@@ -3,8 +3,15 @@
 #include "specimen.h"
 #include "food.h"
 #include "simulation.h"
-#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "food.h"
+#include "graphics.h"
+#include "specimen.h"
+#include "simulation.h"
+#include "estrategy.h"
+#include <cmath>
+#include <cstdlib>
+
 #ifndef GRAPHICSPECIMEN_HPP
 #define GRAPHICSPECIMEN_HPP
 

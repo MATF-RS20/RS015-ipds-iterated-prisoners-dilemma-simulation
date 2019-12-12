@@ -2,13 +2,6 @@
 
 
 #include "graphicSim.h"
-#include "food.h"
-#include "graphics.h"
-#include "specimen.h"
-#include "simulation.h"
-#include "estrategy.h"
-#include <cmath>
-#include <cstdlib>
 
 static const double PI = 3.14159265358979323846264338327950288419717;
 static const double TWO_PI = 2.0 * PI;
@@ -50,6 +43,7 @@ GraphicSim::GraphicSim(int foodNo, std::vector<int> &specimenNoInfo)
     }
 
     this->initializeFood(foodNo);
+
 
 }
 GraphicSim::~GraphicSim(){
