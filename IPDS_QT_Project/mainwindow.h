@@ -30,6 +30,7 @@ private slots:
 
     void on_pushButtonPause_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     QVector<double> xs,ys;

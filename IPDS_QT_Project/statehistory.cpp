@@ -2,12 +2,31 @@
 
 StateHistory::StateHistory() {}
 
-void StateHistory::update(std::vector<int> iterationInfo){
-    graphInfo.push_back(iterationInfo);
+StateHistory::StateHistory(const StateHistory &other) {}
+
+StateHistory& StateHistory::operator=(const StateHistory &other)
+{
+    m_innerGraphInfo = other.m_innerGraphInfo;
+    return *this;
 }
 
-std::vector<int> StateHistory::getIteration(unsigned iterationNo) const{
+void StateHistory::update(std::vector<int> iterationInfo)
+{
+    m_innerGraphInfo.push_back(iterationInfo);
+}
+
+std::vector<int> StateHistory::getIteration(unsigned iterationNo)
+{
+    return m_innerGraphInfo[iterationNo];
+}
+
+std::vector<int> StateHistory::getIteration(unsigned iterationNo) const {
     return graphInfo[iterationNo];
+}
+
+std::vector<std::vector<int>> StateHistory::getAllIterations()
+{
+    return m_innerGraphInfo;
 }
 
 

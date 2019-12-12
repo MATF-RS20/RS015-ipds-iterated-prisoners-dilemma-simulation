@@ -156,28 +156,15 @@
      </item>
     </layout>
    </widget>
-   <widget class="QScrollArea" name="simWidget">
+   <widget class="QWidget" name="displayWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>150</y>
-      <width>171</width>
-      <height>221</height>
+      <x>39</x>
+      <y>109</y>
+      <width>311</width>
+      <height>461</height>
      </rect>
     </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>169</width>
-       <height>219</height>
-      </rect>
-     </property>
-    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

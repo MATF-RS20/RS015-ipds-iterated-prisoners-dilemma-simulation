@@ -21,15 +21,18 @@ public:
      *
      */
     Simulation(int foodNo, std::vector<int> &specimenNoInfo);
-    ~Simulation();
 
+    /*Vlada here, pls no kill me*/
+    virtual ~Simulation() = default;
+    Simulation(const Simulation& other);
+    Simulation& operator=(const Simulation& other);
     /* Simple implementation of a famous design pattern:
      * Factory Method
      *
      * Method accepts indicator and decides which object to
      * create
      */
-    std::shared_ptr<Specimen> specimenFactory(int indicator);
+    std::shared_ptr<Specimen> specimenFactory(strategy indicator);
 
     void simulate();
     void playRound();
@@ -37,7 +40,7 @@ public:
 
 protected:
     // Number of foods used in that exact simulation
-    const int m_foodNo;
+    int m_foodNo;
 
     /* Matrix of pointers to all the active specimen
      * on the current field.

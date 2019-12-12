@@ -1,5 +1,7 @@
 #include <QGraphicsItem>
+#include <vector>
 #include "specimen.h"
+#include "food.h"
 #include "simulation.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -8,46 +10,32 @@
 
 
 
-class graphicSim : public QGraphicsItem, public Simulation
+class graphicSim : public Simulation
 {
 public:
-    //TODO add simulation constructor and store in private field
+
     graphicSim(int foodNo, std::vector<int> &specimenNoInfo);
-
-    /*boundry clipping function that determines if the QGraphicsItem should be drawn*/
-    QRectF boundingRect() const override;
-
-    /*function for detecting shape collision with other QGraphicsItems*/
-    QPainterPath shape() const override;
-
-    /*function that draws the current QGraphicsItem*/
-    void paint(QPainter *painter,
-               const QStyleOptionGraphicsItem *option,
-               QWidget *widget) override;
-
-    /*function that is triggered when this object is clicked*/
-    void mousePressEvent(QGraphicsSceneMouseEvent * event) override;
-
-    /////////////////
+    ~graphicSim();
+    void initializeFood(int foodNo);
     void drawGraphIter();
-    /////////////////
+    void show();
+    void addItems(QGraphicsScene& scene);
+
+
+    std::vector<int> m_posVector;
 
 
 protected:
 
     /*function that is used for iterated animation, is called for every change*/
-    void advance(int step) override;
+    void advance(int step);
 
 private:
 
     MainWindow m_window;
     qreal  m_xPosition;
     qreal  m_yPosition;
-    qreal  m_lookAngle;
-    qreal  m_speed;
-    qreal  m_globalAngle;
-    QColor m_color;
-
+    std::vector<Food> m_foodVector;
 };
 
 #endif // GRAPHICSPECIMEN_HPP

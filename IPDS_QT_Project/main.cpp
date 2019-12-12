@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "graphics.h"
 #include "graphicSim.hpp"
+#include "simulation.h"
 #include <QtGui>
 #include <QApplication>
 #include <QGraphicsView>
@@ -9,32 +10,30 @@
 int main(int argc, char *argv[])
 {
 
+    /*hard coded example*/
     int foodCount = 5;
+    std::vector<int> specimenNoInfo{1,2,3,4,5,6,7};
+
+    /*app and window init*/
     QApplication a(argc, argv);
     MainWindow w;
 
     qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
 
-    // Inicijalizujemo scenu
+
     QGraphicsScene scene;
     scene.setSceneRect(-300, -300, 600, 600);
-
-    // Iskljucujemo indeksiranje pozicija elemenata scene
-    // Usled ovoga, pretraga elemenata je linearne slozenosti.
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
 
-    std::vector<int> specimenNoInfo;
+
     graphicSim* gs = new graphicSim(foodCount,specimenNoInfo);
-    scene.addItem(gs);
+
+    /* Adding items of type specimen to the scene*/
+    gs->addItems(scene);
 
     QGraphicsView view(&scene);
 
-
-
-
-    // Omogucava se da korisnik misem moze da pomera glavni pogled
-    // na scenu (drag and drop akcija).
-    view.setDragMode(QGraphicsView::ScrollHandDrag);
+    //view.setDragMode(QGraphicsView::ScrollHandDrag);
 
     view.setWindowTitle("Simulacija");
     view.resize(600, 400);

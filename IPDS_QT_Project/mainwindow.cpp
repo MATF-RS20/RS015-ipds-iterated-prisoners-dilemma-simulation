@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     MainWindow::plot();
+
 
 }
 
@@ -42,15 +44,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButtonPlay_clicked()
 {
-
+    std::cout << "Play";
 }
 
 void MainWindow::on_pushButtonStop_clicked()
 {
-
+    std::cout << "Stop";
 }
 
 void MainWindow::on_pushButtonPause_clicked()
 {
-
+    std::cout << "Pause";
 }
+
+
