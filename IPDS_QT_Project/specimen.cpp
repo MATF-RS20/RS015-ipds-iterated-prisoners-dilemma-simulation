@@ -39,16 +39,16 @@ QPainterPath Specimen::shape() const
 void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
-    Q_UNUSED(widget)
     painter->drawRoundedRect(0, 0, 10, 10, 5, 5);
     double angle = this->specimenID * ( (2*M_PI) / ID );
     std::cout << "ID:" << ID << "\n" << "staticCount:" << this->specimenID <<"\n" <<std::endl;
-    double r = 40;
+    double r = 140;
     double tmpX = r * std::cos(angle);
     double tmpY = r * std::sin(angle);
 
+
     painter->setBrush(color);
-    painter->drawEllipse(-10+tmpX, -20+tmpY, 10, 10);
+    painter->drawEllipse(tmpX,tmpY, 10, 10);
 
     painter->drawImage(QRect(-10, -20, 20, 40), QImage(QString::fromStdString(imgPath)));
 
