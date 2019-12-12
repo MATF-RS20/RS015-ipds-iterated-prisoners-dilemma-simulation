@@ -32,6 +32,7 @@ private slots:
 
 
 private:
+
     Ui::MainWindow *ui;
     QVector<double> xs,ys;
 };

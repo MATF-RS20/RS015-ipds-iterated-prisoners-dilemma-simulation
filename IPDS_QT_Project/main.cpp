@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "graphics.h"
-#include "graphicSim.hpp"
+#include "graphicSim.h"
 #include "simulation.h"
 #include <QtGui>
 #include <QApplication>
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
 
 
-    graphicSim* gs = new graphicSim(foodCount,specimenNoInfo);
+    GraphicSim* gs = new GraphicSim(foodCount,specimenNoInfo);
 
     /* Adding items of type specimen to the scene*/
     gs->addItems(scene);
