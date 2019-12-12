@@ -7,7 +7,7 @@
 #include "specimen.h"
 #include "simulation.h"
 #include "estrategy.h"
-//#include <QRandomGenerator>
+#include <QRandomGenerator>
 #include <cmath>
 
 static const double PI = 3.14159265358979323846264338327950288419717;
@@ -83,7 +83,7 @@ void graphicSim::addItems(QGraphicsScene& scene)
 
 void graphicSim::initializeFood(int foodNo)
 {
-    //TODO add global drawing center
+    //TODO add global drawing center,scale to R
     double randa,randr;
     double centerX = -10.0;
     double centerY = -20.0;
@@ -95,10 +95,10 @@ void graphicSim::initializeFood(int foodNo)
         //TODO clean up this blasphemous random number generation and pi representation
         //TODO tweak size of r to match window size
 
-        randr = 0;//QRandomGenerator::global()->generateDouble();
+        randr = QRandomGenerator::global()->generateDouble();
         double r = randr*sqrt(centerX*centerX+centerY*centerY);
 
-        randa = 0;//QRandomGenerator::global()->generateDouble();
+        randa = QRandomGenerator::global()->generateDouble();
         double tmpX = r * std::cos(randa*2*M_PI);
         double tmpY = r * std::sin(randa*2*M_PI);
 

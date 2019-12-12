@@ -1,6 +1,8 @@
+#define _USE_MATH_DEFINES
 #include "specimen.h"
-
+#include <iostream>
 #include <cmath>
+
 
 Specimen::Specimen(QColor color, std::string imgPath)
     : specimenID(ID), color(color), imgPath(imgPath)
@@ -10,7 +12,6 @@ Specimen::Specimen(QColor color, std::string imgPath)
 Specimen::Specimen(std::string imgPath) : specimenID(ID),imgPath(imgPath){
     ID++;
 }
-
 unsigned Specimen::ID = 0;
 
 Specimen::Specimen(Specimen& s) : specimenID(s.ID) {}
@@ -38,10 +39,16 @@ QPainterPath Specimen::shape() const
 void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
+    painter->drawRoundedRect(0, 0, 10, 10, 5, 5);
+    double angle = this->specimenID * ( (2*M_PI) / ID );
+    std::cout << "ID:" << ID << "\n" << "staticCount:" << this->specimenID <<"\n" <<std::endl;
+    double r = 40;
+    double tmpX = r * std::cos(angle);
+    double tmpY = r * std::sin(angle);
 
 
     painter->setBrush(color);
-    painter->drawEllipse(-10, -20, 10, 10);
+    painter->drawEllipse(-10+tmpX, -20+tmpY, 10, 10);
 
     painter->drawImage(QRect(-10, -20, 20, 40), QImage(QString::fromStdString(imgPath)));
 
