@@ -32,7 +32,7 @@ public:
      * Method accepts indicator and decides which object to
      * create
      */
-    std::shared_ptr<Specimen> specimenFactory(int indicator);
+    std::shared_ptr<Specimen> specimenFactory(strategy indicator);
 
     void simulate();
     void playRound();

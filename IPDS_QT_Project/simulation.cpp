@@ -10,11 +10,16 @@ Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
     m_specimenNo = std::accumulate(std::begin(specimenNoInfo), std::end(specimenNoInfo), 0);
     m_graphInfo.update(specimenNoInfo);
 
-    for(unsigned i = 0; i < specimenNoInfo.size(); i++)
+    int size = static_cast<int>(specimenNoInfo.size());
+    for(int i=0; i<size; i++){
+        m_specimen.push_back(std::vector<std::shared_ptr<Specimen>>());
+    }
+
+    for(int i = 0; i < size; i++)
     {
         for(int j = 0; j < specimenNoInfo[i]; j++)
         {
-            m_specimen[i].push_back(specimenFactory(i));
+            m_specimen[i].push_back(specimenFactory(static_cast<strategy>(i)));
         }
     }
 
@@ -43,7 +48,7 @@ Simulation& Simulation::operator=(const Simulation& other)
 
 }
 
-std::shared_ptr<Specimen> Simulation::specimenFactory(int indicator)
+std::shared_ptr<Specimen> Simulation::specimenFactory(strategy indicator)
 {
     std::shared_ptr<Specimen> tmpVal(nullptr);
 
