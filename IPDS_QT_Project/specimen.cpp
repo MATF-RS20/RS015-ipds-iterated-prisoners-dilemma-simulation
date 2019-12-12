@@ -13,7 +13,7 @@ Specimen::Specimen(std::string imgPath) : specimenID(ID),imgPath(imgPath){
 
 unsigned Specimen::ID = 0;
 
-Specimen::Specimen(Specimen& s) : specimenID(s.ID) {}
+Specimen::Specimen(Specimen& s) : QGraphicsItem(),specimenID(s.ID) {}
 
 Specimen& Specimen::operator=(Specimen& s){
     this->ID = s.ID;
@@ -38,6 +38,7 @@ QPainterPath Specimen::shape() const
 void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
+    Q_UNUSED(widget)
 
 
     painter->setBrush(color);
@@ -49,5 +50,5 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
 void Specimen::advance(int step)
 {
-    Q_UNUSED(step);
+    Q_UNUSED(step)
 }
