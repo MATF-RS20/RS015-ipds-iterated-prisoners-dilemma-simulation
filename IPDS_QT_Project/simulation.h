@@ -23,7 +23,7 @@ public:
     Simulation(int foodNo, std::vector<int> &specimenNoInfo);
 
     /*Vlada here, pls no kill me*/
-    virtual ~Simulation()=default;
+    virtual ~Simulation() = default;
     Simulation(const Simulation& other);
     Simulation& operator=(const Simulation& other);
     /* Simple implementation of a famous design pattern:
