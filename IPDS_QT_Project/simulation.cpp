@@ -11,7 +11,7 @@ Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
     m_graphInfo.update(specimenNoInfo);
 
     int size = static_cast<int>(specimenNoInfo.size());
-    for(int i=0; i<size; i++){
+    for(int i = 0; i < size; i++){
         m_specimen.push_back(std::vector<std::shared_ptr<Specimen>>());
     }
 
@@ -23,34 +23,53 @@ Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
         }
     }
 
-    m_graphInfo.update(specimenNoInfo);
 }
-
 
 Simulation::Simulation(const Simulation& other)
 {
-//    this->m_specimenNo = other.m_specimenNo;
-//    this->m_foodNo = other.m_foodNo;
-//    int numOfStrats = other.m_specimen.size();
-//    for(int i=0; i<numOfStrats ; ++i)
-//    {
+    m_foodNo = other.m_foodNo;
+    m_specimenNo = other.m_specimenNo;
 
-//        for(int j = 0; j < ; j++)
-//        {
-//            m_specimen[i].push_back(specimenFactory(i));
-//        }
-//    }
+    int size = static_cast<int>(other.m_specimen.size());
 
+    for(int i = 0; i < size; i++)
+    {
+        m_specimen.push_back(std::vector<std::shared_ptr<Specimen>>());
+    }
+
+    for(int i = 0; i < size; i++)
+    {
+        for(unsigned j = 0; j < other.m_specimen[i].size() ; j++)
+            m_specimen[i].push_back(specimenFactory(static_cast<strategy>(i)));
+    }
+
+    m_graphInfo = other.m_graphInfo;
 
 }
+
 Simulation& Simulation::operator=(const Simulation& other)
 {
+    m_foodNo = other.m_foodNo;
+    m_specimenNo = other.m_specimenNo;
+    m_graphInfo = other.m_graphInfo;
 
+    int size = static_cast<int>(other.m_specimen.size());
+    for(int i = 0; i < size; i++)
+    {
+        m_specimen.push_back(std::vector<std::shared_ptr<Specimen>>());
+    }
+
+    for(int i = 0; i < size; i++)
+    {
+        for(unsigned j = 0; j < other.m_specimen[i].size() ; j++)
+            m_specimen[i].push_back(specimenFactory(static_cast<strategy>(i)));
+    }
+
+    return *this;
 }
 
 std::shared_ptr<Specimen> Simulation::specimenFactory(strategy indicator)
 {
-    std::shared_ptr<Specimen> tmpVal(nullptr);
 
     switch(indicator)
     {
