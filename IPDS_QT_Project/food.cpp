@@ -1,5 +1,7 @@
 #include "food.h"
 
+
+
 Food::Food(double posX, double posY)
     :m_posX(posX)
     ,m_posY(posY)

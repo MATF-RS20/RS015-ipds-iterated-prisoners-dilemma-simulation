@@ -21,18 +21,14 @@ int main(int argc, char *argv[])
     scene.setSceneRect(-300, -300, 600, 600);
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
 
-    std::vector<int> specimenNoInfo;
+    std::vector<int> specimenNoInfo{1,2,3,4,5,6,7};
     graphicSim* gs = new graphicSim(foodCount,specimenNoInfo);
-    gs
+
     //scene.addItem(gs);
+    gs->addItems(scene);
 
     QGraphicsView view(&scene);
 
-
-
-
-    // Omogucava se da korisnik misem moze da pomera glavni pogled
-    // na scenu (drag and drop akcija).
     view.setDragMode(QGraphicsView::ScrollHandDrag);
 
     view.setWindowTitle("Simulacija");

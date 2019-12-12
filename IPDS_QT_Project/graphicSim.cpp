@@ -2,6 +2,7 @@
 
 
 #include "graphicSim.hpp"
+#include "food.h"
 #include "graphics.h"
 #include "specimen.h"
 #include "simulation.h"
@@ -34,7 +35,8 @@ graphicSim::graphicSim(int foodNo, std::vector<int> &specimenNoInfo)
 
     /*Initializes Simulation and by extension, all specimen instances*/
     unsigned strategyCount = strategy::COUNT;
-    this->m_posVector = std::vector<int>(this->m_specimenNo);
+
+
 
     for(unsigned i=0; i<strategyCount; ++i)
     {
@@ -42,13 +44,15 @@ graphicSim::graphicSim(int foodNo, std::vector<int> &specimenNoInfo)
 
         for(unsigned long j=0; j<curSpecimenNo ; ++j)
         {
-            m_posVector[i+j]=static_cast<int>(i);
             this->m_specimen[i][j]->show();
         }
 
     }
 
     this->initializeFood(foodNo);
+
+}
+graphicSim::~graphicSim(){
 
 }
 void graphicSim::show()
@@ -66,9 +70,15 @@ void graphicSim::show()
     }
 }
 
-Simulation* graphicSim::getSim()
+void graphicSim::addItems(QGraphicsScene& scene)
 {
-    return this->
+    for(auto stratVector : this->m_specimen)
+    {
+        for(auto tmpSpecimen : stratVector)
+        {
+            scene.addItem(tmpSpecimen.get());
+        }
+    }
 }
 
 void graphicSim::initializeFood(int foodNo)

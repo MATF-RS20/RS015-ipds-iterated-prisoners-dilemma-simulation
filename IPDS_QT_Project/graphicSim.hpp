@@ -15,9 +15,12 @@ class graphicSim : public Simulation
 public:
 
     graphicSim(int foodNo, std::vector<int> &specimenNoInfo);
+    ~graphicSim();
     void initializeFood(int foodNo);
     void drawGraphIter();
     void show();
+    void addItems(QGraphicsScene& scene);
+
 
     std::vector<int> m_posVector;
 
