@@ -15,6 +15,8 @@ public:
 
     bool isCooperating(int enemyID) override;
     void update(outcome res, int enemyID) override;
+    QColor getColor() override;
+    std::string getPathBase() override;
 
     static const QColor color;
     static const std::string imgPath;

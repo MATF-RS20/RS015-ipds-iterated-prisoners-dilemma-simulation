@@ -10,5 +10,15 @@
         <file>chickPics/pink.png</file>
         <file>chickPics/purple.png</file>
         <file>chickPics/red.png</file>
+        <file>chickPics/redMirror.png</file>
+        <file>chickPics/purpleMirror.png</file>
+        <file>chickPics/pinkMirror.png</file>
+        <file>chickPics/normalMirror.png</file>
+        <file>chickPics/greenMirror.png</file>
+        <file>chickPics/green2Mirror.png</file>
+        <file>chickPics/green1Mirror.png</file>
+        <file>chickPics/blueMirror.png</file>
+        <file>chickPics/blue3Mirror.png</file>
+        <file>chickPics/blue2Mirror.png</file>
     </qresource>
 </RCC>

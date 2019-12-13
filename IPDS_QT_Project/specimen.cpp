@@ -1,5 +1,6 @@
 #define _USE_MATH_DEFINES
 #include "specimen.h"
+#include "estrategy.h"
 #include <iostream>
 #include <cmath>
 
@@ -37,23 +38,51 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     Q_UNUSED(option)
     Q_UNUSED(widget)
 
-    painter->drawRoundedRect(0, 0, 10, 10, 5, 5);
+    /*
+    * The starting position for every chick is calculated thhrough polar coordinates
+    * because we want all our specimen to ultimately be in a circle.
+    * So 2*PI radians is divided into totalNumberOfSpecimen angles of the same size.
+    * Ergo, the formula for the angle is indexOdCurrentSpecimen * (2*PI/totalNumberOfSpecimen)
+    */
     double angle = this->specimenID * ( (2*M_PI) / ID );
     std::cout << "ID:" << ID << "\n" << "staticCount:" << this->specimenID <<"\n" <<std::endl;
-    double r = 160;
+
+    /*
+    * Total radius of the starting area, it's quite large atm, however, it will be downscalled to about 1/3 after
+    * all the source images have been properly tampered with.
+    */
+    double r = 240;
+
+    /*
+     * Calculation of x and y for current specimen using polar coordinate conversion,
+     * thinking about adding this as a private attribute for specimen, future Vlada
+     * will handle that.
+     */
+    //TODO add as private clas attributes
     double tmpX = r * std::cos(angle);
     double tmpY = r * std::sin(angle);
 
-
-//    painter->setBrush(color);
-//    painter->drawEllipse(tmpX,tmpY, 10, 10);
-
+    /*
+     * Point that will signify the top-left corner of where the image will be placed.
+     */
     QPoint point(tmpX,tmpY);
-    QImage image("://chickPics/purple.png");
+
+    /*
+     * Getting the image that will represent our specimen.
+     * The path is constructed by first getting the base from
+     * the instace itself, then depending on it's current position
+     * we append the suffix MIRROR, for we want our chick to look
+     * it's defeated opponent straight in the eyes when victorious.
+     */
+    std::cout << this->getPathBase() <<std::endl;
+    QString  imgSrc = QString::fromStdString(this->getPathBase());
+    if(tmpX>=0) imgSrc+="Mirror";
+    imgSrc+=".png";
+
+    QImage image(imgSrc);
+
 
     painter->drawImage(point, image);
-
-//    painter->drawImage(QRect(-10, -20, 20, 40), QImage(QString::fromStdString(":/chickPics/chickPics/blue.png")));
 
 }
 

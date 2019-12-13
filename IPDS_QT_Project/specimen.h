@@ -28,13 +28,17 @@ public:
 
     Specimen& operator=(Specimen&& s);
 
+    /*Method that fetches the color of the specimen, used mostly for plotting*/
+    virtual QColor getColor()=0;
+    /*Method that fetches the base of the path for the derived specimen type, used for graphic simulation*/
+    virtual std::string getPathBase()=0;
     /* Defines rough boundries for this graphic item */
     QRectF boundingRect() const override;
 
     /* Defines precise shape for this graphic item */
     QPainterPath shape() const override;
 
-    /* Draws the bloody thing */
+    /* Draws the chick in it's starting position */
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;

@@ -1,3 +1,6 @@
+#include <vector>
+#include <iostream>
+
 #ifndef ESTRATEGY_H
 #define ESTRATEGY_H
 
@@ -16,6 +19,8 @@ enum strategy {
     E_TWOTITSFORTAT,
     COUNT
 };
+
+
 
 
 #endif // ESTRATEGY_H

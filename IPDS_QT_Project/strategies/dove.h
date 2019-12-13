@@ -12,6 +12,8 @@ public:
     Dove();
     bool isCooperating(int enemyID) override;
     void update(outcome res, int enemyID) override;
+    QColor getColor() override;
+    std::string getPathBase() override;
 
     /* Color coding and appearance image
      * for specific strategies */

@@ -1,7 +1,8 @@
 #include "pavlov.h"
+#include "estrategy.h"
 
 const QColor Pavlov::color = Qt::GlobalColor::darkBlue;
-const std::string Pavlov::imgPath = "TODO";
+const std::string Pavlov::imgPath = ":/chickPics/blue2";
 
 
 Pavlov::Pavlov() : Specimen() {}
@@ -16,7 +17,14 @@ bool Pavlov::isCooperating(int enemyID){
     else
         return true;
 }
-
+QColor Pavlov::getColor()
+{
+    return this->color;
+}
+std::string Pavlov::getPathBase()
+{
+    return imgPath;
+}
 void Pavlov::update(outcome res, int enemyID){
     bool val = true;
     if(res==R || res==P){
