@@ -46,9 +46,11 @@ public:
     /* Assigns random food to each specimen,
      * increments counter if the given food is full
      * and swaps it using the method below
+     * and in the end sorts them by ID
      */
     void assignFoods();
     void swapFoods(unsigned a, unsigned b);
+    void clearAssignedFoods();
 
     /* Simple implementation of a famous design pattern:
      * Factory Method

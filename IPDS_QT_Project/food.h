@@ -10,8 +10,9 @@ public:
     Food(double posX, double posY, unsigned ID);
     bool addSpecimen(std::shared_ptr<Specimen> newSpecimen);
     void releaseSpecimen();
-    int numPresent();
+    void increasePresent();
 
+    int numPresent();
     double m_posX;
     double m_posY;
     std::shared_ptr<Specimen> specimen1;

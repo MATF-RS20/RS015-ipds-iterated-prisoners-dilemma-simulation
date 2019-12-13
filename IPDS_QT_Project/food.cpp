@@ -34,3 +34,8 @@ int Food::numPresent()
 {
     return this->m_noOfSpecimen;
 }
+
+void Food::increasePresent()
+{
+    this->m_noOfSpecimen++;
+}
