@@ -1,4 +1,5 @@
 #include "specimen.h"
+#include <memory>
 
 #ifndef FOOD_H
 #define FOOD_H
@@ -8,14 +9,14 @@ class Food
 {
 public:
     Food(double posX,double posY);
-    bool addSpecimen(Specimen* newSpecimen);
+    bool addSpecimen(std::shared_ptr<Specimen> newSpecimen);
     void releaseSpecimen();
     int numPresent();
 
     double m_posX;
     double m_posY;
-    Specimen* specimen1;
-    Specimen* specimen2;
+    std::shared_ptr<Specimen> specimen1;
+    std::shared_ptr<Specimen> specimen2;
     int m_noOfSpecimen;
 
 

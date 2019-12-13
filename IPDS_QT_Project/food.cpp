@@ -9,7 +9,7 @@ Food::Food(double posX, double posY)
     this->m_noOfSpecimen=0;
 }
 
-bool Food::addSpecimen(Specimen* newSpecimen)
+bool Food::addSpecimen(std::shared_ptr<Specimen> newSpecimen)
 {
     if(this->specimen1 == nullptr)
     {

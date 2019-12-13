@@ -13,7 +13,7 @@ Simulation::Simulation(const unsigned foodNo, std::vector<unsigned> &specimenNoI
 
     for(int i = 0; i < size; i++)
     {
-        for(int j = 0; j < specimenNoInfo[i]; j++)
+        for(unsigned j = 0; j < specimenNoInfo[i]; j++)
         {
             m_specimen[i].push_back(specimenFactory(static_cast<strategy>(i)));
         }
@@ -78,7 +78,7 @@ void Simulation::initializeFood()
 
     // Generates random position inside a circle
     // randr signifies the distance from the center, randa signifies the angle for the polar coordinates
-    for(int i = 0; i < m_foodNo; i++)
+    for(unsigned i = 0; i < m_foodNo; i++)
     {
         // TODO clean up this blasphemous random number generation and pi representation
         // TODO tweak size of r to match window size
@@ -134,7 +134,35 @@ unsigned Simulation::randomFoodPicker()
      */
     std::uniform_int_distribution<> distr(m_foodsRndCounter, m_foodNo);
 
-    return distr(eng);
+    return static_cast<unsigned>(distr(eng));
+}
+
+void Simulation::swapFoods(unsigned a, unsigned b)
+{
+    Food tmp = m_foodsActive[a];
+    m_foodsActive[a] = m_foodsActive[b];
+    m_foodsActive[b] = tmp;
+}
+
+void Simulation::assignFoods()
+{
+    unsigned assFood;
+    m_foodsRndCounter = 0;
+
+    for(unsigned i = 0; i < m_specimen.size(); i++)
+    {
+        for(unsigned j = 0; j < m_specimen[i].size() ; j++)
+        {
+            assFood = randomFoodPicker();
+            m_foodsActive[assFood].addSpecimen(m_specimen[i][j]);
+            if(m_foodsActive[assFood].numPresent() == 2)
+            {
+                swapFoods(m_foodsRndCounter, assFood);
+                m_foodsRndCounter++;
+            }
+        }
+    }
+
 }
 
 void Simulation::simulate()

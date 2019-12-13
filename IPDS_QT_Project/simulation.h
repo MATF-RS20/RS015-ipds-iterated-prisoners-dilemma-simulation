@@ -37,6 +37,8 @@ public:
 
     void initializeFood();
     unsigned randomFoodPicker();
+    void assignFoods();
+    void swapFoods(unsigned a, unsigned b);
 
     /* Simple implementation of a famous design pattern:
      * Factory Method
