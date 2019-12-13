@@ -48,7 +48,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     std::cout << "ID:" << ID << "\n" << "staticCount:" << this->specimenID <<"\n" <<std::endl;
 
     /*
-    * Total radius of the starting area, it's quite large atm, however, it will be downscalled to about 1/3 after
+    * Total radius of the starting area, it's quite large atm, however, it will be downscaled to about 1/3 after
     * all the source images have been properly tampered with.
     */
     double r = 240;
@@ -70,8 +70,8 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     /*
      * Getting the image that will represent our specimen.
      * The path is constructed by first getting the base from
-     * the instace itself, then depending on it's current position
-     * we append the suffix MIRROR, for we want our chick to look
+     * the instnace itself, then depending on it's current position
+     * we append the suffix MIRROR.png or just .png, for we want our chick to look
      * it's defeated opponent straight in the eyes when victorious.
      */
     std::cout << this->getPathBase() <<std::endl;
@@ -81,7 +81,9 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
     QImage image(imgSrc);
 
-
+    /*
+     * We draw the actual image with it's top-left corner being point.
+    */
     painter->drawImage(point, image);
 
 }
