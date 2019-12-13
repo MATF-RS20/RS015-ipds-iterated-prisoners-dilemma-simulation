@@ -35,8 +35,18 @@ public:
     Simulation(const Simulation& other);
     Simulation& operator=(const Simulation& other);
 
+    // Creates vector of foods with random coordinates
     void initializeFood();
+
+    /* Using m_foodsRndCounter returns range from that
+     * number to m_foodNo
+     */
     unsigned randomFoodPicker();
+
+    /* Assigns random food to each specimen,
+     * increments counter if the given food is full
+     * and swaps it using the method below
+     */
     void assignFoods();
     void swapFoods(unsigned a, unsigned b);
 

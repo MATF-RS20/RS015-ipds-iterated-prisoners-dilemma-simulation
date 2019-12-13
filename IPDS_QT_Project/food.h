@@ -5,10 +5,9 @@
 #define FOOD_H
 
 
-class Food
-{
+class Food {
 public:
-    Food(double posX,double posY);
+    Food(double posX, double posY, unsigned ID);
     bool addSpecimen(std::shared_ptr<Specimen> newSpecimen);
     void releaseSpecimen();
     int numPresent();
@@ -18,7 +17,7 @@ public:
     std::shared_ptr<Specimen> specimen1;
     std::shared_ptr<Specimen> specimen2;
     int m_noOfSpecimen;
-
+    unsigned m_ID;
 
 
 };

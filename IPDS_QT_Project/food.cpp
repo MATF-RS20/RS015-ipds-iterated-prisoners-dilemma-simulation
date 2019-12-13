@@ -1,8 +1,7 @@
 #include "food.h"
 
-Food::Food(double posX, double posY)
-    :m_posX(posX)
-    ,m_posY(posY)
+Food::Food(double posX, double posY, unsigned ID)
+    : m_posX(posX), m_posY(posY), m_ID(ID)
 {
     this->specimen1=nullptr;
     this->specimen2=nullptr;

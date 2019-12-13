@@ -91,7 +91,7 @@ void Simulation::initializeFood()
         double tmpY = r * std::sin(randa * 2 * M_PI);
 
         /*Adds the generated food to the appropriate attribute*/
-        m_foodsActive.emplace_back(tmpX, tmpY);
+        m_foodsActive.emplace_back(tmpX, tmpY, i);
     }
 }
 
@@ -162,6 +162,9 @@ void Simulation::assignFoods()
             }
         }
     }
+
+    //std::sort(std::begin(m_foodsActive), std::end(m_foodsActive), [](const Food &a, const Food &b)
+    //                                                                 {             });
 
 }
 

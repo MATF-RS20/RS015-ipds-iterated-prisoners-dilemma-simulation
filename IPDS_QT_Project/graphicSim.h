@@ -4,7 +4,6 @@
 #include "food.h"
 #include "simulation.h"
 #include "ui_mainwindow.h"
-#include "food.h"
 #include "graphics.h"
 #include "specimen.h"
 #include "simulation.h"

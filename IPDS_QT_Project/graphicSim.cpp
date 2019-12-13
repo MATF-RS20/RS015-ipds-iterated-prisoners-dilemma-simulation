@@ -99,7 +99,7 @@ void GraphicSim::initializeFood(int foodNo)
         double tmpY = r * std::sin(randa*2*M_PI);
 
         /*Adds the generated food to the appropriate attribute*/
-        this->m_foodVector.emplace_back(tmpX,tmpY);
+        this->m_foodVector.emplace_back(tmpX,tmpY, i);
     }
 }
 
