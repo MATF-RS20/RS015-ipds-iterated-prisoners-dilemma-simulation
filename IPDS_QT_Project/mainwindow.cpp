@@ -101,7 +101,7 @@ void MainWindow::on_pushButtonPlay_clicked()
         m_view = new QGraphicsView(m_scene);
 
         m_view->setWindowTitle("Simulacija");
-        m_view->resize(600, 400);
+        m_view->resize(800, 600);
         m_view->show();
 
         m_playing = true;

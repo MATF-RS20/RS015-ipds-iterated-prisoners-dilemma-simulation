@@ -65,7 +65,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     /*
      * Point that will signify the top-left corner of where the image will be placed.
      */
-    QPoint point(tmpX,tmpY);
+    QPoint point(tmpX-27,tmpY-23);
 
     /*
      * Getting the image that will represent our specimen.
