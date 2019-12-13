@@ -22,7 +22,7 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-GraphicSim::GraphicSim(int foodNo, std::vector<int> &specimenNoInfo)
+GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
     : Simulation(foodNo,specimenNoInfo)
 {
 

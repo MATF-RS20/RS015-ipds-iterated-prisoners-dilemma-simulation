@@ -56,7 +56,7 @@ void MainWindow::plot()
     for(int i=0; i<COUNT; i++){
         ui->plotWidget->addGraph();
 
-        std::vector<int> y_tmp = sh.getByStrategy(static_cast<strategy>(i));
+        std::vector<unsigned> y_tmp = sh.getByStrategy(static_cast<strategy>(i));
         QVector<double> y;
         for(int i : y_tmp){
             y.append(static_cast<double>(i));
@@ -88,10 +88,10 @@ void MainWindow::on_pushButtonPlay_clicked()
 {
     if(!m_playing){
         QSlider* foodSlider = ui->centralwidget->findChild<QSlider*>("foodSlider");
-        int foodCount = foodSlider->value();
+        unsigned foodCount = foodSlider->value();
 
         /* TODO: get specimenNoInfo from GUI */
-        std::vector<int> specimenNoInfo{1,2,3,4,5,6,7};
+        std::vector<unsigned> specimenNoInfo{1,2,3,4,5,6,7};
 
         m_gs = new GraphicSim(foodCount, specimenNoInfo);
 

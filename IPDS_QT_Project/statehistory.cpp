@@ -10,25 +10,25 @@ StateHistory& StateHistory::operator=(const StateHistory &other)
     return *this;
 }
 
-void StateHistory::update(std::vector<int> iterationInfo)
+void StateHistory::update(std::vector<unsigned> iterationInfo)
 {
     m_innerGraphInfo.push_back(iterationInfo);
     m_iterationNo++;
 }
 
-std::vector<int> StateHistory::getIteration(unsigned iterationNo) const
+std::vector<unsigned> StateHistory::getIteration(unsigned iterationNo) const
 {
     return m_innerGraphInfo[iterationNo];
 }
 
-std::vector<std::vector<int>> StateHistory::getAllIterations()
+std::vector<std::vector<unsigned>> StateHistory::getAllIterations()
 {
     return m_innerGraphInfo;
 }
 
 
-std::vector<int> StateHistory::getByStrategy(strategy s) const {
-    std::vector<int> res;
+std::vector<unsigned> StateHistory::getByStrategy(strategy s) const {
+    std::vector<unsigned> res;
     for(auto iteration : m_innerGraphInfo){
         res.push_back(iteration[static_cast<int>(s)]);
     }

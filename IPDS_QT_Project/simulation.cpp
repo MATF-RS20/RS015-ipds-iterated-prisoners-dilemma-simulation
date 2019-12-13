@@ -1,10 +1,6 @@
 #include "simulation.h"
-#include "strategiesheaders.h"
 
-#include <algorithm>
-#include <memory>
-
-Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
+Simulation::Simulation(const unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
     : m_foodNo(foodNo)
 {
     m_specimenNo = std::accumulate(std::begin(specimenNoInfo), std::end(specimenNoInfo), 0);
@@ -22,6 +18,8 @@ Simulation::Simulation(const int foodNo, std::vector<int> &specimenNoInfo)
             m_specimen[i].push_back(specimenFactory(static_cast<strategy>(i)));
         }
     }
+
+    initializeFood();
 
 }
 
@@ -44,6 +42,7 @@ Simulation::Simulation(const Simulation& other)
     }
 
     m_graphInfo = other.m_graphInfo;
+    initializeFood();
 
 }
 
@@ -65,7 +64,35 @@ Simulation& Simulation::operator=(const Simulation& other)
             m_specimen[i].push_back(specimenFactory(static_cast<strategy>(i)));
     }
 
+    initializeFood();
+
     return *this;
+}
+
+void Simulation::initializeFood()
+{
+    // TODO add global drawing center,scale to R
+    double randa, randr;
+    double centerX = -10.0;
+    double centerY = -20.0;
+
+    // Generates random position inside a circle
+    // randr signifies the distance from the center, randa signifies the angle for the polar coordinates
+    for(int i = 0; i < m_foodNo; i++)
+    {
+        // TODO clean up this blasphemous random number generation and pi representation
+        // TODO tweak size of r to match window size
+
+        randr = static_cast<double>(qrand())/RAND_MAX;
+        double r = randr * sqrt(centerX * centerX + centerY * centerY);
+
+        randa = static_cast<double>(qrand())/RAND_MAX;
+        double tmpX = r * std::cos(randa * 2 * M_PI);
+        double tmpY = r * std::sin(randa * 2 * M_PI);
+
+        /*Adds the generated food to the appropriate attribute*/
+        m_foodsActive.emplace_back(tmpX, tmpY);
+    }
 }
 
 std::shared_ptr<Specimen> Simulation::specimenFactory(strategy indicator)
@@ -92,6 +119,23 @@ std::shared_ptr<Specimen> Simulation::specimenFactory(strategy indicator)
     }
 }
 
+unsigned Simulation::randomFoodPicker()
+{
+    // Obtaining random number from hardware
+    std::random_device rd;
+
+    // Mersenne Twister random number generator
+    // https://en.wikipedia.org/wiki/Mersenne_Twister
+    std::mt19937 eng(rd());
+
+    /* Produces random int from a range where each
+     * number from a range has equal likelihood to
+     * be produced
+     */
+    std::uniform_int_distribution<> distr(m_foodsRndCounter, m_foodNo);
+
+    return distr(eng);
+}
 
 void Simulation::simulate()
 {

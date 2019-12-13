@@ -13,18 +13,18 @@ public:
 
     StateHistory& operator=(const StateHistory &other);
 
-    void update(std::vector<int> iterationInfo);
+    void update(std::vector<unsigned> iterationInfo);
 
-    std::vector<int> getIteration(unsigned iterationNo) const;
+    std::vector<unsigned> getIteration(unsigned iterationNo) const;
 
-    std::vector<int> getByStrategy(strategy s) const;
+    std::vector<unsigned> getByStrategy(strategy s) const;
 
-    std::vector<std::vector<int>> getAllIterations();
+    std::vector<std::vector<unsigned>> getAllIterations();
 
     int iterationNo() const;
 
 protected:
-    std::vector<std::vector<int>> m_innerGraphInfo;
+    std::vector<std::vector<unsigned>> m_innerGraphInfo;
     int m_iterationNo = 0;
 };
 

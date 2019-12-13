@@ -1,7 +1,15 @@
+#define _USE_MATH_DEFINES
+
 #include "specimen.h"
-#include "estrategy.h"
 #include "statehistory.h"
+#include "strategiesheaders.h"
+#include "estrategy.h"
+#include "food.h"
 #include <memory>
+#include <algorithm>
+#include <cmath>
+#include <cstdlib>
+#include <random>
 
 #ifndef SIMULATION_H
 #define SIMULATION_H
@@ -20,12 +28,16 @@ public:
      * Initializing other attributes is encapsulated
      *
      */
-    Simulation(int foodNo, std::vector<int> &specimenNoInfo);
+    Simulation(unsigned foodNo, std::vector<unsigned> &specimenNoInfo);
 
     /*Vlada here, pls no kill me*/
     virtual ~Simulation() = default;
     Simulation(const Simulation& other);
     Simulation& operator=(const Simulation& other);
+
+    void initializeFood();
+    unsigned randomFoodPicker();
+
     /* Simple implementation of a famous design pattern:
      * Factory Method
      *
@@ -44,7 +56,8 @@ public:
 
 protected:
     // Number of foods used in that exact simulation
-    int m_foodNo;
+    unsigned m_foodNo;
+    std::vector<Food> m_foodsActive;
 
     /* Matrix of pointers to all the active specimen
      * on the current field.
@@ -59,12 +72,13 @@ protected:
     std::vector<std::vector<std::shared_ptr<Specimen>>> m_specimen;
 
     // Keeps track of number of all specimen
-    int m_specimenNo;
+    unsigned m_specimenNo;
 
     /* Keeps info on all previous rounds and number
      * of each type of specimen at that moment
      */
     StateHistory m_graphInfo;
+    unsigned m_foodsRndCounter = 0;
 };
 
 #endif // SIMULATION_H

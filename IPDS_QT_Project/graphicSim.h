@@ -21,7 +21,7 @@ class GraphicSim : public Simulation
 {
 public:
 
-    GraphicSim(int foodNo, std::vector<int> &specimenNoInfo);
+    GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo);
     ~GraphicSim();
     void initializeFood(int foodNo);
     void drawGraphIter();
