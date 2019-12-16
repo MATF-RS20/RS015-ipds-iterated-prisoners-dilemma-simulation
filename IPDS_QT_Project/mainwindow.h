@@ -24,6 +24,8 @@ public:
 
     MainWindow operator=(const MainWindow& mwOther);
 
+    void addDefaultScene(void);
+
     void plot();
 
 
@@ -38,10 +40,10 @@ private slots:
 private:
 
     GraphicSim* m_gs;
-    Ui::MainWindow* ui;
+    Ui::MainWindow ui;
     QGraphicsView* m_view;
     QGraphicsScene* m_scene;
-    bool m_playing;
+    bool m_playing = false;
 
     void setPlotColors();
 };

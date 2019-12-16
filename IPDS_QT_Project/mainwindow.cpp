@@ -2,13 +2,22 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(Ui::MainWindow())
 {
-    ui->setupUi(this);
+    ui.setupUi(this);
 
     MainWindow::plot();
 
     qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
+}
+
+
+MainWindow::~MainWindow()
+{
+    delete m_scene;
+}
+
+void MainWindow::addDefaultScene(void){
     m_scene = new QGraphicsScene();
     m_scene->setSceneRect(-300, -300, 600, 600);
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -43,7 +52,7 @@ void MainWindow::setPlotColors(){
             default:
             break;
         }
-        ui->plotWidget->graph(i)->setPen(pen);
+        ui.plotWidget->graph(i)->setPen(pen);
     }
 }
 
@@ -54,7 +63,7 @@ void MainWindow::plot()
     std::iota(x.begin(), x.end(), 0);
 
     for(int i=0; i<COUNT; i++){
-        ui->plotWidget->addGraph();
+        ui.plotWidget->addGraph();
 
         std::vector<unsigned> y_tmp = sh.getByStrategy(static_cast<strategy>(i));
         QVector<double> y;
@@ -62,33 +71,27 @@ void MainWindow::plot()
             y.append(static_cast<double>(i));
         }
 
-        ui->plotWidget->graph(i)->setData(x, y);
+        ui.plotWidget->graph(i)->setData(x, y);
 
     }
 
     setPlotColors();
 
-    ui->plotWidget->xAxis->setLabel("Iteration");
-    ui->plotWidget->yAxis->setLabel("Specimen");
+    ui.plotWidget->xAxis->setLabel("Iteration");
+    ui.plotWidget->yAxis->setLabel("Specimen");
 
-    ui->plotWidget->xAxis->setRange(0, sh.iterationNo());
-    ui->plotWidget->yAxis->setRange(0, 200); // HACK: Hardcoded random value
+    ui.plotWidget->xAxis->setRange(0, sh.iterationNo());
+    ui.plotWidget->yAxis->setRange(0, 200); // HACK: Hardcoded random value
 
-    ui->plotWidget->replot();
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-    delete m_scene;
+    ui.plotWidget->replot();
 }
 
 
 void MainWindow::on_pushButtonPlay_clicked()
 {
     if(!m_playing){
-        QSlider* foodSlider = ui->centralwidget->findChild<QSlider*>("foodSlider");
-        unsigned foodCount = foodSlider->value();
+
+        unsigned foodCount = ui.foodSlider->value();
 
         /* TODO: get specimenNoInfo from GUI */
         std::vector<unsigned> specimenNoInfo{1,2,3,4,5,6,7};
@@ -105,6 +108,7 @@ void MainWindow::on_pushButtonPlay_clicked()
         m_view->show();
 
         m_playing = true;
+
     }
 }
 

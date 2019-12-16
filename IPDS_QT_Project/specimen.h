@@ -28,10 +28,14 @@ public:
 
     Specimen& operator=(Specimen&& s);
 
-    /*Method that fetches the color of the specimen, used mostly for plotting*/
+    /* Method that fetches the color of the specimen,
+     * used mostly for plotting */
     virtual QColor getColor()=0;
-    /*Method that fetches the base of the path for the derived specimen type, used for graphic simulation*/
+
+    /* Method that fetches the base of the path for the derived
+     * specimen type, used for graphic simulation*/
     virtual std::string getPathBase()=0;
+
     /* Defines rough boundries for this graphic item */
     QRectF boundingRect() const override;
 

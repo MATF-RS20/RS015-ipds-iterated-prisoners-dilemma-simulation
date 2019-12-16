@@ -77,7 +77,8 @@ void Simulation::initializeFood()
     double centerY = -20.0;
 
     // Generates random position inside a circle
-    // randr signifies the distance from the center, randa signifies the angle for the polar coordinates
+    // randr signifies the distance from the center,
+    // randa signifies the angle for the polar coordinates
     for(unsigned i = 0; i < m_foodNo; i++)
     {
         // TODO clean up this blasphemous random number generation and pi representation
