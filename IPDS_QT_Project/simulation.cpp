@@ -156,8 +156,8 @@ void Simulation::assignFoods()
         {
             assFood = randomFoodPicker();
             m_foodsActive[assFood].addSpecimen(m_specimen[i][j]);
-            m_foodsActive[assFood].increasePresent();
-            if(m_foodsActive[assFood].numPresent() == 2)
+            m_foodsActive[assFood].increaseNoOfSpecimen();
+            if(m_foodsActive[assFood].noOfSpecimen() == 2)
             {
                 swapFoods(m_foodsRndCounter, assFood);
                 m_foodsRndCounter++;
@@ -167,7 +167,7 @@ void Simulation::assignFoods()
 
     std::sort(std::begin(m_foodsActive), std::end(m_foodsActive),
               [](const Food &a, const Food &b)
-                {return a.m_ID > b.m_ID;
+                {return a.id() > b.id();
                 });
 
 }

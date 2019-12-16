@@ -3,21 +3,21 @@
 Food::Food(double posX, double posY, unsigned ID)
     : m_posX(posX), m_posY(posY), m_ID(ID)
 {
-    this->specimen1=nullptr;
-    this->specimen2=nullptr;
-    this->m_noOfSpecimen=0;
+    specimen1 = nullptr;
+    specimen2 = nullptr;
+    m_noOfSpecimen = 0;
 }
 
 bool Food::addSpecimen(std::shared_ptr<Specimen> newSpecimen)
 {
-    if(this->specimen1 == nullptr)
+    if(specimen1 == nullptr)
     {
-        this->specimen1 = newSpecimen;
+        specimen1 = newSpecimen;
         return true;
     }
-    else if(this->specimen2 == nullptr)
+    else if(specimen2 == nullptr)
     {
-        this->specimen2 = newSpecimen;
+        specimen2 = newSpecimen;
         return true;
     }
     return false;
@@ -25,17 +25,22 @@ bool Food::addSpecimen(std::shared_ptr<Specimen> newSpecimen)
 }
 void Food::releaseSpecimen()
 {
-    this->specimen1=nullptr;
-    this->specimen2=nullptr;
+    specimen1 = nullptr;
+    specimen2 = nullptr;
 
 }
 
-int Food::numPresent()
+int Food::noOfSpecimen() const
 {
-    return this->m_noOfSpecimen;
+    return m_noOfSpecimen;
 }
 
-void Food::increasePresent()
+void Food::increaseNoOfSpecimen()
 {
-    this->m_noOfSpecimen++;
+    m_noOfSpecimen++;
+}
+
+unsigned Food::id() const
+{
+    return m_ID;
 }
