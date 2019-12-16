@@ -37,7 +37,7 @@ public:
     static const std::string IMG_PATH
     ;
 private:
-    std::map<int,bool> m_rewardedOrPunished;
+    std::map<int,bool> m_mapRewardedOrPunished;
 };
 
 #endif // PAVLOV_H
