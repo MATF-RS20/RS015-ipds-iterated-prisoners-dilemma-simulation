@@ -6,8 +6,8 @@ const std::string TitForTwoTats::imgPath = ":/chickPics/purple";
 TitForTwoTats::TitForTwoTats() : Specimen() {}
 
 bool TitForTwoTats::isCooperating(int enemyID){
-    if(mapDeflectionInARow.count(enemyID)>0){
-        if(mapDeflectionInARow[enemyID]<2)
+    if(m_mapDeflectionInARow.count(enemyID)>0){
+        if(m_mapDeflectionInARow[enemyID]<2)
             return true;
         else
             return false;
@@ -34,14 +34,14 @@ void TitForTwoTats::update(outcome res, int enemyID){
         cooperated = false;
     }
 
-    if(mapDeflectionInARow.count(enemyID)>0){
+    if(m_mapDeflectionInARow.count(enemyID)>0){
         if(cooperated)
-            mapDeflectionInARow[enemyID]=0;
+            m_mapDeflectionInARow[enemyID]=0;
         else
-            mapDeflectionInARow[enemyID]+=1;
+            m_mapDeflectionInARow[enemyID]+=1;
     }
     else{
         if(!cooperated)
-           mapDeflectionInARow.insert(std::pair<int,bool>(enemyID, 1));
+           m_mapDeflectionInARow.insert(std::pair<int,bool>(enemyID, 1));
     }
 }

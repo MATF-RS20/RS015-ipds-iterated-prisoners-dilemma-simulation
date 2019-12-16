@@ -36,7 +36,7 @@ public:
     static const QColor color;
     static const std::string imgPath;
 private:
-    std::map<int,bool> rewardedOrPunished;
+    std::map<int,bool> m_rewardedOrPunished;
 };
 
 #endif // PAVLOV_H

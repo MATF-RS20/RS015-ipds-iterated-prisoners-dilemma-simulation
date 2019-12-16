@@ -21,7 +21,7 @@ public:
     static const QColor color;
     static const std::string imgPath;
 private:
-    std::map<int,bool> mapCooperated;
+    std::map<int,bool> m_mapCooperated;
 };
 
 #endif // TITFORTAT_H

@@ -7,8 +7,8 @@ const std::string TwoTitsForTat::imgPath = ":/chickPics/blue3";;
 TwoTitsForTat::TwoTitsForTat() : Specimen() {}
 
 bool TwoTitsForTat::isCooperating(int enemyID){
-    if(mapCooperatedCount.count(enemyID)>0){
-        if(mapCooperatedCount[enemyID]<2){
+    if(m_mapCooperatedCount.count(enemyID)>0){
+        if(m_mapCooperatedCount[enemyID]<2){
             return false;
         }
         else
@@ -35,15 +35,15 @@ void TwoTitsForTat::update(outcome res, int enemyID){
         cooperated = false;
     }
 
-    if(mapCooperatedCount.count(enemyID)>0){
-        if(cooperated && mapCooperatedCount[enemyID]<2)
-            mapCooperatedCount[enemyID]+=1;
+    if(m_mapCooperatedCount.count(enemyID)>0){
+        if(cooperated && m_mapCooperatedCount[enemyID]<2)
+            m_mapCooperatedCount[enemyID]+=1;
         else if(!cooperated){
-            mapCooperatedCount[enemyID]=0;
+            m_mapCooperatedCount[enemyID]=0;
         }
     }
     else{
         if(!cooperated)
-            mapCooperatedCount.insert(std::pair<int,bool>(enemyID, 0));
+            m_mapCooperatedCount.insert(std::pair<int,bool>(enemyID, 0));
     }
 }

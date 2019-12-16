@@ -19,7 +19,7 @@ public:
     static const QColor color;
     static const std::string imgPath;
 private:
-    std::map<int,int> mapCooperatedCount;
+    std::map<int,int> m_mapCooperatedCount;
 };
 
 #endif // TWOTITSFORTAT_H

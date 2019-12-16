@@ -7,8 +7,8 @@ const std::string TitForTat::imgPath = ":/chickPics/pink";
 TitForTat::TitForTat() : Specimen() {}
 
 bool TitForTat::isCooperating(int enemyID){
-    if(mapCooperated.count(enemyID)>0){
-        if(mapCooperated[enemyID]==true)
+    if(m_mapCooperated.count(enemyID)>0){
+        if(m_mapCooperated[enemyID]==true)
             return true;
         else
             return false;
@@ -35,10 +35,10 @@ void TitForTat::update(outcome res, int enemyID){
         cooperated = false;
     }
 
-    if(mapCooperated.count(enemyID)>0){
-        mapCooperated[enemyID]=cooperated;
+    if(m_mapCooperated.count(enemyID)>0){
+        m_mapCooperated[enemyID]=cooperated;
     }
     else{
-        mapCooperated.insert(std::pair<int,bool>(enemyID, cooperated));
+        m_mapCooperated.insert(std::pair<int,bool>(enemyID, cooperated));
     }
 }
