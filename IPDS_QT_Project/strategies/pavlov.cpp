@@ -8,8 +8,8 @@ const std::string Pavlov::IMG_PATH = ":/chickPics/blue2";
 Pavlov::Pavlov() : Specimen() {}
 
 bool Pavlov::isCooperating(int enemyID){
-    if(m_rewardedOrPunished.count(enemyID)>0){
-        if(m_rewardedOrPunished[enemyID]==true)
+    if(m_mapRewardedOrPunished.count(enemyID)>0){
+        if(m_mapRewardedOrPunished[enemyID]==true)
             return true;
         else
             return false;
@@ -34,10 +34,10 @@ void Pavlov::update(outcome res, int enemyID){
         val = false;
     }
 
-    if(m_rewardedOrPunished.count(enemyID)>0){
-        m_rewardedOrPunished[enemyID]=val;
+    if(m_mapRewardedOrPunished.count(enemyID)>0){
+        m_mapRewardedOrPunished[enemyID]=val;
     }
     else{
-        m_rewardedOrPunished.insert(std::pair<int,bool>(enemyID, val));
+        m_mapRewardedOrPunished.insert(std::pair<int,bool>(enemyID, val));
     }
 }
