@@ -3,8 +3,8 @@
 #include <time.h>
 #include "estrategy.h"
 
-const QColor AllRandom::color = Qt::GlobalColor::darkRed;
-const std::string AllRandom::imgPath = ":/chickPics/green";
+const QColor AllRandom::COLOR = Qt::GlobalColor::darkRed;
+const std::string AllRandom::IMG_PATH = ":/chickPics/green";
 
 AllRandom::AllRandom() : Specimen() {
     srand(time(NULL));
@@ -19,12 +19,12 @@ bool AllRandom::isCooperating(int){
 
 QColor AllRandom::getColor()
 {
-    return this->color;
+    return this->COLOR;
 }
 
 std::string AllRandom::getPathBase()
 {
-    return imgPath;
+    return IMG_PATH;
 }
 
 void AllRandom::update(outcome,int){}

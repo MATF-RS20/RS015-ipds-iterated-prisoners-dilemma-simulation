@@ -1,8 +1,8 @@
 #include "titfortat.h"
 #include "estrategy.h"
 
-const QColor TitForTat::color = Qt::GlobalColor::green;
-const std::string TitForTat::imgPath = ":/chickPics/pink";
+const QColor TitForTat::COLOR = Qt::GlobalColor::green;
+const std::string TitForTat::IMG_PATH = ":/chickPics/pink";
 
 TitForTat::TitForTat() : Specimen() {}
 
@@ -19,11 +19,11 @@ bool TitForTat::isCooperating(int enemyID){
 
 QColor TitForTat::getColor()
 {
-    return this->color;
+    return this->COLOR;
 }
 std::string TitForTat::getPathBase()
 {
-    return imgPath;
+    return IMG_PATH;
 }
 
 void TitForTat::update(outcome res, int enemyID){

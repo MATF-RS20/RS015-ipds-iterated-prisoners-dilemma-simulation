@@ -18,10 +18,10 @@ public:
     QColor getColor() override;
     std::string getPathBase() override;
 
-    static const QColor color;
-    static const std::string imgPath;
+    static const QColor COLOR;
+    static const std::string IMG_PATH;
 private:
-    std::map<int,int> mapDeflectionInARow;
+    std::map<int,int> m_mapDeflectionInARow;
 
 };
 

@@ -59,7 +59,7 @@ public:
     virtual void update(outcome res, int enemyID) = 0;
 
     /* Unique identifier of a speciman */
-    const unsigned specimenID;
+    const unsigned SPECIMEN_ID;
 
 protected:
     void advance(int step) override;

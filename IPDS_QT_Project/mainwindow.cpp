@@ -29,25 +29,25 @@ void MainWindow::setPlotColors(){
         strategy s = static_cast<strategy>(i);
         switch(s){
             case E_DOVE:
-                pen.setColor(Dove::color);
+                pen.setColor(Dove::COLOR);
             break;
             case E_HAWK:
-                pen.setColor(Hawk::color);
+                pen.setColor(Hawk::COLOR);
             break;
             case E_PAVLOV:
-                pen.setColor(Pavlov::color);
+                pen.setColor(Pavlov::COLOR);
             break;
             case E_RANDOM:
-                pen.setColor(AllRandom::color);
+                pen.setColor(AllRandom::COLOR);
             break;
             case E_TITFORTAT:
-                pen.setColor(TitForTat::color);
+                pen.setColor(TitForTat::COLOR);
             break;
             case E_TITFORTWOTATS:
-                pen.setColor(TitForTwoTats::color);
+                pen.setColor(TitForTwoTats::COLOR);
             break;
             case E_TWOTITSFORTAT:
-                pen.setColor(TwoTitsForTat::color);
+                pen.setColor(TwoTitsForTat::COLOR);
             break;
             default:
             break;

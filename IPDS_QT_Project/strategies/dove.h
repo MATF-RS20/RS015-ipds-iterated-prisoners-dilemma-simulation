@@ -18,8 +18,8 @@ public:
     /* Color coding and appearance image
      * for specific strategies */
 
-    static const QColor color;
-    static const std::string imgPath;
+    static const QColor COLOR;
+    static const std::string IMG_PATH;
 };
 
 #endif // DOVE_H

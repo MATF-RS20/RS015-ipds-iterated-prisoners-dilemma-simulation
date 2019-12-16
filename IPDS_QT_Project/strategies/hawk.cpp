@@ -1,8 +1,8 @@
 #include "hawk.h"
 #include "estrategy.h"
 
-const QColor Hawk::color = Qt::GlobalColor::red;
-const std::string Hawk::imgPath = ":/chickPics/red";
+const QColor Hawk::COLOR = Qt::GlobalColor::red;
+const std::string Hawk::IMG_PATH = ":/chickPics/red";
 
 Hawk::Hawk() : Specimen() {}
 
@@ -11,10 +11,10 @@ bool Hawk::isCooperating(int){
 }
 QColor Hawk::getColor()
 {
-    return this->color;
+    return this->COLOR;
 }
 std::string Hawk::getPathBase()
 {
-    return imgPath;
+    return IMG_PATH;
 }
 void Hawk::update(outcome,int){}
