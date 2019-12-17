@@ -27,6 +27,8 @@ std::string TitForTat::getPathBase()
 }
 
 void TitForTat::update(outcome res, int enemyID){
+    calculateFood(res);
+
     bool cooperated = true;
     if(res==R || res==T){
         cooperated = true;

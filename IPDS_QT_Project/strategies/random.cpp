@@ -27,4 +27,6 @@ std::string AllRandom::getPathBase()
     return IMG_PATH;
 }
 
-void AllRandom::update(outcome,int){}
+void AllRandom::update(outcome o,int){
+    calculateFood(o);
+}

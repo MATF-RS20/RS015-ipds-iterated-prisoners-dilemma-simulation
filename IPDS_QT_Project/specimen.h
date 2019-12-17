@@ -36,6 +36,10 @@ public:
      * specimen type, used for graphic simulation*/
     virtual std::string getPathBase()=0;
 
+    int getTotalFoodEaten(void) const;
+
+    int resetTotalFoodEaten(void);
+
     /* Defines rough boundries for this graphic item */
     QRectF boundingRect() const override;
 
@@ -63,6 +67,10 @@ public:
 
 protected:
     void advance(int step) override;
+    int m_foodEatenLastRound = 0;
+    int m_totalFoodEaten = 0;
+
+    void calculateFood(outcome o);
 
 private:
     /* Used to ensure IDs are unique */

@@ -17,4 +17,6 @@ std::string Hawk::getPathBase()
 {
     return IMG_PATH;
 }
-void Hawk::update(outcome,int){}
+void Hawk::update(outcome o,int){
+    calculateFood(o);
+}

@@ -18,6 +18,35 @@ Specimen& Specimen::operator=(Specimen& s){
     return *this;
 }
 
+int Specimen::getTotalFoodEaten(void) const{
+    return m_totalFoodEaten;
+}
+
+int Specimen::resetTotalFoodEaten(void){
+    int tmp = m_totalFoodEaten;
+    m_totalFoodEaten = 0;
+    return tmp;
+}
+
+void Specimen::calculateFood(outcome o){
+    switch (o) {
+    case R:
+        m_foodEatenLastRound = 3;
+        break;
+    case T:
+        m_foodEatenLastRound = 4;
+        break;
+    case S:
+        m_foodEatenLastRound = 0;
+        break;
+    case P:
+        m_foodEatenLastRound = 1;
+        break;
+    }
+
+    m_totalFoodEaten += m_foodEatenLastRound;
+}
+
 QRectF Specimen::boundingRect() const
 {
     qreal adjust = -0.5;

@@ -25,7 +25,10 @@ std::string Pavlov::getPathBase()
 {
     return IMG_PATH;
 }
+
 void Pavlov::update(outcome res, int enemyID){
+    calculateFood(res);
+
     bool val = true;
     if(res==R || res==P){
         val = true;

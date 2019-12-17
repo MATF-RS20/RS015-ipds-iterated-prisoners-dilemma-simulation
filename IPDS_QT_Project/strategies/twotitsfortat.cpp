@@ -27,6 +27,8 @@ std::string TwoTitsForTat::getPathBase()
     return IMG_PATH;
 }
 void TwoTitsForTat::update(outcome res, int enemyID){
+    calculateFood(res);
+
     bool cooperated = true;
     if(res==R || res==T){
         cooperated = true;

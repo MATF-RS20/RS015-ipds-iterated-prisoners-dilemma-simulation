@@ -17,4 +17,6 @@ std::string Dove::getPathBase()
 {
     return IMG_PATH;
 }
-void Dove::update(outcome,int){}
+void Dove::update(outcome o,int){
+    calculateFood(o);
+}
