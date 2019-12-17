@@ -18,6 +18,14 @@ Specimen& Specimen::operator=(Specimen& s){
     return *this;
 }
 
+void Specimen::update(outcome o, int enemyID){
+    if(enemyID==-1){
+        calculateFood(T);
+        return;
+    }
+    performUpdate(o, enemyID);
+}
+
 int Specimen::getTotalFoodEaten(void) const{
     return m_totalFoodEaten;
 }
@@ -31,16 +39,16 @@ int Specimen::resetTotalFoodEaten(void){
 void Specimen::calculateFood(outcome o){
     switch (o) {
     case R:
-        m_foodEatenLastRound = 3;
+        m_foodEatenLastRound = R_PAYOFF;
         break;
     case T:
-        m_foodEatenLastRound = 4;
+        m_foodEatenLastRound = T_PAYOFF;
         break;
     case S:
-        m_foodEatenLastRound = 0;
+        m_foodEatenLastRound = S_PAYOFF;
         break;
     case P:
-        m_foodEatenLastRound = 1;
+        m_foodEatenLastRound = P_PAYOFF;
         break;
     }
 

@@ -18,22 +18,14 @@ bool TwoTitsForTat::isCooperating(int enemyID){
         return true;
 }
 
-QColor TwoTitsForTat::getColor()
-{
-    return this->COLOR;
-}
-std::string TwoTitsForTat::getPathBase()
-{
-    return IMG_PATH;
-}
-void TwoTitsForTat::update(outcome res, int enemyID){
-    calculateFood(res);
+void TwoTitsForTat::performUpdate(outcome o, int enemyID){
+    calculateFood(o);
 
     bool cooperated = true;
-    if(res==R || res==T){
+    if(o==R || o==T){
         cooperated = true;
     }
-    else if(res==S || res==P){
+    else if(o==S || o==P){
         cooperated = false;
     }
 
@@ -48,4 +40,14 @@ void TwoTitsForTat::update(outcome res, int enemyID){
         if(!cooperated)
             m_mapCooperatedCount.insert(std::pair<int,bool>(enemyID, 0));
     }
+}
+
+QColor TwoTitsForTat::getColor()
+{
+    return this->COLOR;
+}
+
+std::string TwoTitsForTat::getPathBase()
+{
+    return IMG_PATH;
 }

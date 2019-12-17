@@ -11,15 +11,14 @@ class Dove : public Specimen
 public:
     Dove();
     bool isCooperating(int enemyID) override;
-    void update(outcome res, int enemyID) override;
+
     QColor getColor() override;
     std::string getPathBase() override;
-
-    /* Color coding and appearance image
-     * for specific strategies */
-
     static const QColor COLOR;
     static const std::string IMG_PATH;
+
+private:
+    void performUpdate(outcome o, int enemyID) override;
 };
 
 #endif // DOVE_H

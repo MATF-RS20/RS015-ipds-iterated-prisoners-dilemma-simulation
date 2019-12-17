@@ -9,14 +9,18 @@ Hawk::Hawk() : Specimen() {}
 bool Hawk::isCooperating(int){
     return false;
 }
+
+void Hawk::performUpdate(outcome o, int){
+    calculateFood(o);
+}
+
+
 QColor Hawk::getColor()
 {
     return this->COLOR;
 }
+
 std::string Hawk::getPathBase()
 {
     return IMG_PATH;
-}
-void Hawk::update(outcome o,int){
-    calculateFood(o);
 }
