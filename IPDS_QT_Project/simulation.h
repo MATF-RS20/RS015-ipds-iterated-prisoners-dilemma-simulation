@@ -41,7 +41,7 @@ public:
     /* Using m_foodsRndCounter returns range from that
      * number to m_foodNo
      */
-    unsigned randomFoodIndexPicker();
+    unsigned randomFoodIndexPicker(unsigned foodsRndCounter);
 
     /* Assigns random food to each specimen,
      * increments counter if the given food is full
@@ -69,7 +69,7 @@ public:
 protected:
     // Number of foods used in that exact simulation
     unsigned m_foodNo;
-    std::vector<Food> m_foodsActive;
+    std::vector<Food*> m_foodsActive;
 
     /* Matrix of pointers to all the active specimen
      * on the current field.
@@ -90,7 +90,7 @@ protected:
      * of each type of specimen at that moment
      */
     StateHistory m_graphInfo;
-    unsigned m_foodsRndCounter = 0;
+
 };
 
 #endif // SIMULATION_H

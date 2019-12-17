@@ -97,8 +97,14 @@ void Simulation::initializeFood()
         double tmpY = r * std::sin(randa * 2 * M_PI);
 
         /*Adds the generated food to the appropriate attribute*/
-        m_foodsActive.emplace_back(tmpX, tmpY, i);
+        m_foodsActive.push_back(new Food(tmpX, tmpY, i));
     }
+
+    for(unsigned i = m_foodNo - 1; i < m_specimenNo; i++)
+    {
+        m_foodsActive.push_back(nullptr);
+    }
+
 }
 
 std::shared_ptr<Specimen> Simulation::specimenFactory(strategy indicator)
@@ -125,7 +131,7 @@ std::shared_ptr<Specimen> Simulation::specimenFactory(strategy indicator)
     }
 }
 
-unsigned Simulation::randomFoodIndexPicker()
+unsigned Simulation::randomFoodIndexPicker(unsigned foodsRndCounter)
 {
     // Obtaining random number from hardware
     std::random_device rd;
@@ -138,14 +144,14 @@ unsigned Simulation::randomFoodIndexPicker()
      * number from a range has equal likelihood to
      * be produced
      */
-    std::uniform_int_distribution<> distr(m_foodsRndCounter, m_foodNo);
+    std::uniform_int_distribution<> distr(foodsRndCounter, m_foodNo);
 
     return static_cast<unsigned>(distr(eng));
 }
 
 void Simulation::swapFoods(unsigned a, unsigned b)
 {
-    Food tmp = m_foodsActive[a];
+    Food* tmp = m_foodsActive[a];
     m_foodsActive[a] = m_foodsActive[b];
     m_foodsActive[b] = tmp;
 }
@@ -153,26 +159,26 @@ void Simulation::swapFoods(unsigned a, unsigned b)
 void Simulation::assignFoods()
 {
     unsigned assFood;
-    m_foodsRndCounter = 0;
+    unsigned foodsRndCounter = 0;
 
     for(unsigned i = 0; i < m_specimen.size(); i++)
     {
         for(unsigned j = 0; j < m_specimen[i].size() ; j++)
         {
-            assFood = randomFoodIndexPicker();
-            m_foodsActive[assFood].addSpecimen(m_specimen[i][j]);
-            m_foodsActive[assFood].increaseNoOfSpecimen();
-            if(m_foodsActive[assFood].noOfSpecimen() == 2)
+            assFood = randomFoodIndexPicker(foodsRndCounter);
+            m_foodsActive[assFood]->addSpecimen(m_specimen[i][j]);
+            m_foodsActive[assFood]->increaseNoOfSpecimen();
+            if(m_foodsActive[assFood]->noOfSpecimen() == 2)
             {
-                swapFoods(m_foodsRndCounter, assFood);
-                m_foodsRndCounter++;
+                swapFoods(foodsRndCounter, assFood);
+                foodsRndCounter++;
             }
         }
     }
 
     std::sort(std::begin(m_foodsActive), std::end(m_foodsActive),
-              [](const Food &a, const Food &b)
-                {return a.id() > b.id();
+              [](const Food* a, const Food* b)
+                {return a->id() > b->id();
                 });
 
 }
@@ -181,8 +187,8 @@ void Simulation::clearAssignedFoods()
 {
     for(unsigned i = 0; i < m_foodNo; i++)
     {
-        m_foodsActive[i].releaseSpecimen();
-        m_foodsActive[i].setNoOfSpecimen(0);
+        m_foodsActive[i]->releaseSpecimen();
+        m_foodsActive[i]->setNoOfSpecimen(0);
     }
 }
 
