@@ -16,16 +16,12 @@ class Specimen : public QGraphicsItem
 {
 public:
     Specimen();
-
-    virtual ~Specimen() override = default;
-
+    Specimen& operator=(Specimen& s);
     Specimen(Specimen& s);
     Specimen(std::string imgPath);
-
-    Specimen& operator=(Specimen& s);
+    virtual ~Specimen() override = default;
 
     Specimen(Specimen&& s);
-
     Specimen& operator=(Specimen&& s);
 
     int getTotalFoodEaten(void) const;
@@ -40,7 +36,7 @@ public:
     /* Based on the outcome of a round, updates given Specimen's
      * info on the opponent it has encountered and food it has
      * eaten. */
-    void update(outcome res, int enemyID);
+     void update(outcome res, int enemyID);
 
     /* Method that fetches the color of the specimen,
      * used mostly for plotting */
