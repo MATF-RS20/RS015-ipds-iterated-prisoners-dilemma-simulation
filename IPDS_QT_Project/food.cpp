@@ -27,7 +27,6 @@ void Food::releaseSpecimen()
 {
     specimen1 = nullptr;
     specimen2 = nullptr;
-
 }
 
 int Food::noOfSpecimen() const
@@ -38,6 +37,11 @@ int Food::noOfSpecimen() const
 void Food::increaseNoOfSpecimen()
 {
     m_noOfSpecimen++;
+}
+
+void Food::setNoOfSpecimen(unsigned n)
+{
+    m_noOfSpecimen = n;
 }
 
 unsigned Food::id() const

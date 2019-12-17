@@ -43,7 +43,7 @@ public:
     /* Using m_foodsRndCounter returns range from that
      * number to m_foodNo
      */
-    unsigned randomFoodPicker();
+    unsigned randomFoodIndexPicker();
 
     /* Assigns random food to each specimen,
      * increments counter if the given food is full

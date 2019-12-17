@@ -125,7 +125,7 @@ std::shared_ptr<Specimen> Simulation::specimenFactory(strategy indicator)
     }
 }
 
-unsigned Simulation::randomFoodPicker()
+unsigned Simulation::randomFoodIndexPicker()
 {
     // Obtaining random number from hardware
     std::random_device rd;
@@ -159,7 +159,7 @@ void Simulation::assignFoods()
     {
         for(unsigned j = 0; j < m_specimen[i].size() ; j++)
         {
-            assFood = randomFoodPicker();
+            assFood = randomFoodIndexPicker();
             m_foodsActive[assFood].addSpecimen(m_specimen[i][j]);
             m_foodsActive[assFood].increaseNoOfSpecimen();
             if(m_foodsActive[assFood].noOfSpecimen() == 2)
@@ -180,7 +180,10 @@ void Simulation::assignFoods()
 void Simulation::clearAssignedFoods()
 {
     for(unsigned i = 0; i < m_foodNo; i++)
+    {
         m_foodsActive[i].releaseSpecimen();
+        m_foodsActive[i].setNoOfSpecimen(0);
+    }
 }
 
 void Simulation::simulate()
