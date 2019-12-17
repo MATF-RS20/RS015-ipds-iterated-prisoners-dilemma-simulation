@@ -180,7 +180,10 @@ void Simulation::assignFoods()
 void Simulation::clearAssignedFoods()
 {
     for(unsigned i = 0; i < m_foodNo; i++)
+    {
         m_foodsActive[i].releaseSpecimen();
+        m_foodsActive[i].setNoOfSpecimen(0);
+    }
 }
 
 void Simulation::simulate()
