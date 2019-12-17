@@ -32,3 +32,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    RS015-ipds-iterated-prisoners-dilemma-simulation.pri

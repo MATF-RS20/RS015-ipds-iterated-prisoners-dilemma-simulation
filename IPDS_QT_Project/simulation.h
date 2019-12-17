@@ -1,4 +1,6 @@
+#ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES
+#endif
 
 #include "specimen.h"
 #include "statehistory.h"
