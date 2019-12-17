@@ -69,6 +69,11 @@ Simulation& Simulation::operator=(const Simulation& other)
     return *this;
 }
 
+const StateHistory Simulation::graphInfo() const
+{
+    return m_graphInfo;
+}
+
 void Simulation::initializeFood()
 {
     // TODO add global drawing center,scale to R
