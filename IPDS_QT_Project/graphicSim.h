@@ -27,6 +27,7 @@ public:
     void show();
     void addItems(QGraphicsScene& scene);
 
+    void moveSpecimen();
 
     std::vector<int> m_posVector;
 

@@ -3,6 +3,10 @@
 #include "strategiesheaders.h"
 #include "ui_mainwindow.h"
 #include <iostream>
+#include <QtGui>
+#include <QApplication>
+#include <QGraphicsView>
+#include <QGraphicsScene>
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H

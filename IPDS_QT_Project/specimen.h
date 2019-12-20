@@ -88,7 +88,7 @@ private:
      *  These coordinates will be updated only inside the graphicSim class,
      *  which will also manually invoke
      */
-    double m_x,m_y;
+    qreal m_x,m_y;
 
     /* Update calls this with specific implementations
      * of derived classes
