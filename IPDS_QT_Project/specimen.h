@@ -39,18 +39,29 @@ public:
 
     /* Based on the outcome of a round, updates given Specimen's
      * info on the opponent it has encountered and food it has
-     * eaten. */
+     * eaten.
+     */
     void update(outcome res, int enemyID);
 
+    /*  Getters and setters for current x and y coordinates
+     */
+    double getX();
+    double getY();
+
+    void setX(double x);
+    void setY(double y);
+
     /* Method that fetches the color of the specimen,
-     * used mostly for plotting */
+     * used mostly for plotting
+     */
     virtual QColor getColor()=0;
 
     /* Method that fetches the base of the path for the derived
-     * specimen type, used for graphic simulation*/
+     * specimen type, used for graphic simulation
+     */
     virtual std::string getPathBase()=0;
 
-    /* Defines rough boundries for this graphic item */
+    /* Defines rough boundries for this graphic item*/
     QRectF boundingRect() const override;
 
     /* Defines precise shape for this graphic item */
@@ -64,6 +75,7 @@ public:
     /* Unique identifier of a speciman */
     const unsigned SPECIMEN_ID;
 
+
 protected:
     void advance(int step) override;
     int m_foodEatenLastRound = 0;
@@ -72,8 +84,15 @@ protected:
     void calculateFood(outcome o);
 
 private:
+    /*  Current X and Y coordinates of specimen
+     *  These coordinates will be updated only inside the graphicSim class,
+     *  which will also manually invoke
+     */
+    double m_x,m_y;
+
     /* Update calls this with specific implementations
-     * of derived classes */
+     * of derived classes
+     */
     virtual void performUpdate(outcome o, int enemyID) = 0;
 
     /* Used to ensure IDs are unique */

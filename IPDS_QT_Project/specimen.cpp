@@ -3,7 +3,7 @@
 #include "estrategy.h"
 #include <iostream>
 #include <cmath>
-
+#define _RADIUS_ 240
 unsigned Specimen::ID = 0;
 
 Specimen::Specimen() : SPECIMEN_ID(ID)
@@ -12,6 +12,25 @@ Specimen::Specimen() : SPECIMEN_ID(ID)
 }
 
 Specimen::Specimen(Specimen& s) : QGraphicsItem(),SPECIMEN_ID(s.ID) {}
+
+double Specimen::getX()
+{
+    return this->m_x;
+}
+double Specimen::getY()
+{
+    return this->m_y;
+}
+
+void Specimen::setX(double x)
+{
+    this->m_x = x;
+}
+void Specimen::setY(double y)
+{
+    this->m_y = y;
+}
+
 
 Specimen& Specimen::operator=(Specimen& s){
     this->ID = s.ID;
@@ -96,13 +115,13 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
      * will handle that.
      */
     //TODO add as private clas attributes
-    double tmpX = r * std::cos(angle);
-    double tmpY = r * std::sin(angle);
+    this->m_x = _RADIUS_ * std::cos(angle);
+    this->m_y = _RADIUS_ * std::sin(angle);
 
     /*
      * Point that will signify the top-left corner of where the image will be placed.
      */
-    QPoint point(tmpX-27,tmpY-23);
+    QPoint point( this->m_x - 27, this->m_y - 23 );
 
     /*
      * Getting the image that will represent our specimen.
@@ -111,10 +130,10 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
      * we append the suffix MIRROR.png or just .png, for we want our chick to look
      * it's defeated opponent straight in the eyes when victorious.
      */
-    std::cout << this->getPathBase() <<std::endl;
-    QString  imgSrc = QString::fromStdString(this->getPathBase());
-    if(tmpX>=0) imgSrc+="Mirror";
-    imgSrc+=".png";
+    std::cout << this->getPathBase() << std::endl;
+    QString  imgSrc = QString::fromStdString( this->getPathBase() );
+    if( this->m_x >= 0 ) imgSrc += "Mirror";
+    imgSrc += ".png";
 
     QImage image(imgSrc);
 
@@ -128,6 +147,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 void Specimen::advance(int step)
 {
     Q_UNUSED(step)
+
 
 
     return;
