@@ -3,7 +3,7 @@
 Team members:
 - Mina Krivokuca 
   - Index: 215/2016 
-  - E-mail: mi162158@matf.alas.bg.ac.rs
+  - E-mail: mi16215@matf.alas.bg.ac.rs
 - Darinka Zobenica 
   - Index: 75/2016 
   - E-mail: mi16075@matf.alas.bg.ac.rs
