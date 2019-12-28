@@ -181,7 +181,15 @@ void Simulation::assignFoods()
 
     std::sort(std::begin(m_foodsActive), std::end(m_foodsActive),
               [](const Food* a, const Food* b)
-                {return a->id() > b->id();
+                {
+                    if(a != nullptr && b != nullptr)
+                        return a->id() < b->id();
+                    else if(a == nullptr)
+                        return false;
+                    else if(b == nullptr)
+                        return true;
+                    else
+                        return true;
                 });
 
 }
