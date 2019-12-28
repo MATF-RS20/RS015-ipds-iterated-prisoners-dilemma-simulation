@@ -1,13 +1,13 @@
 # Iterated Prisoner's Dilemma Simulation (IPDS)
 
 Team members:
-- Mina Krivokuca 
+- Mina Krivokuća 
   - Index: 215/2016 
   - E-mail: mi16215@matf.alas.bg.ac.rs
 - Darinka Zobenica 
   - Index: 75/2016 
   - E-mail: mi16075@matf.alas.bg.ac.rs
-- Vladimir Batocanin 
+- Vladimir Batoćanin 
   - Index: 74/2016
   - E-mail: mi16074@matf.alas.bg.ac.rs
   
