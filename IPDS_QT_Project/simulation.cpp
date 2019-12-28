@@ -194,6 +194,16 @@ void Simulation::assignFoods()
 
 }
 
+void Simulation::specimenDeath(unsigned r, unsigned c)
+{
+    m_specimen[r].erase(std::begin(m_specimen[r]) + c);
+}
+
+void Simulation::specimenReproduce(unsigned r)
+{
+    m_specimen[r].push_back(specimenFactory(static_cast<strategy>(r)));
+}
+
 void Simulation::clearAssignedFoods()
 {
     for(unsigned i = 0; i < m_foodNo; i++)

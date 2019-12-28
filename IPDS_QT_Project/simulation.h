@@ -62,6 +62,9 @@ public:
      */
     std::shared_ptr<Specimen> specimenFactory(strategy indicator);
 
+    void specimenDeath(unsigned r, unsigned c);
+    void specimenReproduce(unsigned r);
+
     void simulate();
     void playRound();
     void log();
