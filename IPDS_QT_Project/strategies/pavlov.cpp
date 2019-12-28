@@ -17,20 +17,15 @@ bool Pavlov::isCooperating(int enemyID){
     else
         return true;
 }
-QColor Pavlov::getColor()
-{
-    return this->COLOR;
-}
-std::string Pavlov::getPathBase()
-{
-    return IMG_PATH;
-}
-void Pavlov::update(outcome res, int enemyID){
+
+void Pavlov::performUpdate(outcome o, int enemyID){
+    calculateFood(o);
+
     bool val = true;
-    if(res==R || res==P){
+    if(o==R || o==P){
         val = true;
     }
-    else if(res==T || res==S){
+    else if(o==T || o==S){
         val = false;
     }
 
@@ -40,4 +35,14 @@ void Pavlov::update(outcome res, int enemyID){
     else{
         m_mapRewardedOrPunished.insert(std::pair<int,bool>(enemyID, val));
     }
+}
+
+QColor Pavlov::getColor()
+{
+    return this->COLOR;
+}
+
+std::string Pavlov::getPathBase()
+{
+    return IMG_PATH;
 }

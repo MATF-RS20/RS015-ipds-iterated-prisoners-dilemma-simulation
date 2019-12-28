@@ -1,4 +1,21 @@
 # Iterated Prisoner's Dilemma Simulation (IPDS)
+
+Team members:
+- Mina Krivokuca 
+  - Index: 215/2016 
+  - E-mail: mi16215@matf.alas.bg.ac.rs
+- Darinka Zobenica 
+  - Index: 75/2016 
+  - E-mail: mi16075@matf.alas.bg.ac.rs
+- Vladimir Batocanin 
+  - Index: 74/2016
+  - E-mail: mi16074@matf.alas.bg.ac.rs
+  
+Libraries used:
+- [qCustomPlot](https://www.qcustomplot.com/)
+- [Qt](https://www.qt.io/)
+- [Range-v3](https://ericniebler.github.io/range-v3/)
+
 ## ENG
 
 IPDS is an interactive simulation of a widely studied gametheoretical concept - Prisoner's Dilemma.

@@ -16,21 +16,14 @@ bool TitForTwoTats::isCooperating(int enemyID){
         return true;
 }
 
-QColor TitForTwoTats::getColor()
-{
-    return this->COLOR;
-}
-std::string TitForTwoTats::getPathBase()
-{
-    return IMG_PATH;
-}
+void TitForTwoTats::performUpdate(outcome o, int enemyID){
+    calculateFood(o);
 
-void TitForTwoTats::update(outcome res, int enemyID){
     bool cooperated = true;
-    if(res==R || res==T){
+    if(o==R || o==T){
         cooperated = true;
     }
-    else if(res==S || res==P){
+    else if(o==S || o==P){
         cooperated = false;
     }
 
@@ -44,4 +37,14 @@ void TitForTwoTats::update(outcome res, int enemyID){
         if(!cooperated)
            m_mapDeflectionInARow.insert(std::pair<int,bool>(enemyID, 1));
     }
+}
+
+QColor TitForTwoTats::getColor()
+{
+    return this->COLOR;
+}
+
+std::string TitForTwoTats::getPathBase()
+{
+    return IMG_PATH;
 }

@@ -125,7 +125,19 @@ void MainWindow::on_pushButtonStop_clicked()
 
 void MainWindow::on_pushButtonPause_clicked()
 {
-    std::cout << "Pause";
+    if(true)
+    {
+        std::cout << "ANIMATE" << "\n";
+        // Postavljamo tajmer
+        QTimer timer;
+        QObject::connect(&timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
+
+        // Postavljamo da se advance poziva na svakih 1000/33 ms sto otprilike daje 30fps.
+        timer.start(1000 / 33);
+        std::cout << "Pause\n";
+    }
 }
+
+
 
 

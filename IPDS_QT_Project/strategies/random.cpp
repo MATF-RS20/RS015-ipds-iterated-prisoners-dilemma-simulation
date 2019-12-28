@@ -17,6 +17,10 @@ bool AllRandom::isCooperating(int){
         return false;
 }
 
+void AllRandom::performUpdate(outcome o, int){
+    calculateFood(o);
+}
+
 QColor AllRandom::getColor()
 {
     return this->COLOR;
@@ -26,5 +30,3 @@ std::string AllRandom::getPathBase()
 {
     return IMG_PATH;
 }
-
-void AllRandom::update(outcome,int){}

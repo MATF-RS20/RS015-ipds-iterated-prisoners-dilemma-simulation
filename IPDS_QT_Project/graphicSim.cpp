@@ -80,7 +80,19 @@ void GraphicSim::initializeFood(int foodNo) {
   }
 }
 
-// void GraphicSim::moveSpecimen()
-//{
-
-//}
+void GraphicSim::moveSpecimen()
+{
+    double dx(0.1),dy(0.1);
+    for ( auto stratVector : this->m_specimen )
+    {
+        for( auto tSpecimenPtr : stratVector )
+        {
+            Specimen* tSpecimen = tSpecimenPtr.get();
+            auto tX = tSpecimen->getX();
+            auto tY = tSpecimen->getY();
+            tSpecimen->setX(tX+dx);
+            tSpecimen->setY(tY+dy);
+        }
+    }
+    return;
+}

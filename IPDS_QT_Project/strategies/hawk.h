@@ -11,12 +11,14 @@ class Hawk : public Specimen
 public:
     Hawk();
     bool isCooperating(int enemyID) override;
-    void update(outcome res, int enemyID) override;
+
     QColor getColor() override;
     std::string getPathBase() override;
-
     static const QColor COLOR;
     static const std::string IMG_PATH;
+
+private:
+    void performUpdate(outcome o, int enemyID) override;
 };
 
 #endif // HAWK_H

@@ -29,15 +29,16 @@ class Pavlov : public Specimen
 public:
     Pavlov();
     bool isCooperating(int enemyID) override;
-    void update(outcome res, int enemyID) override;
+
     QColor getColor() override;
     std::string getPathBase() override;
-
     static const QColor COLOR;
     static const std::string IMG_PATH
     ;
 private:
     std::map<int,bool> m_mapRewardedOrPunished;
+
+    void performUpdate(outcome o, int enemyID) override;
 };
 
 #endif // PAVLOV_H

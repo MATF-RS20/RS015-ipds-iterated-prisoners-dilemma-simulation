@@ -9,12 +9,17 @@ Dove::Dove() : Specimen() {}
 bool Dove::isCooperating(int){
     return true;
 }
+
+void Dove::performUpdate(outcome o, int){
+    calculateFood(o);
+}
+
 QColor Dove::getColor()
 {
     return COLOR;
 }
+
 std::string Dove::getPathBase()
 {
     return IMG_PATH;
 }
-void Dove::update(outcome,int){}

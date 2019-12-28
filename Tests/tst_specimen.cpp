@@ -5,5 +5,7 @@
 
 TEST_CASE("Insert description", "[tag]")
 {
-
+    SECTION("Placeholder") {
+        REQUIRE(true);
+    }
 }
