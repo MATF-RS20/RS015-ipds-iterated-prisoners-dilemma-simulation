@@ -24,30 +24,51 @@ GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
   /*Initializes Simulation and by extension, all specimen instances*/
   unsigned strategyCount = strategy::COUNT;
 
-  for (unsigned i = 0; i < strategyCount; ++i) {
-    unsigned long curSpecimenNo = this->m_specimen[i].size();
+  show();
 
-    for (unsigned long j = 0; j < curSpecimenNo; ++j) {
-      this->m_specimen[i][j]->show();
-    }
-  }
-
-  this->initializeFood(foodNo);
+  initializeFood(foodNo);
 }
+
 GraphicSim::~GraphicSim() {}
+
 void GraphicSim::show() {
   unsigned strategyCount = strategy::COUNT;
+  int sum = 0;
   for (unsigned i = 0; i < strategyCount; ++i) {
-    unsigned long curSpecimenNo = this->m_specimen[i].size();
+    for (unsigned long j = 0; j < m_specimen[i].size(); ++j) {
+        /*
+        * The starting position for every chick is calculated thhrough polar coordinates
+        * because we want all our specimen to ultimately be in a circle.
+        * So 2*PI radians is divided into totalNumberOfSpecimen angles of the same size.
+        * Ergo, the formula for the angle is indexOdCurrentSpecimen * (2*PI/totalNumberOfSpecimen)
+        */
+        double angle = sum * (2*M_PI) / m_specimenNo;
+        sum++;
 
-    for (unsigned long j = 0; j < curSpecimenNo; ++j) {
-      this->m_specimen[i][j]->show();
+        /*
+        * Total radius of the starting area, it's quite large atm, however, it will be downscaled to about 1/3 after
+        * all the source images have been properly tampered with.
+        */
+        double r = 240;
+
+        /*
+         * Calculation of x and y for current specimen using polar coordinate conversion,
+         * thinking about adding this as a private attribute for specimen, future Vlada
+         * will handle that.
+         */
+        //TODO add as private clas attributes
+        double tmpX = r * std::cos(angle);
+        double tmpY = r * std::sin(angle);
+
+
+        m_specimen[i][j]->setCoordinates(tmpX, tmpY);
+        m_specimen[i][j]->show();
     }
   }
 }
 
 void GraphicSim::addItems(QGraphicsScene &scene) {
-  for (auto stratVector : this->m_specimen) {
+  for (auto stratVector : m_specimen) {
     for (auto tmpSpecimen : stratVector) {
       scene.addItem(tmpSpecimen.get());
     }
@@ -76,7 +97,7 @@ void GraphicSim::initializeFood(int foodNo) {
     double tmpY = r * std::sin(randa * 2 * M_PI);
 
     /*Adds the generated food to the appropriate attribute*/
-    this->m_foodVector.emplace_back(tmpX, tmpY, i);
+    m_foodVector.emplace_back(tmpX, tmpY, i);
   }
 }
 
@@ -90,8 +111,7 @@ void GraphicSim::moveSpecimen()
             Specimen* tSpecimen = tSpecimenPtr.get();
             auto tX = tSpecimen->getX();
             auto tY = tSpecimen->getY();
-            tSpecimen->setX(tX+dx);
-            tSpecimen->setY(tY+dy);
+            tSpecimen->setCoordinates(tX+dx,tY+dy);
         }
     }
     return;

@@ -220,10 +220,57 @@ void Simulation::simulate()
 
 void Simulation::playRound()
 {
+    assignFoods();
 
+    for(auto food : m_foodsActive){
+        switch(food->noOfSpecimen()){
+            case 0:
+                // no specimen fighting over this food
+            break;
+
+            case 1:
+                // food claimed by the first specimen
+            food->specimen1->update(T,-1);
+            break;
+
+            case 2:
+                // two specimen fighting over food
+                std::shared_ptr<Specimen> spec1 = food->specimen1;
+                std::shared_ptr<Specimen> spec2 = food->specimen2;
+                bool coop1 = spec1->isCooperating(spec2->SPECIMEN_ID);
+                bool coop2 = spec2->isCooperating(spec1->SPECIMEN_ID);
+                if(coop1 && coop2){
+                    spec1->update(R,spec2->SPECIMEN_ID);
+                    spec2->update(R,spec2->SPECIMEN_ID);
+                }
+                else if(coop1){
+                    spec1->update(S,spec2->SPECIMEN_ID);
+                    spec2->update(T,spec1->SPECIMEN_ID);
+                }
+                else if(coop2){
+                    spec1->update(T,spec2->SPECIMEN_ID);
+                    spec2->update(S,spec1->SPECIMEN_ID);
+                }
+                else{
+                    spec1->update(P,spec2->SPECIMEN_ID);
+                    spec2->update(P,spec2->SPECIMEN_ID);
+                }
+            break;
+        }
+    }
+
+    clearAssignedFoods();
 }
 
 void Simulation::log()
 {
-
+    std::vector<unsigned> iterationInfo(strategy::COUNT);
+    for(unsigned i = 0; i < m_specimen.size(); i++){
+        unsigned count = 0;
+        for(auto _ : m_specimen[i]){
+            count++;
+        }
+        iterationInfo[i] = count;
+    }
+    m_graphInfo.update(iterationInfo);
 }

@@ -68,71 +68,57 @@ QPainterPath Specimen::shape() const {
   return path;
 }
 
-void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-                     QWidget *widget) {
-  Q_UNUSED(option)
-  Q_UNUSED(widget)
+void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    Q_UNUSED(option)
+    Q_UNUSED(widget)
 
-  /*THIS CODE IS TEMPORARY, WILL BE CHANGED ONE X AND Y ARE INITIALIZED IN
-   * GRAPHICSIM*/
-  /*
-   * The starting position for every chick is calculated thhrough polar
-   * coordinates because we want all our specimen to ultimately be in a circle.
-   * So 2*PI radians is divided into totalNumberOfSpecimen angles of the same
-   * size. Ergo, the formula for the angle is indexOdCurrentSpecimen *
-   * (2*PI/totalNumberOfSpecimen)
-   */
-  double angle = this->SPECIMEN_ID * ((2 * M_PI) / ID);
-  //std::cout << "ID:" << ID << "\n"
-  //          << "staticCount:" << this->SPECIMEN_ID << "\n"
-  //          << std::endl;
 
-  /*
-   * Total radius of the starting area, it's quite large atm, however, it will
-   * be downscaled to about 1/3 after all the source images have been properly
-   * tampered with.
-   */
-  double r = 240;
+    std::cout << "ID:" << ID << "\n" << "staticCount:" << SPECIMEN_ID <<"\n" <<std::endl;
 
-  /*
-   * Calculation of x and y for current specimen using polar coordinate
-   * conversion, thinking about adding this as a private attribute for specimen,
-   * future Vlada will handle that.
-   */
-  // TODO add as private clas attributes
-  this->m_x = __RADIUS__ * std::cos(angle);
-  this->m_y = __RADIUS__ * std::sin(angle);
-  /************************************************************************************/
 
-  /*
-   * Point that will signify the top-left corner of where the image will be
-   * placed.
-   */
-  QPoint point(this->m_x - 27, this->m_y - 23);
+    /*
+     * Point that will signify the top-left corner of where the image will be placed.
+     */
+    QPoint point(m_x-27, m_y-23);
 
-  /*
-   * Getting the image that will represent our specimen.
-   * The path is constructed by first getting the base from
-   * the instnace itself, then depending on it's current position
-   * we append the suffix MIRROR.png or just .png, for we want our chick to look
-   * it's defeated opponent straight in the eyes when victorious.
-   */
-  //std::cout << this->getPathBase() << std::endl;
-  QString imgSrc = QString::fromStdString(this->getPathBase());
-  if (this->m_x >= 0)
-    imgSrc += "Mirror";
-  imgSrc += ".png";
+    /*
+     * Getting the image that will represent our specimen.
+     * The path is constructed by first getting the base from
+     * the instnace itself, then depending on it's current position
+     * we append the suffix MIRROR.png or just .png, for we want our chick to look
+     * it's defeated opponent straight in the eyes when victorious.
+     */
+    std::cout << getPathBase() <<std::endl;
+    QString  imgSrc = QString::fromStdString(getPathBase());
+    if(m_x>=0) imgSrc+="Mirror";
+    imgSrc+=".png";
 
-  QImage image(imgSrc);
+    QImage image(imgSrc);
 
-  /*
-   * We draw the actual image with it's top-left corner being point.
-   */
-  painter->drawImage(point, image);
+    /*
+     * We draw the actual image with it's top-left corner being point.
+    */
+    painter->drawImage(point, image);
+
 }
 
-void Specimen::advance(int step) {
-  Q_UNUSED(step)
+void Specimen::setCoordinates(double x, double y){
+    m_x = x;
+    m_y = y;
+}
+
+qreal Specimen::getX(void) const{
+    return m_x;
+}
+
+qreal Specimen::getY(void) const{
+    return m_y;
+}
+
+void Specimen::advance(int step)
+{
+    Q_UNUSED(step)
 
       /* If invoked in phase 0, pass*/
       if( step == 0 ) return;

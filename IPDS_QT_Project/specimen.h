@@ -16,16 +16,12 @@ class Specimen : public QGraphicsItem
 {
 public:
     Specimen();
-
-    virtual ~Specimen() override = default;
-
+    Specimen& operator=(Specimen& s);
     Specimen(Specimen& s);
     Specimen(std::string imgPath);
-
-    Specimen& operator=(Specimen& s);
+    virtual ~Specimen() override = default;
 
     Specimen(Specimen&& s);
-
     Specimen& operator=(Specimen&& s);
 
     int getTotalFoodEaten(void) const;
@@ -75,6 +71,12 @@ public:
     /* Unique identifier of a speciman */
     const unsigned SPECIMEN_ID;
 
+    /* Set coordinates for drawing */
+    void setCoordinates(double x, double y);
+
+    /* Get coordinates */
+    qreal getX(void) const;
+    qreal getY(void) const;
 
 protected:
     void advance(int step) override;
@@ -84,11 +86,6 @@ protected:
     void calculateFood(outcome o);
 
 private:
-    /*  Current X and Y coordinates of specimen
-     *  These coordinates will be updated only inside the graphicSim class,
-     *  which will also manually invoke
-     */
-    qreal m_x,m_y;
 
     /* Update calls this with specific implementations
      * of derived classes
@@ -103,6 +100,10 @@ private:
     const int T_PAYOFF = 3;
     const int P_PAYOFF = 1;
     const int S_PAYOFF = 0;
+
+    /* Specimen Coordinates */
+    qreal m_x;
+    qreal m_y;
 };
 
 #endif // SPECIMEN_H
