@@ -106,6 +106,8 @@ private:
 
     /* updates m_graphInfo after every round */
     void log();
+
+    void updateSpecimenNo(void);
 };
 
 #endif // SIMULATION_H

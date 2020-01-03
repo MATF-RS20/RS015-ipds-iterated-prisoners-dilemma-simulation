@@ -21,9 +21,6 @@ static qreal normalizeAngle(qreal angle) {
 GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
     : Simulation(foodNo, specimenNoInfo) {
 
-    /*Initializes Simulation and by extension, all specimen instances*/
-    unsigned strategyCount = strategy::COUNT;
-
     show();
 
     initializeFood(foodNo);
@@ -41,36 +38,24 @@ void GraphicSim::iterate(void){
 }
 
 void GraphicSim::show() {
-    unsigned strategyCount = strategy::COUNT;
     int sum = 0;
-    for (unsigned i = 0; i < strategyCount; ++i) {
+    for (unsigned i = 0; i < strategy::COUNT; ++i) {
         for (unsigned long j = 0; j < m_specimen[i].size(); ++j) {
-            /*
-            * The starting position for every chick is calculated thhrough polar coordinates
-            * because we want all our specimen to ultimately be in a circle.
-            * So 2*PI radians is divided into totalNumberOfSpecimen angles of the same size.
-            * Ergo, the formula for the angle is indexOdCurrentSpecimen * (2*PI/totalNumberOfSpecimen)
-            */
+
+            // specimenIndex * 2PI / totalNoOfSpecimen
             double angle = sum * (2*M_PI) / m_specimenNo;
             sum++;
 
-            /*
-            * Total radius of the starting area, it's quite large atm, however, it will be downscaled to about 1/3 after
-            * all the source images have been properly tampered with.
-            */
-            double r = 240;
+            // Total radius of the starting area
+            double r = 100;
 
-            /*
-             * Calculation of x and y for current specimen using polar coordinate conversion,
-             * thinking about adding this as a private attribute for specimen, future Vlada
-             * will handle that.
-             */
-            //TODO add as private clas attributes
+            // Polar coordinates
             double tmpX = r * std::cos(angle);
             double tmpY = r * std::sin(angle);
 
-
+            // Setting them in the appropriate specimen
             m_specimen[i][j]->setCoordinates(tmpX, tmpY);
+
             m_specimen[i][j]->show();
         }
     }
@@ -100,7 +85,6 @@ void GraphicSim::initializeFood(int foodNo) {
 
         randr = static_cast<double>(qrand()) / RAND_MAX;
         double r = randr * sqrt(centerX * centerX + centerY * centerY);
-        r=0.5;
 
         randa = static_cast<double>(qrand()) / RAND_MAX;
         double tmpX = r * std::cos(randa * 2 * M_PI);
@@ -125,4 +109,10 @@ void GraphicSim::moveSpecimen()
         }
     }
     return;
+}
+
+void GraphicSim::advance(int step){
+    if(step == 0)
+        return;
+    show();
 }

@@ -23,6 +23,7 @@ Simulation::Simulation(const unsigned foodNo, std::vector<unsigned> &specimenNoI
     log();
 }
 
+
 Simulation::Simulation(const Simulation& other)
 {
     m_foodNo = other.m_foodNo;
@@ -166,7 +167,7 @@ void Simulation::assignFoods()
         for(unsigned j = 0; j < m_specimen[i].size() ; j++)
         {
             assFood = randomFoodIndexPicker(foodsRndCounter);
-            std::cout << "Assigned food index: " << assFood << std::endl;
+            //std::cout << "Assigned food index: " << assFood << std::endl;
             if(m_foodsActive[assFood] != nullptr)
             {
                 m_foodsActive[assFood]->addSpecimen(m_specimen[i][j]);
@@ -303,6 +304,7 @@ void Simulation::generationalChange(void){
             }
         }
     }
+    updateSpecimenNo();
 }
 
 void Simulation::log()
@@ -316,4 +318,12 @@ void Simulation::log()
         iterationInfo[i] = count;
     }
     m_graphInfo.update(iterationInfo);
+}
+
+
+void Simulation::updateSpecimenNo(void){
+    m_specimenNo=0;
+    for(auto strategy : m_specimen){
+        m_specimenNo += strategy.size();
+    }
 }

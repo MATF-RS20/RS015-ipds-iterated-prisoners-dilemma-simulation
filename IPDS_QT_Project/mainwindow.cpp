@@ -23,7 +23,7 @@ void MainWindow::addDefaultScene(void){
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
     QObject::connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
-    m_timer.start(1000 / 33);
+    m_timer.start(1000 / 60);
 }
 
 void MainWindow::setPlotColors(){
