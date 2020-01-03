@@ -10,7 +10,6 @@ public:
     Food(double posX, double posY, unsigned ID);
     bool addSpecimen(std::shared_ptr<Specimen> newSpecimen);
     void releaseSpecimen();
-    void increaseNoOfSpecimen();
     void setNoOfSpecimen(unsigned n);
 
     int noOfSpecimen() const;

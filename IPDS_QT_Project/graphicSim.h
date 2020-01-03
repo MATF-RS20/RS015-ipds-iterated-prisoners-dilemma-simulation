@@ -10,13 +10,15 @@
 #include "estrategy.h"
 #include <cmath>
 #include <cstdlib>
+#include <QObject>
+#include <QTimer>
 
 #ifndef GRAPHICSPECIMEN_HPP
 #define GRAPHICSPECIMEN_HPP
 
 
 
-class GraphicSim : public Simulation
+class GraphicSim : public Simulation, public QObject
 {
 public:
 
@@ -31,6 +33,9 @@ public:
 
     std::vector<int> m_posVector;
 
+public slots:
+    void iterate(void);
+
 
 protected:
 
@@ -39,6 +44,7 @@ protected:
 
 private:
 
+    QTimer m_timer;
     qreal  m_xPosition;
     qreal  m_yPosition;
     std::vector<Food> m_foodVector;

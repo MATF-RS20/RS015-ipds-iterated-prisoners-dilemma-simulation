@@ -12,6 +12,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <random>
+#include <ctime>
 
 #ifndef SIMULATION_H
 #define SIMULATION_H
@@ -37,23 +38,6 @@ public:
     Simulation(const Simulation& other);
     Simulation& operator=(const Simulation& other);
 
-    // Creates vector of foods with random coordinates
-    void initializeFood();
-
-    /* Using m_foodsRndCounter returns range from that
-     * number to m_foodNo
-     */
-    unsigned randomFoodIndexPicker(unsigned foodsRndCounter);
-
-    /* Assigns random food to each specimen,
-     * increments counter if the given food is full
-     * and swaps it using the method below
-     * and in the end sorts them by ID
-     */
-    void assignFoods();
-    void swapFoods(unsigned a, unsigned b);
-    void clearAssignedFoods();
-
     /* Simple implementation of a famous design pattern:
      * Factory Method
      *
@@ -65,11 +49,10 @@ public:
     void specimenDeath(unsigned r, unsigned c);
     void specimenReproduce(unsigned r);
 
-    void simulate();
-    void playRound();
-    void log();
-
     const StateHistory graphInfo() const;
+
+public slots:
+    void simulate();
 
 protected:
     // Number of foods used in that exact simulation
@@ -96,6 +79,33 @@ protected:
      */
     StateHistory m_graphInfo;
 
+private:
+    // Creates vector of foods with random coordinates
+    void initializeFood();
+
+    /* Using m_foodsRndCounter returns range from that
+     * number to m_foodNo
+     */
+    int randomFoodIndexPicker(unsigned foodsRndCounter);
+
+    /* Assigns random food to each specimen,
+     * increments counter if the given food is full
+     * and swaps it using the method below
+     * and in the end sorts them by ID
+     */
+    void assignFoods();
+    void swapFoods(unsigned a, unsigned b);
+    void clearAssignedFoods();
+
+    /* Simulates one round */
+    void playRound();
+
+    /* Helper functions for playRound() */
+    void fightForFood(void);
+    void generationalChange(void);
+
+    /* updates m_graphInfo after every round */
+    void log();
 };
 
 #endif // SIMULATION_H

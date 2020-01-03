@@ -7,6 +7,7 @@
 #include <QApplication>
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QTimer>
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
@@ -43,6 +44,7 @@ private slots:
 
 private:
 
+    QTimer m_timer;
     GraphicSim* m_gs;
     Ui::MainWindow ui;
     QGraphicsView* m_view;
@@ -50,5 +52,7 @@ private:
     bool m_playing = false;
 
     void setPlotColors();
+
+    bool paused = false;
 };
 #endif // MAINWINDOW_H

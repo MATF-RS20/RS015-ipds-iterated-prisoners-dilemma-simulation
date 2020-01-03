@@ -74,7 +74,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     Q_UNUSED(widget)
 
 
-    std::cout << "ID:" << ID << "\n" << "staticCount:" << SPECIMEN_ID <<"\n" <<std::endl;
+    //std::cout << "ID:" << ID << "\n" << "staticCount:" << SPECIMEN_ID <<"\n" <<std::endl;
 
 
     /*
@@ -89,7 +89,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
      * we append the suffix MIRROR.png or just .png, for we want our chick to look
      * it's defeated opponent straight in the eyes when victorious.
      */
-    std::cout << getPathBase() <<std::endl;
+    //std::cout << getPathBase() <<std::endl;
     QString  imgSrc = QString::fromStdString(getPathBase());
     if(m_x>=0) imgSrc+="Mirror";
     imgSrc+=".png";
@@ -123,7 +123,7 @@ void Specimen::advance(int step)
       /* If invoked in phase 0, pass*/
       if( step == 0 ) return;
 
-      /*Postavljanje pozicije*/
+      /* Postavljanje pozicije u QGraphicsItemu */
       setPos(this->m_x,m_y);
 
   return;

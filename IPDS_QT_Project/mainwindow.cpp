@@ -21,6 +21,9 @@ void MainWindow::addDefaultScene(void){
     m_scene = new QGraphicsScene();
     m_scene->setSceneRect(-300, -300, 600, 600);
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
+
+    QObject::connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
+    m_timer.start(1000 / 33);
 }
 
 void MainWindow::setPlotColors(){
@@ -125,16 +128,13 @@ void MainWindow::on_pushButtonStop_clicked()
 
 void MainWindow::on_pushButtonPause_clicked()
 {
-    if(true)
-    {
-        std::cout << "ANIMATE" << "\n";
-        // Postavljamo tajmer
-        QTimer timer;
-        QObject::connect(&timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
-
-        // Postavljamo da se advance poziva na svakih 1000/33 ms sto otprilike daje 30fps.
-        timer.start(1000 / 33);
-        std::cout << "Pause\n";
+    if(paused){
+        m_timer.start(1000 / 33);
+        paused = false;
+    }
+    else{
+        m_timer.stop();
+        paused = true;
     }
 }
 

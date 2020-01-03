@@ -20,7 +20,7 @@ Simulation::Simulation(const unsigned foodNo, std::vector<unsigned> &specimenNoI
     }
 
     initializeFood();
-
+    log();
 }
 
 Simulation::Simulation(const Simulation& other)
@@ -100,10 +100,10 @@ void Simulation::initializeFood()
         m_foodsActive.push_back(new Food(tmpX, tmpY, i));
     }
 
-    for(unsigned i = m_foodNo - 1; i < m_specimenNo; i++)
-    {
-        m_foodsActive.push_back(nullptr);
-    }
+//    for(unsigned i = m_foodNo - 1; i < m_specimenNo; i++)
+//    {
+//        m_foodsActive.push_back(nullptr);
+//    }
 
 }
 
@@ -131,7 +131,7 @@ std::shared_ptr<Specimen> Simulation::specimenFactory(strategy indicator)
     }
 }
 
-unsigned Simulation::randomFoodIndexPicker(unsigned foodsRndCounter)
+int Simulation::randomFoodIndexPicker(unsigned foodsRndCounter)
 {
     // Obtaining random number from hardware
     std::random_device rd;
@@ -166,10 +166,10 @@ void Simulation::assignFoods()
         for(unsigned j = 0; j < m_specimen[i].size() ; j++)
         {
             assFood = randomFoodIndexPicker(foodsRndCounter);
+            std::cout << "Assigned food index: " << assFood << std::endl;
             if(m_foodsActive[assFood] != nullptr)
             {
                 m_foodsActive[assFood]->addSpecimen(m_specimen[i][j]);
-                m_foodsActive[assFood]->increaseNoOfSpecimen();
                 if(m_foodsActive[assFood]->noOfSpecimen() == 2)
                 {
                     swapFoods(foodsRndCounter, assFood);
@@ -213,13 +213,26 @@ void Simulation::clearAssignedFoods()
     }
 }
 
+double randomUniform(double a, double b){
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(a, b);
+    return dis(gen);
+}
+
 void Simulation::simulate()
 {
-
+    playRound();
 }
 
 void Simulation::playRound()
 {
+    fightForFood();
+    generationalChange();
+    log();
+}
+
+void Simulation::fightForFood(void){
     assignFoods();
 
     for(auto food : m_foodsActive){
@@ -260,6 +273,36 @@ void Simulation::playRound()
     }
 
     clearAssignedFoods();
+}
+
+void Simulation::generationalChange(void){
+    double p = 0.75;
+    for(unsigned i=0; i<strategy::COUNT; i++){
+        for(unsigned j=0; j<m_specimen[i].size(); j++){
+            int ate = m_specimen[i][j]->getTotalFoodEaten();
+            switch(ate){
+                case 0:
+                    specimenDeath(i,j);
+                break;
+
+                case 1:
+                    if(randomUniform(0.0,1.0)<p){
+                        specimenDeath(i,j);
+                    }
+                break;
+
+                case 3:
+                    if(randomUniform(0.0,1.0)<p){
+                        specimenReproduce(i);
+                    }
+                break;
+
+                case 4:
+                    specimenReproduce(i);
+                break;
+            }
+        }
+    }
 }
 
 void Simulation::log()

@@ -13,11 +13,13 @@ bool Food::addSpecimen(std::shared_ptr<Specimen> newSpecimen)
     if(specimen1 == nullptr)
     {
         specimen1 = newSpecimen;
+        m_noOfSpecimen++;
         return true;
     }
     else if(specimen2 == nullptr)
     {
         specimen2 = newSpecimen;
+        m_noOfSpecimen++;
         return true;
     }
     return false;
@@ -32,11 +34,6 @@ void Food::releaseSpecimen()
 int Food::noOfSpecimen() const
 {
     return m_noOfSpecimen;
-}
-
-void Food::increaseNoOfSpecimen()
-{
-    m_noOfSpecimen++;
 }
 
 void Food::setNoOfSpecimen(unsigned n)
