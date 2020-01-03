@@ -34,8 +34,7 @@ SOURCES +=  \
     $$PROJECT_DIR/specimen.cpp \
     $$PROJECT_DIR/statehistory.cpp \
     $$files(*.cpp) \
-    $$files($$PROJECT_DIR/strategies/*.cpp) \
-    tst_dove.cpp
+    $$files($$PROJECT_DIR/strategies/*.cpp)
 
 
 HEADERS += \
