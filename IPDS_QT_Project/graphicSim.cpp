@@ -25,10 +25,10 @@ GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
   unsigned strategyCount = strategy::COUNT;
 
   for (unsigned i = 0; i < strategyCount; ++i) {
-    unsigned long curSpecimenNo = this->m_specimen[i].size();
+    unsigned long curSpecimenNo = m_specimen[i].size();
 
     for (unsigned long j = 0; j < curSpecimenNo; ++j) {
-      this->m_specimen[i][j]->show();
+      m_specimen[i][j]->show();
     }
   }
 
@@ -41,13 +41,13 @@ void GraphicSim::show() {
     unsigned long curSpecimenNo = this->m_specimen[i].size();
 
     for (unsigned long j = 0; j < curSpecimenNo; ++j) {
-      this->m_specimen[i][j]->show();
+      m_specimen[i][j]->show();
     }
   }
 }
 
 void GraphicSim::addItems(QGraphicsScene &scene) {
-  for (auto stratVector : this->m_specimen) {
+  for (auto stratVector : m_specimen) {
     for (auto tmpSpecimen : stratVector) {
       scene.addItem(tmpSpecimen.get());
     }
@@ -76,7 +76,7 @@ void GraphicSim::initializeFood(int foodNo) {
     double tmpY = r * std::sin(randa * 2 * M_PI);
 
     /*Adds the generated food to the appropriate attribute*/
-    this->m_foodVector.emplace_back(tmpX, tmpY, i);
+    m_foodVector.emplace_back(tmpX, tmpY, i);
   }
 }
 

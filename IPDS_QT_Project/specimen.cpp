@@ -81,8 +81,8 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     * So 2*PI radians is divided into totalNumberOfSpecimen angles of the same size.
     * Ergo, the formula for the angle is indexOdCurrentSpecimen * (2*PI/totalNumberOfSpecimen)
     */
-    double angle = this->SPECIMEN_ID * ( (2*M_PI) / ID );
-    std::cout << "ID:" << ID << "\n" << "staticCount:" << this->SPECIMEN_ID <<"\n" <<std::endl;
+    double angle = SPECIMEN_ID * ( (2*M_PI) / ID );
+    std::cout << "ID:" << ID << "\n" << "staticCount:" << SPECIMEN_ID <<"\n" <<std::endl;
 
     /*
     * Total radius of the starting area, it's quite large atm, however, it will be downscaled to about 1/3 after
@@ -111,8 +111,8 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
      * we append the suffix MIRROR.png or just .png, for we want our chick to look
      * it's defeated opponent straight in the eyes when victorious.
      */
-    std::cout << this->getPathBase() <<std::endl;
-    QString  imgSrc = QString::fromStdString(this->getPathBase());
+    std::cout << getPathBase() <<std::endl;
+    QString  imgSrc = QString::fromStdString(getPathBase());
     if(tmpX>=0) imgSrc+="Mirror";
     imgSrc+=".png";
 
