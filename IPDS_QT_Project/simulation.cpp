@@ -204,5 +204,13 @@ void Simulation::playRound()
 
 void Simulation::log()
 {
-
+    std::vector<unsigned> iterationInfo(strategy::COUNT);
+    for(unsigned i = 0; i < m_specimen.size(); i++){
+        unsigned count = 0;
+        for(auto _ : m_specimen[i]){
+            count++;
+        }
+        iterationInfo[i] = count;
+    }
+    m_graphInfo.update(iterationInfo);
 }
