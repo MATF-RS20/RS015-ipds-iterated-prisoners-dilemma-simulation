@@ -60,6 +60,9 @@ public:
     /* Unique identifier of a speciman */
     const unsigned SPECIMEN_ID;
 
+    /* Set coordinates for drawing */
+    void setCoordinates(double x, double y);
+
 protected:
     void advance(int step) override;
     int m_foodEatenLastRound = 0;
@@ -80,6 +83,10 @@ private:
     const int T_PAYOFF = 3;
     const int P_PAYOFF = 1;
     const int S_PAYOFF = 0;
+
+    /* Specimen Coordinates */
+    double m_x;
+    double m_y;
 };
 
 #endif // SPECIMEN_H
