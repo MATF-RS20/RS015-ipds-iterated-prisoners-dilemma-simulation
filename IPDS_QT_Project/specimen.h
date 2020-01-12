@@ -17,7 +17,7 @@ class Specimen : public QGraphicsItem
 public:
     Specimen();
     Specimen& operator=(Specimen& s);
-    Specimen(Specimen& s);
+    Specimen(const Specimen& s);
     Specimen(std::string imgPath);
     virtual ~Specimen() override = default;
 

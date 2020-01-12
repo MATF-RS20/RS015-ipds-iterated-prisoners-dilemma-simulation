@@ -8,7 +8,9 @@ unsigned Specimen::ID = 0;
 
 Specimen::Specimen() : SPECIMEN_ID(ID) { ID++; }
 
-Specimen::Specimen(Specimen &s) : QGraphicsItem(), SPECIMEN_ID(s.ID) {}
+Specimen::Specimen(const Specimen &s)
+    : QGraphicsItem(),
+    SPECIMEN_ID(s.ID) {}
 
 double Specimen::getX() { return this->m_x; }
 double Specimen::getY() { return this->m_y; }

@@ -20,5 +20,6 @@
         <file>chickPics/blueMirror.png</file>
         <file>chickPics/blue3Mirror.png</file>
         <file>chickPics/blue2Mirror.png</file>
+        <file>foodPics/food.png</file>
     </qresource>
 </RCC>

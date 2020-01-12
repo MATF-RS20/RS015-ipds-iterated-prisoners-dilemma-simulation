@@ -21,9 +21,11 @@ static qreal normalizeAngle(qreal angle) {
 GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
     : Simulation(foodNo, specimenNoInfo) {
 
+    initializeFood(foodNo);
+
     show();
 
-    initializeFood(foodNo);
+
 
     QObject::connect(&m_timer, &QTimer::timeout, this, &GraphicSim::iterate);
     m_timer.start(1000);
@@ -35,6 +37,7 @@ void GraphicSim::iterate(void){
     std::cout << "iterate" << std::endl;
     show();
     simulate();
+
 }
 
 void GraphicSim::show() {
@@ -44,6 +47,7 @@ void GraphicSim::show() {
 
             // specimenIndex * 2PI / totalNoOfSpecimen
             double angle = sum * (2*M_PI) / m_specimenNo;
+            std::cout << "Ugao:" << angle << std::endl;
             sum++;
 
             // Total radius of the starting area
@@ -59,6 +63,12 @@ void GraphicSim::show() {
             m_specimen[i][j]->show();
         }
     }
+
+    unsigned tmpFoodNo = m_foodVector.size();
+    for (unsigned i = 0; i < tmpFoodNo; ++i)
+    {
+        m_foodVector[i].show();
+    }
 }
 
 void GraphicSim::addItems(QGraphicsScene &scene) {
@@ -66,6 +76,9 @@ void GraphicSim::addItems(QGraphicsScene &scene) {
         for (auto tmpSpecimen : stratVector) {
           scene.addItem(tmpSpecimen.get());
         }
+    }
+    for (auto food : m_foodVector) {
+        scene.addItem(&food);
     }
 }
 
@@ -114,5 +127,10 @@ void GraphicSim::moveSpecimen()
 void GraphicSim::advance(int step){
     if(step == 0)
         return;
+    else
+    {
+
+    }
+
     show();
 }
