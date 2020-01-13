@@ -111,8 +111,8 @@ void MainWindow::on_pushButtonPlay_clicked()
         m_view->show();
 
         m_playing = true;
-        QObject::connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
-        m_timer.start(1000 / 60);
+//        QObject::connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
+//        m_timer.start(1000 / 60);
 
 
     }

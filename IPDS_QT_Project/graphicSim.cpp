@@ -19,50 +19,63 @@ static qreal normalizeAngle(qreal angle) {
 }
 
 GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
-    : Simulation(foodNo, specimenNoInfo) {
+    : Simulation(foodNo, specimenNoInfo),m_isFoodStage(false) {
 
     initializeFood(foodNo);
-
+    this->m_iterCount = 0;
     show();
 
 
 
     QObject::connect(&m_timer, &QTimer::timeout, this, &GraphicSim::iterate);
-    m_timer.start(1000);
+    m_timer.start(2000);
 }
 
 GraphicSim::~GraphicSim() {}
 
 void GraphicSim::iterate(void){
-    std::cout << "iterate" << std::endl;
-    show();
-    simulate();
+    std::cout << "iteration:"<< m_iterCount << std::endl;
+    m_iterCount++;
 
+    if(m_isFoodStage){
+        simulate();
+        show();
+    }else{
+        show();
+    }
 }
 
 void GraphicSim::show() {
     int sum = 0;
+    std::cout << "No of specimen:" << m_specimenNo << std::endl;
     for (unsigned i = 0; i < strategy::COUNT; ++i) {
+        std::cout << "No of specimen of type "<< i << ": " << m_specimen[i].size() << std::endl;
         for (unsigned long j = 0; j < m_specimen[i].size(); ++j) {
 
-            // specimenIndex * 2PI / totalNoOfSpecimen
-            double angle = sum * (2*M_PI) / m_specimenNo;
-            std::cout << "Ugao:" << angle << std::endl;
-            sum++;
+            if(!m_isFoodStage){
+                // specimenIndex * 2PI / totalNoOfSpecimen
+                double angle = sum * (2*M_PI) / m_specimenNo;
+                sum++;
 
-            // Total radius of the starting area
-            double r = 100;
+                // Total radius of the starting area
+                double r = 100;
 
-            // Polar coordinates
-            double tmpX = r * std::cos(angle);
-            double tmpY = r * std::sin(angle);
+                // Polar coordinates
+                double tmpX = r * std::cos(angle);
+                double tmpY = r * std::sin(angle);
 
-            // Setting them in the appropriate specimen
-            m_specimen[i][j]->setCoordinates(tmpX, tmpY);
+                // Setting them in the appropriate specimen
+                m_specimen[i][j]->setCoordinates(tmpX, tmpY);
 
-            m_specimen[i][j]->show();
+                m_specimen[i][j]->show();
+            }else{
+                m_specimen[i][j]->setCoordinates( m_specimen[i][j]->getTargetX() , m_specimen[i][j]->getTargetY() );
+                m_specimen[i][j]->show();
+
+            }
         }
     }
+    m_isFoodStage = m_isFoodStage ? false : true ;
 
     unsigned tmpFoodNo = m_foodVector.size();
     for (unsigned i = 0; i < tmpFoodNo; ++i)

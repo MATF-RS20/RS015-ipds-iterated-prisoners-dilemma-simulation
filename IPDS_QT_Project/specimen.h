@@ -78,6 +78,15 @@ public:
     qreal getX(void) const;
     qreal getY(void) const;
 
+    /* Set coordinates of food as target for this specimen */
+    void setTarget(double x, double y);
+
+    qreal getTargetX();
+    qreal getTargetY();
+
+    /* Current target food coordinates */
+    qreal m_targetX;
+    qreal m_targetY;
 protected:
     void advance(int step) override;
     int m_foodEatenLastRound = 0;
@@ -104,6 +113,7 @@ private:
     /* Specimen Coordinates */
     qreal m_x;
     qreal m_y;
+
 };
 
 #endif // SPECIMEN_H

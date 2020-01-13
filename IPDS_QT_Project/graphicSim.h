@@ -44,6 +44,8 @@ protected:
 
 private:
 
+    bool m_isFoodStage;
+    int m_iterCount;
     QTimer m_timer;
     qreal  m_xPosition;
     qreal  m_yPosition;

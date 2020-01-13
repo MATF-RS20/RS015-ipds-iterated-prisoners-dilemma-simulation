@@ -117,6 +117,20 @@ qreal Specimen::getX(void) const{
 qreal Specimen::getY(void) const{
     return m_y;
 }
+void Specimen::setTarget(double x, double y)
+{
+    this->m_targetX = x;
+    this->m_targetY = y;
+}
+
+qreal Specimen::getTargetX()
+{
+    return this->m_targetX;
+}
+qreal Specimen::getTargetY()
+{
+    return this->m_targetY;
+}
 
 void Specimen::advance(int step)
 {
@@ -126,7 +140,8 @@ void Specimen::advance(int step)
       if( step == 0 ) return;
 
       /* Postavljanje pozicije u QGraphicsItemu */
-      setPos(this->m_x,m_y);
+      setPos(m_x,m_y);
+
 
   return;
 }

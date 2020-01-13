@@ -41,6 +41,9 @@ Food& Food::operator=(Food& f)
 
 bool Food::addSpecimen(std::shared_ptr<Specimen> newSpecimen)
 {
+    /* Set coordinates of food as target for this specimen */
+    newSpecimen.get()->setTarget(this->m_posX,this->m_posY);
+
     if(specimen1 == nullptr)
     {
         specimen1 = newSpecimen;
