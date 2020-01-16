@@ -25,6 +25,7 @@ void MainWindow::addDefaultScene(void){
     QObject::connect(&m_timer, SIGNAL(timeout()), this, SLOT(plot()));
     m_timer.start(1000 / 60);
     this->ui.listWidget->setCurrentRow(0);
+    ui.foodNo->setValue(15);
     m_currentStratNo=0;
 }
 
@@ -94,10 +95,10 @@ void MainWindow::plot()
 
 void MainWindow::on_pushButtonPlay_clicked()
 {
-    if(!m_playing){
+    if(!m_playing && this->ui.foodNo->value()>15){
 
-        this->ui.foodCounter->display(ui.foodSlider->value());
-        unsigned foodCount = ui.foodSlider->value();
+
+        unsigned foodCount = ui.foodNo->value();
 
         /* TODO: get specimenNoInfo from GUI */
 
@@ -156,14 +157,14 @@ void MainWindow::on_changeSpecimenNumber_clicked()
     m_currentStratNo = this->ui.listWidget->currentRow();
     QString curStratName = this->ui.listWidget->currentItem()->text();
     this->ui.specimenName->setText(curStratName);
-    this->ui.specimenNoCounter->display(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
+    this->ui.specimenNo->setValue(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
     this->ui.specimenDescription->setText(curStratName);
 }
 
 void MainWindow::on_updateButton_clicked()
 {
-    m_specimenNoInfo[m_currentStratNo]=this->ui.specimenNoSlider->value();
-    this->ui.specimenNoCounter->display(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
+    m_specimenNoInfo[m_currentStratNo]=this->ui.specimenNo->value();
+    this->ui.specimenNo->setValue(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
     //this->ui.specimenDescription->setText(curStratName);
 }
 

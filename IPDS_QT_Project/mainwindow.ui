@@ -133,7 +133,7 @@
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>361</x>
+      <x>362</x>
       <y>20</y>
       <width>171</width>
       <height>261</height>
@@ -150,22 +150,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QLCDNumber" name="foodCounter"/>
+        <widget class="QSpinBox" name="foodNo"/>
        </item>
       </layout>
-     </item>
-     <item>
-      <widget class="QSlider" name="foodSlider">
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>100</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
      </item>
      <item>
       <widget class="QTextEdit" name="specimenName">
@@ -188,22 +175,9 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
-        <widget class="QLCDNumber" name="specimenNoCounter"/>
+        <widget class="QSpinBox" name="specimenNo"/>
        </item>
       </layout>
-     </item>
-     <item>
-      <widget class="QSlider" name="specimenNoSlider">
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>100</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
      </item>
      <item>
       <widget class="QLabel" name="descriptionLabel">
