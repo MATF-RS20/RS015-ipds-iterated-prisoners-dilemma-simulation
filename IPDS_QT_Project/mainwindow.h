@@ -59,9 +59,11 @@ private:
     QGraphicsView* m_view;
     QGraphicsScene* m_scene;
     bool m_playing = false;
+    QString m_currentSpecimenDescriptionText;
 
     void setPlotColors();
-
+    QString getCurrentSpecimenDescription();
+    void setCurrentSpecimenDescription();
     bool paused = false;
 };
 #endif // MAINWINDOW_H
