@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "help.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -196,22 +197,32 @@ void MainWindow::on_pushButtonPause_clicked()
 
 void MainWindow::on_changeSpecimenNumber_clicked()
 {
+
     /*Changes the values in the ui to match the current number of specimens for the selected strategy*/
     m_currentStratNo = ui.listWidget->currentRow();
+    setCurrentSpecimenDescription();
     QString curStratName = ui.listWidget->currentItem()->text();
     ui.specimenName->setText(curStratName);
     ui.specimenNo->setValue(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
-    ui.specimenDescription->setText(curStratName);
+    ui.specimenDescription->setText(getCurrentSpecimenDescription());
 }
 
 void MainWindow::on_updateButton_clicked()
 {
     m_specimenNoInfo[m_currentStratNo]=ui.specimenNo->value();
     ui.specimenNo->setValue(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
+    //ui.listWidget->currentItem()->setText()
     //ui.specimenDescription->setText(curStratName);
 }
 
 void MainWindow::on_foodCounter_overflow()
 {
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    m_secondWindow = new Help();
+    m_secondWindow->show();
 
 }

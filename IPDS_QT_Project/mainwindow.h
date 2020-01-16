@@ -2,6 +2,7 @@
 #include "graphics.h"
 #include "strategiesheaders.h"
 #include "ui_mainwindow.h"
+#include "help.h"
 #include <iostream>
 #include <QtGui>
 #include <QApplication>
@@ -35,6 +36,7 @@ public:
 
     void refreshUI();
 
+
     std::vector<unsigned> m_specimenNoInfo{0,0,0,0,0,0,0};
     int m_currentStratNo;
 private slots:
@@ -51,11 +53,15 @@ private slots:
 
     void on_foodCounter_overflow();
 
+    void on_pushButton_clicked();
+
 private:
 
     QTimer m_timer;
     GraphicSim* m_gs;
     Ui::MainWindow ui;
+    Help* m_secondWindow;
+
     QGraphicsView* m_view;
     QGraphicsScene* m_scene;
     bool m_playing = false;

@@ -23,6 +23,7 @@ SOURCES += $$files(*.cpp) \
     $$files(strategies/*.cpp) \
 
 FORMS += \
+    help.ui \
     mainwindow.ui
 
 # Default rules for deployment.
