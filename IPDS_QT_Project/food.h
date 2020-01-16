@@ -1,5 +1,6 @@
 #include "specimen.h"
 #include <memory>
+#include <string.h>
 
 #ifndef FOOD_H
 #define FOOD_H
@@ -34,7 +35,7 @@ public:
                QWidget *widget) override;
 
 
-
+    std::string toString();
 
 private:
     double m_posX;

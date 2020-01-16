@@ -3,7 +3,7 @@
 #include "estrategy.h"
 #include <cmath>
 #include <iostream>
-#define __RADIUS__ 240
+#define __RADIUS__ 300
 unsigned Specimen::ID = 0;
 
 Specimen::Specimen() : SPECIMEN_ID(ID) { ID++; }
@@ -131,6 +131,8 @@ qreal Specimen::getTargetY()
 {
     return this->m_targetY;
 }
+
+
 
 void Specimen::advance(int step)
 {

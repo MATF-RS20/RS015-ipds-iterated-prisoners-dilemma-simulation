@@ -24,79 +24,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QScrollArea" name="scrollArea">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>80</y>
-      <width>171</width>
-      <height>221</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>169</width>
-       <height>219</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QListWidget" name="listWidget">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>30</y>
-      <width>256</width>
-      <height>271</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Dove</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Hawk</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Pavlov</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Random</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Random</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Tit for Tat</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Tit for Two Tats</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Two Tits for Tat</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -130,22 +57,102 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="displayWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>39</x>
+      <y>109</y>
+      <width>311</width>
+      <height>461</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>535</x>
       <y>20</y>
-      <width>86</width>
-      <height>38</height>
+      <width>258</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QListWidget" name="listWidget">
+       <item>
+        <property name="text">
+         <string>Dove</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Hawk</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Pavlov</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Random</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Random</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Tit for Tat</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Tit for Two Tats</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Two Tits for Tat</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="changeSpecimenNumber">
+       <property name="text">
+        <string>Select Strategy</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>361</x>
+      <y>20</y>
+      <width>171</width>
+      <height>261</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Food</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Food</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="foodCounter"/>
+       </item>
+      </layout>
      </item>
      <item>
       <widget class="QSlider" name="foodSlider">
@@ -160,17 +167,62 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QTextEdit" name="specimenName">
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;Specimen name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>No of specimen</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLCDNumber" name="specimenNoCounter"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QSlider" name="specimenNoSlider">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="descriptionLabel">
+       <property name="text">
+        <string>Strategy Description</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="specimenDescription"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="updateButton">
+       <property name="text">
+        <string>Update</string>
+       </property>
+      </widget>
+     </item>
     </layout>
-   </widget>
-   <widget class="QWidget" name="displayWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>39</x>
-      <y>109</y>
-      <width>311</width>
-      <height>461</height>
-     </rect>
-    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

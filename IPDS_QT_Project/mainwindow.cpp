@@ -22,8 +22,10 @@ void MainWindow::addDefaultScene(void){
     m_scene->setSceneRect(-300, -300, 600, 600);
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
-//    QObject::connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(advance()));
-//    m_timer.start(1000 / 60);
+    QObject::connect(&m_timer, SIGNAL(timeout()), this, SLOT(plot()));
+    m_timer.start(1000 / 60);
+    this->ui.listWidget->setCurrentRow(0);
+    m_currentStratNo=0;
 }
 
 void MainWindow::setPlotColors(){
@@ -94,12 +96,13 @@ void MainWindow::on_pushButtonPlay_clicked()
 {
     if(!m_playing){
 
+        this->ui.foodCounter->display(ui.foodSlider->value());
         unsigned foodCount = ui.foodSlider->value();
 
         /* TODO: get specimenNoInfo from GUI */
-        std::vector<unsigned> specimenNoInfo{1,2,3,4,5,6,7};
 
-        m_gs = new GraphicSim(foodCount, specimenNoInfo);
+
+        m_gs = new GraphicSim(foodCount, m_specimenNoInfo);
 
         /* Adding items of type specimen to the scene*/
         m_gs->addItems(*m_scene);
@@ -108,10 +111,14 @@ void MainWindow::on_pushButtonPlay_clicked()
 
         m_view->setWindowTitle("Simulacija");
         m_view->resize(800, 600);
+
         m_view->show();
 
         m_playing = true;
 
+        /*TODO: Implement food counter lcd*/
+
+        //QObject::connect(&foodCount, SIGNAL(), m_scene, SLOT(update()));
         QObject::connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(update()));
         m_timer.start(1000 / 60);
 
@@ -143,5 +150,24 @@ void MainWindow::on_pushButtonPause_clicked()
 }
 
 
+void MainWindow::on_changeSpecimenNumber_clicked()
+{
+    /*Changes the values in the ui to match the current number of specimens for the selected strategy*/
+    m_currentStratNo = this->ui.listWidget->currentRow();
+    QString curStratName = this->ui.listWidget->currentItem()->text();
+    this->ui.specimenName->setText(curStratName);
+    this->ui.specimenNoCounter->display(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
+    this->ui.specimenDescription->setText(curStratName);
+}
 
+void MainWindow::on_updateButton_clicked()
+{
+    m_specimenNoInfo[m_currentStratNo]=this->ui.specimenNoSlider->value();
+    this->ui.specimenNoCounter->display(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
+    //this->ui.specimenDescription->setText(curStratName);
+}
 
+void MainWindow::on_foodCounter_overflow()
+{
+
+}

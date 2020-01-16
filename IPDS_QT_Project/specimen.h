@@ -84,6 +84,7 @@ public:
     qreal getTargetX();
     qreal getTargetY();
 
+
     /* Current target food coordinates */
     qreal m_targetX;
     qreal m_targetY;

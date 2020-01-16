@@ -39,6 +39,11 @@ Food& Food::operator=(Food& f)
     return *this;
 }
 
+std::string Food::toString()
+{
+    return "X:" + std::to_string(m_posX) + " Y:" + std::to_string(m_posY);
+}
+
 bool Food::addSpecimen(std::shared_ptr<Specimen> newSpecimen)
 {
     /* Set coordinates of food as target for this specimen */
@@ -112,13 +117,15 @@ void Food::paint(QPainter *painter,
     QPoint point(this->m_posX-27, this->m_posY-23);
 
 
-    QString  imgSrc = QString::fromStdString(":/foodPics/food.png");
+//    QString  imgSrc = QString::fromStdString(":/foodPics/food.png");
 
-    QImage image(imgSrc);
+//    QImage image(imgSrc);
 
-    /*
-     * We draw the actual image with it's top-left corner being point.
-    */
-    painter->drawImage(point, image);
+//    /*
+//     * We draw the actual image with it's top-left corner being point.
+//    */
+//    painter->drawImage(point, image);
+
+    painter->drawEllipse(3,3,3,3);
 }
 

@@ -5,18 +5,6 @@
 static const double PI = 3.14159265358979323846264338327950288419717;
 static const double TWO_PI = 2.0 * PI;
 
-/*function that maps given angle to [0,2*PI]*/
-static qreal normalizeAngle(qreal angle) {
-  while (angle < 0) {
-    angle += TWO_PI;
-  }
-
-  while (angle > TWO_PI) {
-    angle -= TWO_PI;
-  }
-
-  return angle;
-}
 
 GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
     : Simulation(foodNo, specimenNoInfo),m_isFoodStage(false) {
@@ -59,6 +47,7 @@ void GraphicSim::show() {
 
                 // Total radius of the starting area
                 double r = 100;
+                std::cout << "angle:"<<(2*M_PI) / m_specimenNo << std::endl;
 
                 // Polar coordinates
                 double tmpX = r * std::cos(angle);
@@ -80,7 +69,8 @@ void GraphicSim::show() {
     unsigned tmpFoodNo = m_foodVector.size();
     for (unsigned i = 0; i < tmpFoodNo; ++i)
     {
-        m_foodVector[i].show();
+       // std::cout << m_foodVector[i].toString() << std::endl ;
+       m_foodVector[i].setVisible(true);
     }
 }
 

@@ -33,7 +33,10 @@ public:
 
     void plot();
 
+    void refreshUI();
 
+    std::vector<unsigned> m_specimenNoInfo{0,0,0,0,0,0,0};
+    int m_currentStratNo;
 private slots:
     void on_pushButtonPlay_clicked();
 
@@ -41,6 +44,12 @@ private slots:
 
     void on_pushButtonPause_clicked();
 
+
+    void on_changeSpecimenNumber_clicked();
+
+    void on_updateButton_clicked();
+
+    void on_foodCounter_overflow();
 
 private:
 
