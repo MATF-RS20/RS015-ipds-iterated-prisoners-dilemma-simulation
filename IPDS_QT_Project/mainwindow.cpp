@@ -33,6 +33,7 @@ void MainWindow::setCurrentSpecimenDescription() {
         case 1:
             m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Hawks are meanies. They always deflect no matter what. They're those creatures that nobody wants to hang out with.\n") +
                                              "They do not take into account previous encounters.");
+            break;
         case 2:
             m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Pavlovs have put some thought in this. After realizing it's best for them to be careful around others and make sure ") +
                                              "that as much as possible resources end up in their possession, they developed a strategy.\n" +
@@ -40,20 +41,25 @@ void MainWindow::setCurrentSpecimenDescription() {
                                              "if the last encounter was a win for them (they deflected and enemy didn't, or both sides were nice to each other), or " +
                                              "change their behavior, if the last encounter was a loss.\n" +
                                              "However, they believe that everybody deserves a chance, so if they encounter an unknown creature, they will cooperate and be kind.");
+            break;
         case 3:
             m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Randoms do not believe in strategies or principles.\nYou never know what to expect from them, since the chance that they'll ") +
                                              "cooperate and chance that they'll deflect are pretty much equal. Nobody ever figured out the pattern.");
+            break;
         case 4:
             m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Tit-For-Tats think that giving others the taste of their own medicine is the best way to go.\n They'll always start with cooperation ") +
                                              "on the first encounter with someone, but after that they'll just do whatever the enemy did the last time they saw each other.");
+            break;
         case 5:
             m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Tit-For-Two-Tats are similar to their neighbour Tit-For-Tat, but a bit more forgiving. Maybe somebody has a bad day?\n") +
                                              "They start by cooperating and keep cooperating until the other one deflects twice in a row. As long as the other one's " +
                                              "last two moves were deflections, they will keep deflecting.");
+            break;
         case 6:
             m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Two-Tits-For-Tats are a bit more punishing than their neighbours. They're exactly the opposite of Tit-For-Two-Tats and ") +
                                              "they think everybody should suffer the consequences for their evildoings.\n" +
                                              "They start by cooperating, but every time that the other creature deflects, TwoTitsForTats will deflect next two rounds.");
+            break;
         default:
             m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Doves are good creatures! They always cooperate with the other creature no matter what.\nThey do not take into account ") +
                                             "previous encounters nor they holds any grudges.");
