@@ -77,6 +77,7 @@ void MainWindow::plot()
 
         ui.plotWidget->graph(i)->setData(x, y);
 
+
     }
 
     setPlotColors();
@@ -93,10 +94,8 @@ void MainWindow::plot()
 
 void MainWindow::on_pushButtonPlay_clicked()
 {
-    if(!m_playing && this->ui.foodNo->value()>15){
-
-
-        unsigned foodCount = ui.foodNo->value();
+    unsigned foodCount = ui.foodNo->value();
+    if(!m_playing && foodCount>=15){
 
         /* TODO: get specimenNoInfo from GUI */
 
