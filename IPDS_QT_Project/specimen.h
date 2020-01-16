@@ -106,8 +106,8 @@ private:
     static unsigned ID;
 
     /* Payoffs for each outcome */
-    const int R_PAYOFF = 4;
-    const int T_PAYOFF = 3;
+    const int T_PAYOFF = 4;
+    const int R_PAYOFF = 3;
     const int P_PAYOFF = 1;
     const int S_PAYOFF = 0;
 
