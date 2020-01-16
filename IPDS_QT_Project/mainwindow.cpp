@@ -6,8 +6,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui.setupUi(this);
 
-    MainWindow::plot();
-
     qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
 }
 
@@ -130,6 +128,7 @@ void MainWindow::on_pushButtonPlay_clicked()
 void MainWindow::on_pushButtonStop_clicked()
 {
     if(m_playing){
+        MainWindow::plot();
         m_view->close();
         delete m_view;
         delete m_gs;
@@ -146,6 +145,7 @@ void MainWindow::on_pushButtonPause_clicked()
     }
     else{
         m_timer.stop();
+        MainWindow::plot();
         paused = true;
     }
 }
