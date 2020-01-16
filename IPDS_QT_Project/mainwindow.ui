@@ -18,102 +18,33 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>320</y>
+      <y>300</y>
       <width>761</width>
-      <height>251</height>
+      <height>271</height>
      </rect>
     </property>
    </widget>
    <widget class="QTextEdit" name="specimenDescription">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>170</y>
-      <width>331</width>
-      <height>72</height>
+      <x>10</x>
+      <y>150</y>
+      <width>511</width>
+      <height>131</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="specimenName">
-    <property name="geometry">
-     <rect>
-      <x>373</x>
-      <y>52</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="html">
-     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;Specimen name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="updateButton">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>260</y>
-      <width>80</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Update</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonPlay">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>20</y>
-      <width>80</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Play</string>
     </property>
    </widget>
    <widget class="QLabel" name="descriptionLabel">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>150</y>
+      <x>30</x>
+      <y>120</y>
       <width>98</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
      <string>Strategy Description</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonPause">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>50</y>
-      <width>80</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Pause</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonStop">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>80</y>
-      <width>80</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Stop</string>
     </property>
    </widget>
    <widget class="QWidget" name="">
@@ -215,48 +146,95 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>373</x>
-      <y>21</y>
-      <width>69</width>
-      <height>25</height>
+      <x>151</x>
+      <y>20</y>
+      <width>171</width>
+      <height>121</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QPushButton" name="pushButtonPlay">
        <property name="text">
-        <string>Food</string>
+        <string>Play</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="foodNo"/>
+      <widget class="QPushButton" name="pushButtonPause">
+       <property name="text">
+        <string>Pause</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonStop">
+       <property name="text">
+        <string>Stop</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>130</y>
-      <width>151</width>
-      <height>27</height>
+      <x>330</x>
+      <y>20</y>
+      <width>201</width>
+      <height>121</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="label">
          <property name="text">
-          <string>No of specimen</string>
+          <string>Food</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="specimenNo"/>
+        <widget class="QSpinBox" name="foodNo"/>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="specimenName">
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2';&quot;&gt;Specimen name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>No of specimen</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="specimenNo"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="updateButton">
+       <property name="text">
+        <string>Update</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
