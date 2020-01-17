@@ -65,11 +65,14 @@ private:
     QGraphicsView* m_view;
     QGraphicsScene* m_scene;
     bool m_playing = false;
+    bool paused = false;
     QString m_currentSpecimenDescriptionText;
+    QPixmap m_currentSpecimenPhoto;
 
     void setPlotColors();
-    QString getCurrentSpecimenDescription();
     void setCurrentSpecimenDescription();
-    bool paused = false;
+    QString getCurrentSpecimenDescription();
+    QPixmap getCurrentSpecimenPhoto();
+    void setCurrentSpecimenPhoto();
 };
 #endif // MAINWINDOW_H

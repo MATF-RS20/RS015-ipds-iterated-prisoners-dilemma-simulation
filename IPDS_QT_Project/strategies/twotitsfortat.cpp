@@ -2,7 +2,7 @@
 #include "estrategy.h"
 
 const QColor TwoTitsForTat::COLOR = Qt::GlobalColor::darkYellow;
-const std::string TwoTitsForTat::IMG_PATH = ":/chickPics/blue3";;
+const std::string TwoTitsForTat::IMG_PATH = ":/chickPics/blue3";
 
 TwoTitsForTat::TwoTitsForTat() : Specimen() {}
 

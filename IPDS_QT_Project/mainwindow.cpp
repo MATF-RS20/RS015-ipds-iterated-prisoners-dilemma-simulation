@@ -28,6 +28,44 @@ void MainWindow::addDefaultScene(void){
     m_currentStratNo=0;
 }
 
+QPixmap MainWindow::getCurrentSpecimenPhoto() {
+    return m_currentSpecimenPhoto;
+}
+
+void MainWindow::setCurrentSpecimenPhoto() {
+
+    switch(m_currentStratNo) {
+        // Hawk
+        case 1:
+            m_currentSpecimenPhoto = QPixmap(":/chickPics/red");
+            break;
+        // Pavlov
+        case 2:
+            m_currentSpecimenPhoto = QPixmap(":/chickPics/blue2");
+            break;
+        // Random
+        case 3:
+            m_currentSpecimenPhoto = QPixmap(":/chickPics/green");
+            break;
+        // Tit-for-Tat
+        case 4:
+            m_currentSpecimenPhoto = QPixmap(":/chickPics/pink");
+            break;
+        // Tit-for-two-Tats
+        case 5:
+            m_currentSpecimenPhoto = QPixmap(":/chickPics/purple");
+            break;
+        // Two-Tits-for-Tat
+        case 6:
+            m_currentSpecimenPhoto = QPixmap(":/chickPics/blue3");
+            break;
+        // Dove
+        default:
+            m_currentSpecimenPhoto = QPixmap(":/chickPics/blue");
+    }
+
+}
+
 void MainWindow::setCurrentSpecimenDescription() {
 
     switch(m_currentStratNo) {
@@ -201,10 +239,12 @@ void MainWindow::on_changeSpecimenNumber_clicked()
     /*Changes the values in the ui to match the current number of specimens for the selected strategy*/
     m_currentStratNo = ui.listWidget->currentRow();
     setCurrentSpecimenDescription();
+    setCurrentSpecimenPhoto();
     QString curStratName = ui.listWidget->currentItem()->text();
     ui.specimenName->setText(curStratName);
     ui.specimenNo->setValue(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
     ui.specimenDescription->setText(getCurrentSpecimenDescription());
+    ui.labelPic->setPixmap(getCurrentSpecimenPhoto());
 }
 
 void MainWindow::on_updateButton_clicked()
