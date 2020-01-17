@@ -2,7 +2,12 @@
 
 StateHistory::StateHistory() {}
 
-StateHistory::StateHistory(const StateHistory &other) {}
+StateHistory::StateHistory(const StateHistory &other)
+{
+    this->m_iterationNo = other.m_iterationNo;
+    this->m_innerGraphInfo = other.m_innerGraphInfo;
+
+}
 
 StateHistory& StateHistory::operator=(const StateHistory &other)
 {

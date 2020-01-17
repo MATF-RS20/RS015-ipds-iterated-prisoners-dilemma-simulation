@@ -147,7 +147,7 @@ void MainWindow::plot()
     StateHistory sh = m_gs->graphInfo();
     QVector<double> x(sh.iterationNo());
     std::iota(x.begin(), x.end(), 0);
-
+    int yMax=0;
     for(int i=0; i<COUNT; i++){
         ui.plotWidget->addGraph();
 
@@ -155,20 +155,18 @@ void MainWindow::plot()
         QVector<double> y;
         for(int i : y_tmp){
             y.append(static_cast<double>(i));
+            yMax = yMax>i ? yMax : i;
         }
 
         ui.plotWidget->graph(i)->setData(x, y);
-
-
     }
-
     setPlotColors();
 
     ui.plotWidget->xAxis->setLabel("Iteration");
     ui.plotWidget->yAxis->setLabel("Specimen");
 
     ui.plotWidget->xAxis->setRange(0, sh.iterationNo());
-    ui.plotWidget->yAxis->setRange(0, 200); // HACK: Hardcoded random value
+    ui.plotWidget->yAxis->setRange(0, yMax); // HACK: Hardcoded random value
 
     ui.plotWidget->replot();
 }
@@ -247,8 +245,8 @@ void MainWindow::on_changeSpecimenNumber_clicked()
 
 
     // get label dimensions
-    int w = ui.labelPic->width();
-    int h = ui.labelPic->height();
+    int w = ui.labelPic->width()*0.7;
+    int h = ui.labelPic->height()*0.7;
     // set a scaled pixmap to a w x h window keeping its aspect ratio
     ui.labelPic->setPixmap(getCurrentSpecimenPhoto().scaled(w,h,Qt::KeepAspectRatio));
 }
