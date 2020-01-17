@@ -284,5 +284,4 @@ void MainWindow::on_pushButton_clicked()
 {
     m_secondWindow = new Help();
     m_secondWindow->show();
-
 }
