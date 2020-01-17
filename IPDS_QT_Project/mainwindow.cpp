@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(Ui::MainWindow())
 {
+    this->setAttribute(Qt::WA_DeleteOnClose);
     ui.setupUi(this);
 
     qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
@@ -311,5 +312,6 @@ void MainWindow::on_foodCounter_overflow()
 void MainWindow::on_pushButton_clicked()
 {
     m_secondWindow = new Help();
+    m_secondWindow->setAttribute( Qt::WA_DeleteOnClose );
     m_secondWindow->show();
 }
