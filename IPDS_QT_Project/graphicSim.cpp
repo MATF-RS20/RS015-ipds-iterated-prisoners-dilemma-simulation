@@ -9,7 +9,8 @@ static const double TWO_PI = 2.0 * PI;
 GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
     : Simulation(foodNo, specimenNoInfo),m_isFoodStage(false) {
 
-    initializeFood(foodNo);
+    // Total radius of the starting area
+    m_radius = 200;
     this->m_iterCount = 0;
     show();
 
@@ -48,13 +49,9 @@ void GraphicSim::show() {
                 double angle = sum * (2*M_PI) / m_specimenNo;
                 sum++;
 
-                // Total radius of the starting area
-                double r = 100;
-                //std::cout << "angle:"<<(2*M_PI) / m_specimenNo << std::endl;
-
                 // Polar coordinates
-                double tmpX = r * std::cos(angle);
-                double tmpY = r * std::sin(angle);
+                double tmpX = m_radius * std::cos(angle);
+                double tmpY = m_radius * std::sin(angle);
 
                 // Setting them in the appropriate specimen
                 m_specimen[i][j]->setCoordinates(tmpX, tmpY);
@@ -69,11 +66,11 @@ void GraphicSim::show() {
     }
     m_isFoodStage = m_isFoodStage ? false : true ;
 
-    unsigned tmpFoodNo = m_foodVector.size();
+    unsigned tmpFoodNo = m_foodsActive.size();
     for (unsigned i = 0; i < tmpFoodNo; ++i)
     {
        // std::cout << m_foodVector[i].toString() << std::endl ;
-       m_foodVector[i].setVisible(true);
+       m_foodsActive[i]->show();
     }
 }
 
@@ -84,36 +81,11 @@ void GraphicSim::addItems(QGraphicsScene &scene) {
           scene.addItem(tmpSpecimen.get());
         }
     }
-    for (auto food : m_foodVector) {
-        scene.addItem(&food);
+    for (auto food : m_foodsActive) {
+        scene.addItem(food);
     }
 }
 
-void GraphicSim::initializeFood(int foodNo) {
-    // TODO add global drawing center,scale to R
-    double randa, randr;
-    double centerX = -10.0;
-    double centerY = -20.0;
-
-    /*Generates random position inside a circle*/
-    /*randr signifies the distance from the center, randa signifies the angle for
-    * the polar coordinates*/
-    for (int i = 0; i < foodNo; ++i) {
-        // TODO clean up this blasphemous random number generation and pi
-        // representation
-        // TODO tweak size of r to match window size
-
-        randr = static_cast<double>(qrand()) / RAND_MAX;
-        double r = randr * sqrt(centerX * centerX + centerY * centerY);
-
-        randa = static_cast<double>(qrand()) / RAND_MAX;
-        double tmpX = r * std::cos(randa * 2 * M_PI);
-        double tmpY = r * std::sin(randa * 2 * M_PI);
-
-        /*Adds the generated food to the appropriate attribute*/
-        m_foodVector.emplace_back(tmpX, tmpY, i);
-    }
-}
 
 void GraphicSim::moveSpecimen()
 {

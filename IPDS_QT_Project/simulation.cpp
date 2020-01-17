@@ -78,9 +78,7 @@ const StateHistory Simulation::graphInfo() const
 void Simulation::initializeFood()
 {
     // TODO add global drawing center,scale to R
-    double randa, randr;
-    double centerX = -10.0;
-    double centerY = -20.0;
+    double randa;
 
     // Generates random position inside a circle
     // randr signifies the distance from the center,
@@ -90,15 +88,17 @@ void Simulation::initializeFood()
         // TODO clean up this blasphemous random number generation and pi representation
         // TODO tweak size of r to match window size
 
-        randr = static_cast<double>(qrand())/RAND_MAX;
-        double r = randr * sqrt(centerX * centerX + centerY * centerY);
+        double r = static_cast<double>(qrand())/RAND_MAX;
+        r = r*100;
 
         randa = static_cast<double>(qrand())/RAND_MAX;
         double tmpX = r * std::cos(randa * 2 * M_PI);
         double tmpY = r * std::sin(randa * 2 * M_PI);
 
         /*Adds the generated food to the appropriate attribute*/
-        m_foodsActive.push_back(new Food(tmpX, tmpY, i));
+        Food* tmpFood = new Food(tmpX, tmpY, i);
+
+        m_foodsActive.push_back(tmpFood);
     }
 
 //    for(unsigned i = m_foodNo - 1; i < m_specimenNo; i++)

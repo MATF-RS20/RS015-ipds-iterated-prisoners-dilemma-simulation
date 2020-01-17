@@ -24,7 +24,6 @@ public:
 
     GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo);
     ~GraphicSim();
-    void initializeFood(int foodNo);
     void drawGraphIter();
     void show();
     void addItems(QGraphicsScene& scene);
@@ -44,12 +43,12 @@ protected:
 
 private:
     QGraphicsScene* m_scene;
+    double m_radius;
     bool m_isFoodStage;
     int m_iterCount;
     QTimer m_timer;
     qreal  m_xPosition;
     qreal  m_yPosition;
-    std::vector<Food> m_foodVector;
 };
 
 #endif // GRAPHICSPECIMEN_HPP

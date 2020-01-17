@@ -21,7 +21,7 @@ void MainWindow::addDefaultScene(void){
     m_scene->setSceneRect(-300, -300, 600, 600);
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
-    QObject::connect(&m_timer, SIGNAL(timeout()), this, SLOT(plot()));
+    //QObject::connect(&m_timer, SIGNAL(timeout()), this, SLOT(plot()));
     m_timer.start(1000 / 60);
     ui.listWidget->setCurrentRow(0);
     ui.foodNo->setValue(15);

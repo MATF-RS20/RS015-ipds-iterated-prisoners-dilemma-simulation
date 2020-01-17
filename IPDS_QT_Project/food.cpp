@@ -114,18 +114,19 @@ void Food::paint(QPainter *painter,
     /*
      * Point that will signify the top-left corner of where the image will be placed.
      */
-    QPoint point(this->m_posX-27, this->m_posY-23);
+    QPoint point(this->m_posX-5, this->m_posY-7.5);
 
 
-//    QString  imgSrc = QString::fromStdString(":/foodPics/food.png");
+    QString  imgSrc = QString::fromStdString(":/foodPics/food.png");
 
-//    QImage image(imgSrc);
+    QImage image(imgSrc);
 
-//    /*
-//     * We draw the actual image with it's top-left corner being point.
-//    */
-//    painter->drawImage(point, image);
 
-    painter->drawEllipse(3,3,3,3);
+    /*
+     * We draw the actual image with it's top-left corner being point.
+    */
+    painter->drawImage(point, image.scaled(49,53));
+
+    //painter->drawEllipse(3,3,3,3);
 }
 
