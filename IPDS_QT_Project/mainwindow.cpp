@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "help.h"
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -37,31 +38,31 @@ void MainWindow::setCurrentSpecimenPhoto() {
     switch(m_currentStratNo) {
         // Hawk
         case 1:
-            m_currentSpecimenPhoto = QPixmap(":/chickPics/red");
+            m_currentSpecimenPhoto = QPixmap(":/hrChicks/hawk.png");
             break;
         // Pavlov
         case 2:
-            m_currentSpecimenPhoto = QPixmap(":/chickPics/blue2");
+            m_currentSpecimenPhoto = QPixmap(":/hrChicks/pavlov.png");
             break;
         // Random
         case 3:
-            m_currentSpecimenPhoto = QPixmap(":/chickPics/green");
+            m_currentSpecimenPhoto = QPixmap(":/hrChicks/random.png");
             break;
         // Tit-for-Tat
         case 4:
-            m_currentSpecimenPhoto = QPixmap(":/chickPics/pink");
+            m_currentSpecimenPhoto = QPixmap(":/hrChicks/titfortat.png");
             break;
         // Tit-for-two-Tats
         case 5:
-            m_currentSpecimenPhoto = QPixmap(":/chickPics/purple");
+            m_currentSpecimenPhoto = QPixmap(":/hrChicks/titfortwotats.png");
             break;
         // Two-Tits-for-Tat
         case 6:
-            m_currentSpecimenPhoto = QPixmap(":/chickPics/blue3");
+            m_currentSpecimenPhoto = QPixmap(":/hrChicks/titfortwotats.png");
             break;
         // Dove
         default:
-            m_currentSpecimenPhoto = QPixmap(":/chickPics/blue");
+            m_currentSpecimenPhoto = QPixmap(":/hrChicks/dove.png");
     }
 
 }
@@ -111,34 +112,44 @@ QString MainWindow::getCurrentSpecimenDescription() {
 
 void MainWindow::setPlotColors(){
     QPen pen;
+    QBrush brush;
     for(int i=0; i<COUNT; i++){
         strategy s = static_cast<strategy>(i);
         switch(s){
             case E_DOVE:
                 pen.setColor(Dove::COLOR);
+                ui.plotWidget->graph(i)->setBrush(QBrush(Dove::GRAPHCOLOR));
             break;
             case E_HAWK:
                 pen.setColor(Hawk::COLOR);
+                ui.plotWidget->graph(i)->setBrush(QBrush(Hawk::GRAPHCOLOR));
             break;
             case E_PAVLOV:
                 pen.setColor(Pavlov::COLOR);
+                ui.plotWidget->graph(i)->setBrush(QBrush(Pavlov::GRAPHCOLOR));
             break;
             case E_RANDOM:
                 pen.setColor(AllRandom::COLOR);
+                ui.plotWidget->graph(i)->setBrush(QBrush(AllRandom::GRAPHCOLOR));
             break;
             case E_TITFORTAT:
                 pen.setColor(TitForTat::COLOR);
+                ui.plotWidget->graph(i)->setBrush(QBrush(TitForTat::GRAPHCOLOR));
             break;
             case E_TITFORTWOTATS:
                 pen.setColor(TitForTwoTats::COLOR);
+                ui.plotWidget->graph(i)->setBrush(QBrush(TitForTwoTats::GRAPHCOLOR));
             break;
             case E_TWOTITSFORTAT:
                 pen.setColor(TwoTitsForTat::COLOR);
+                ui.plotWidget->graph(i)->setBrush(QBrush(TwoTitsForTat::GRAPHCOLOR));
             break;
             default:
             break;
         }
+
         ui.plotWidget->graph(i)->setPen(pen);
+
     }
 }
 
@@ -148,6 +159,7 @@ void MainWindow::plot()
     QVector<double> x(sh.iterationNo());
     std::iota(x.begin(), x.end(), 0);
     int yMax=0;
+    ui.plotWidget->clearGraphs();
     for(int i=0; i<COUNT; i++){
         ui.plotWidget->addGraph();
 
@@ -159,6 +171,7 @@ void MainWindow::plot()
         }
 
         ui.plotWidget->graph(i)->setData(x, y);
+        ui.plotWidget->graph(i)->setName(ui.listWidget->item(i)->text());
     }
     setPlotColors();
 
@@ -168,7 +181,10 @@ void MainWindow::plot()
     ui.plotWidget->xAxis->setRange(0, sh.iterationNo());
     ui.plotWidget->yAxis->setRange(0, yMax); // HACK: Hardcoded random value
 
+    ui.plotWidget->legend->setVisible(true);
+
     ui.plotWidget->replot();
+
 }
 
 
@@ -200,6 +216,7 @@ void MainWindow::on_pushButtonPlay_clicked()
         //QObject::connect(&foodCount, SIGNAL(), m_scene, SLOT(update()));
         QObject::connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(update()));
         m_timer.start(1000 / 60);
+
 
 
     }

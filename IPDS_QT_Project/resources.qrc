@@ -22,5 +22,12 @@
         <file>chickPics/blue2Mirror.png</file>
         <file>foodPics/food.png</file>
         <file>HTML/Help.html</file>
+        <file>hrChicks/dove.png</file>
+        <file>hrChicks/hawk.png</file>
+        <file>hrChicks/pavlov.png</file>
+        <file>hrChicks/random.png</file>
+        <file>hrChicks/titfortat.png</file>
+        <file>hrChicks/titfortwotats.png</file>
+        <file>hrChicks/twotitsfortat.png</file>
     </qresource>
 </RCC>

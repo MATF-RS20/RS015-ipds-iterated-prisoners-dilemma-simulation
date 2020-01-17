@@ -4,6 +4,7 @@
 #include "estrategy.h"
 
 const QColor AllRandom::COLOR = Qt::GlobalColor::darkRed;
+const QColor AllRandom::GRAPHCOLOR = QColor(139,0,0,50);
 const std::string AllRandom::IMG_PATH = ":/chickPics/green";
 
 AllRandom::AllRandom() : Specimen() {

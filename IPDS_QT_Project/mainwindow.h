@@ -74,5 +74,6 @@ private:
     QString getCurrentSpecimenDescription();
     QPixmap getCurrentSpecimenPhoto();
     void setCurrentSpecimenPhoto();
+    std::vector<QString> stratNames;
 };
 #endif // MAINWINDOW_H

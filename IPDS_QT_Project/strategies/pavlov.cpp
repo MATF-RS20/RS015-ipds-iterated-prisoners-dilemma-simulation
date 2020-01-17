@@ -2,6 +2,7 @@
 #include "estrategy.h"
 
 const QColor Pavlov::COLOR = Qt::GlobalColor::darkBlue;
+const QColor Pavlov::GRAPHCOLOR = QColor(0,0,139,50);
 const std::string Pavlov::IMG_PATH = ":/chickPics/blue2";
 
 

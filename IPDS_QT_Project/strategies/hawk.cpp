@@ -2,6 +2,7 @@
 #include "estrategy.h"
 
 const QColor Hawk::COLOR = Qt::GlobalColor::red;
+const QColor Hawk::GRAPHCOLOR = QColor(255,0,0,50);
 const std::string Hawk::IMG_PATH = ":/chickPics/red";
 
 Hawk::Hawk() : Specimen() {}

@@ -2,6 +2,7 @@
 #include "estrategy.h"
 
 const QColor TitForTat::COLOR = Qt::GlobalColor::green;
+const QColor TitForTat::GRAPHCOLOR = QColor(0,255,0,50);
 const std::string TitForTat::IMG_PATH = ":/chickPics/pink";
 
 TitForTat::TitForTat() : Specimen() {}
