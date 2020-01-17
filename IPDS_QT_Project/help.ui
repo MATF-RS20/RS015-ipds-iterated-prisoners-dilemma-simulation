@@ -6,23 +6,50 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>378</width>
-    <height>452</height>
+    <width>716</width>
+    <height>794</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Help</string>
   </property>
-  <widget class="QTextEdit" name="mdText">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>381</width>
-     <height>451</height>
-    </rect>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTextEdit" name="mdText">
+       <property name="autoFormatting">
+        <set>QTextEdit::AutoBulletList</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:18px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:xx-large; font-weight:600;&quot;&gt;	Iterated Prisoners Dilemma Simulation  &lt;/span&gt;    &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Prisoner's Dilemma is a situation wherein two people have a choice between cooperation or betrayal, each yielding them a certain award or punishment. In the traditional formulation, if two criminals are caught by the police who is going to convict them on a lesser charge, but have no proof for the more serious one:     &lt;/p&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;if they both choose to stay silent and don't betray one another, they both get a short prison sentence       &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;if one makes a bargain with the police and betrays the other they get away without a sentence, while the other person gets a really long sentence        &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;if they both betray each other they both get medium-length sentences.        &lt;/li&gt;&lt;/ul&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Prisoner's Dilemmas are games which correspond to this cooperation based reward-punishment system. In our examples, two specimen are fighting over food. If they peacefully share it, they each get an equal amount. If they fight over it, they both loose most of the energy they got from the food itself and leave with little reward. If one tries cooperating while the other one attacks, the attacker gets a large amount of food, while the cheated party gets none.      &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Those who get no food die. Those who get most of it reproduce (resulting in two specimen with the same strategy in the next generation). Those in between have proportional chances of death and reproduction to the amount of food they've eaten.      &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Specimen can use different strategies to try and stay competitive in this environment. They can always cooperate, always try to cheat, they can remember their opponents and choose based on their past choices, they can alternate their moves according to a certain pattern, etc. Depending on their strategy and the strategies they're up against, specimen will disproportionately survive and reproduce until reaching an equilibrium state, called Nash's Equilibrium. The outcome of the simulation largely depends on its starting conditions - which is what you have control over.     &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;span style=&quot; font-weight:600;&quot;&gt;Food count&lt;/span&gt; affects the outcome of a simulation in the sense that lower food counts lead to more selective pressure and a lower number of maximum specimen that can be sustained on that food. High selective pressure tends to be bad for strategies that rely on memory of their opponents, because they die before getting the chance to utilize the knowledge. You can set the food count between 15 and 100.      &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    You can set initial populations of each of the available strategies. Click on a strategy on the list and then &lt;span style=&quot; font-weight:600;&quot;&gt;Select Strategy&lt;/span&gt; to view its description, and then set &lt;span style=&quot; font-weight:600;&quot;&gt;No of specimen&lt;/span&gt; for that strategy that you want in the simulation. You can set it to 0 or more, but beware if your total number of specimen exceeds your number of food by more than two times, you'll cause some specimen to randomly die in the first generation. After setting that, click &lt;span style=&quot; font-weight:600;&quot;&gt;Update&lt;/span&gt; to save the info.     &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    You can use&lt;span style=&quot; font-weight:600;&quot;&gt;Play&lt;/span&gt; to start a new simulation, &lt;span style=&quot; font-weight:600;&quot;&gt;Pause&lt;/span&gt; to pause it, and &lt;span style=&quot; font-weight:600;&quot;&gt;Stop&lt;/span&gt; to end it. After you've ended a simulation you can't return to it.   &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="placeholderText">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
