@@ -32,7 +32,7 @@ public:
 
     void addDefaultScene(void);
 
-    void plot();
+
 
     void refreshUI();
 
@@ -40,6 +40,8 @@ public:
     std::vector<unsigned> m_specimenNoInfo{0,0,0,0,0,0,0};
     int m_currentStratNo;
 private slots:
+    void plot();
+
     void on_pushButtonPlay_clicked();
 
     void on_pushButtonStop_clicked();

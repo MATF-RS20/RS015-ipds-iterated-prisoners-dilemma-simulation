@@ -17,7 +17,7 @@ GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
 
 
     QObject::connect(&m_timer, &QTimer::timeout, this, &GraphicSim::iterate);
-    m_timer.start(2000);
+    m_timer.start(1000);
 }
 
 GraphicSim::~GraphicSim() {}

@@ -21,8 +21,7 @@ void MainWindow::addDefaultScene(void){
     m_scene->setSceneRect(-300, -300, 600, 600);
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
-    //QObject::connect(&m_timer, SIGNAL(timeout()), this, SLOT(plot()));
-    m_timer.start(1000 / 60);
+
     ui.listWidget->setCurrentRow(0);
     ui.foodNo->setValue(15);
     m_currentStratNo=0;
@@ -241,7 +240,8 @@ void MainWindow::on_pushButtonPlay_clicked()
 
         //QObject::connect(&foodCount, SIGNAL(), m_scene, SLOT(update()));
         QObject::connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(update()));
-        m_timer.start(1000 / 60);
+        QObject::connect(&m_timer, SIGNAL(timeout()), this, SLOT(plot()));
+        m_timer.start(100);
 
 
 
@@ -251,6 +251,7 @@ void MainWindow::on_pushButtonPlay_clicked()
 void MainWindow::on_pushButtonStop_clicked()
 {
     if(m_playing){
+        m_timer.stop();
         MainWindow::plot();
         m_view->close();
         delete m_view;
