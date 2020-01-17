@@ -236,8 +236,20 @@ void Simulation::playRound()
 }
 
 void Simulation::fightForFood(void){
+
+    // Set everyone to death, so that only
+    // those who get another setting during
+    // fights will survive
+    for(auto strategy : m_specimen){
+        for(auto specimen : strategy){
+            specimen->resetTotalFoodEaten();
+        }
+    }
+
+    // Let specimen pick foods
     assignFoods();
 
+    // Fight it out
     for(auto food : m_foodsActive){
         switch(food->noOfSpecimen()){
             case 0:
@@ -285,6 +297,8 @@ void Simulation::generationalChange(void){
     for(unsigned i=0; i<strategy::COUNT; i++){
         for(unsigned j=0; j<m_specimen[i].size(); j++){
             int ate = m_specimen[i][j]->getTotalFoodEaten();
+            m_specimen[i][j]->resetTotalFoodEaten();
+
             switch(ate){
                 case 0:
                     specimenDeath(i,j);
