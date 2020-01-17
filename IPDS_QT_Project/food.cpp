@@ -47,7 +47,7 @@ std::string Food::toString()
 bool Food::addSpecimen(std::shared_ptr<Specimen> newSpecimen)
 {
     /* Set coordinates of food as target for this specimen */
-    newSpecimen.get()->setTarget(this->m_posX,this->m_posY);
+    newSpecimen->setTarget(m_posX, m_posY);
 
     if(specimen1 == nullptr)
     {

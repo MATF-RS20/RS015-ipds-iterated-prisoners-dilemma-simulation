@@ -43,7 +43,7 @@ protected:
     void advance(int step);
 
 private:
-
+    QGraphicsScene* m_scene;
     bool m_isFoodStage;
     int m_iterCount;
     QTimer m_timer;

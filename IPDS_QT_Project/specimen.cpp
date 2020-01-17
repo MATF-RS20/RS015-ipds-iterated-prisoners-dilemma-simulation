@@ -119,8 +119,8 @@ qreal Specimen::getY(void) const{
 }
 void Specimen::setTarget(double x, double y)
 {
-    this->m_targetX = x;
-    this->m_targetY = y;
+    m_targetX = x;
+    m_targetY = y;
 }
 
 qreal Specimen::getTargetX()

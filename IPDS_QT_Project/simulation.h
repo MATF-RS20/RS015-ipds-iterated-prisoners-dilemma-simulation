@@ -70,6 +70,7 @@ protected:
      *
      */
     std::vector<std::vector<std::shared_ptr<Specimen>>> m_specimen;
+    std::vector<std::shared_ptr<Specimen>> m_newSpecimen;
 
     // Keeps track of number of all specimen
     unsigned m_specimenNo;

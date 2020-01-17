@@ -202,7 +202,9 @@ void Simulation::specimenDeath(unsigned r, unsigned c)
 
 void Simulation::specimenReproduce(unsigned r)
 {
-    m_specimen[r].push_back(specimenFactory(static_cast<strategy>(r)));
+    std::shared_ptr<Specimen> tmp = specimenFactory(static_cast<strategy>(r));
+    m_specimen[r].push_back(tmp);
+    m_newSpecimen.push_back(tmp);
 }
 
 void Simulation::clearAssignedFoods()
@@ -277,6 +279,8 @@ void Simulation::fightForFood(void){
 }
 
 void Simulation::generationalChange(void){
+    m_newSpecimen.clear();
+
     double p = 0.75;
     for(unsigned i=0; i<strategy::COUNT; i++){
         for(unsigned j=0; j<m_specimen[i].size(); j++){
@@ -310,12 +314,9 @@ void Simulation::generationalChange(void){
 void Simulation::log()
 {
     std::vector<unsigned> iterationInfo(strategy::COUNT);
-    for(unsigned i = 0; i < m_specimen.size(); i++){
-        unsigned count = 0;
-        for(auto _ : m_specimen[i]){
-            count++;
-        }
-        iterationInfo[i] = count;
+    unsigned count = 0;
+    for(unsigned i = 0; i < strategy::COUNT; i++){
+        iterationInfo[i] = m_specimen[i].size();
     }
     m_graphInfo.update(iterationInfo);
 }
@@ -326,4 +327,5 @@ void Simulation::updateSpecimenNo(void){
     for(auto strategy : m_specimen){
         m_specimenNo += strategy.size();
     }
+    printf("SpecimenNo: %d\n", m_specimenNo);
 }

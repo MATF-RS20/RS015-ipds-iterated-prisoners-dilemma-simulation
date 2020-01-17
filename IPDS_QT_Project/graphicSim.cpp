@@ -28,6 +28,9 @@ void GraphicSim::iterate(void){
     if(m_isFoodStage){
         simulate();
         show();
+        for(auto spec : m_newSpecimen){
+            m_scene->addItem(spec.get());
+        }
     }else{
         show();
     }
@@ -75,6 +78,7 @@ void GraphicSim::show() {
 }
 
 void GraphicSim::addItems(QGraphicsScene &scene) {
+    m_scene = &scene;
     for (auto stratVector : m_specimen) {
         for (auto tmpSpecimen : stratVector) {
           scene.addItem(tmpSpecimen.get());
