@@ -244,7 +244,13 @@ void MainWindow::on_changeSpecimenNumber_clicked()
     ui.specimenName->setText(curStratName);
     ui.specimenNo->setValue(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
     ui.specimenDescription->setText(getCurrentSpecimenDescription());
-    ui.labelPic->setPixmap(getCurrentSpecimenPhoto());
+
+
+    // get label dimensions
+    int w = ui.labelPic->width();
+    int h = ui.labelPic->height();
+    // set a scaled pixmap to a w x h window keeping its aspect ratio
+    ui.labelPic->setPixmap(getCurrentSpecimenPhoto().scaled(w,h,Qt::KeepAspectRatio));
 }
 
 void MainWindow::on_updateButton_clicked()
