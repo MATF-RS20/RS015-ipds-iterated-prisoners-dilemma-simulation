@@ -47,7 +47,7 @@ void GraphicSim::show() {
 
                 // Total radius of the starting area
                 double r = 100;
-                std::cout << "angle:"<<(2*M_PI) / m_specimenNo << std::endl;
+                //std::cout << "angle:"<<(2*M_PI) / m_specimenNo << std::endl;
 
                 // Polar coordinates
                 double tmpX = r * std::cos(angle);
