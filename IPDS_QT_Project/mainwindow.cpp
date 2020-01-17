@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "help.h"
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -285,5 +284,4 @@ void MainWindow::on_pushButton_clicked()
 {
     m_secondWindow = new Help();
     m_secondWindow->show();
-
 }
