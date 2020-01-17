@@ -3,9 +3,9 @@
 #include <time.h>
 #include "estrategy.h"
 
-const QColor AllRandom::COLOR = Qt::GlobalColor::darkRed;
-const QColor AllRandom::GRAPHCOLOR = QColor(139,0,0,50);
-const std::string AllRandom::IMG_PATH = ":/chickPics/green";
+const QColor AllRandom::COLOR = QColor(255,105,180,100);
+const QColor AllRandom::GRAPHCOLOR = QColor(255,105,180,0);
+const std::string AllRandom::IMG_PATH = ":/chickPics/pink";
 
 AllRandom::AllRandom() : Specimen() {
     srand(time(NULL));

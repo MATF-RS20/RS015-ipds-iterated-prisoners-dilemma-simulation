@@ -57,7 +57,7 @@ void MainWindow::setCurrentSpecimenPhoto() {
             break;
         // Two-Tits-for-Tat
         case 6:
-            m_currentSpecimenPhoto = QPixmap(":/hrChicks/titfortwotats.png");
+            m_currentSpecimenPhoto = QPixmap(":/hrChicks/twotitsfortat.png");
             break;
         // Dove
         default:
@@ -117,31 +117,31 @@ void MainWindow::setPlotColors(){
         switch(s){
             case E_DOVE:
                 pen.setColor(Dove::COLOR);
-                ui.plotWidget->graph(i)->setBrush(QBrush(Dove::GRAPHCOLOR));
+                //ui.plotWidget->graph(i)->setBrush(QBrush(Dove::GRAPHCOLOR));
             break;
             case E_HAWK:
                 pen.setColor(Hawk::COLOR);
-                ui.plotWidget->graph(i)->setBrush(QBrush(Hawk::GRAPHCOLOR));
+                //ui.plotWidget->graph(i)->setBrush(QBrush(Hawk::GRAPHCOLOR));
             break;
             case E_PAVLOV:
                 pen.setColor(Pavlov::COLOR);
-                ui.plotWidget->graph(i)->setBrush(QBrush(Pavlov::GRAPHCOLOR));
+                //ui.plotWidget->graph(i)->setBrush(QBrush(Pavlov::GRAPHCOLOR));
             break;
             case E_RANDOM:
                 pen.setColor(AllRandom::COLOR);
-                ui.plotWidget->graph(i)->setBrush(QBrush(AllRandom::GRAPHCOLOR));
+                //ui.plotWidget->graph(i)->setBrush(QBrush(AllRandom::GRAPHCOLOR));
             break;
             case E_TITFORTAT:
                 pen.setColor(TitForTat::COLOR);
-                ui.plotWidget->graph(i)->setBrush(QBrush(TitForTat::GRAPHCOLOR));
+                //ui.plotWidget->graph(i)->setBrush(QBrush(TitForTat::GRAPHCOLOR));
             break;
             case E_TITFORTWOTATS:
                 pen.setColor(TitForTwoTats::COLOR);
-                ui.plotWidget->graph(i)->setBrush(QBrush(TitForTwoTats::GRAPHCOLOR));
+                //ui.plotWidget->graph(i)->setBrush(QBrush(TitForTwoTats::GRAPHCOLOR));
             break;
             case E_TWOTITSFORTAT:
                 pen.setColor(TwoTitsForTat::COLOR);
-                ui.plotWidget->graph(i)->setBrush(QBrush(TwoTitsForTat::GRAPHCOLOR));
+                //ui.plotWidget->graph(i)->setBrush(QBrush(TwoTitsForTat::GRAPHCOLOR));
             break;
             default:
             break;
@@ -157,28 +157,55 @@ void MainWindow::plot()
     StateHistory sh = m_gs->graphInfo();
     QVector<double> x(sh.iterationNo());
     std::iota(x.begin(), x.end(), 0);
+    QVector<double> xSums(sh.iterationNo(),0);
+
     int yMax=0;
+
     ui.plotWidget->clearGraphs();
-    for(int i=0; i<COUNT; i++){
-        ui.plotWidget->addGraph();
+    QVector<QVector<double>> y;
+    std::vector<bool> isPresent(COUNT,true);
+    for(int i=0; i<COUNT; ++i){
+        y.append(QVector<double>());
+
 
         std::vector<unsigned> y_tmp = sh.getByStrategy(static_cast<strategy>(i));
-        QVector<double> y;
-        for(int i : y_tmp){
-            y.append(static_cast<double>(i));
-            yMax = yMax>i ? yMax : i;
+        if(y_tmp[0]==0)isPresent[i]=false;
+
+
+        for(int j=0; j<y_tmp.size(); ++j)
+        {
+            y[i].append(static_cast<double>(y_tmp[j])+xSums[j]);
+
+            xSums[j]+=y_tmp[j];
+            yMax = yMax>xSums[j] ? yMax : xSums[j];
+
         }
 
-        ui.plotWidget->graph(i)->setData(x, y);
-        ui.plotWidget->graph(i)->setName(ui.listWidget->item(i)->text());
+
     }
+    /*Generates the graphs in reverse order to prevent overlaping*/
+
+    for(int i=0; i<COUNT; ++i)
+    {
+        ui.plotWidget->addGraph();
+    }
+
+    for(int i=COUNT-1; i>=0; i--)
+    {
+
+        ui.plotWidget->graph(i)->setName(ui.listWidget->item(i)->text());
+        if(isPresent[i]==false)continue;
+        ui.plotWidget->graph(i)->setData(x, y[i]);
+
+    }
+
     setPlotColors();
 
     ui.plotWidget->xAxis->setLabel("Iteration");
     ui.plotWidget->yAxis->setLabel("Specimen");
 
     ui.plotWidget->xAxis->setRange(0, sh.iterationNo());
-    ui.plotWidget->yAxis->setRange(0, yMax); // HACK: Hardcoded random value
+    ui.plotWidget->yAxis->setRange(0, yMax);
 
     ui.plotWidget->legend->setVisible(true);
 
