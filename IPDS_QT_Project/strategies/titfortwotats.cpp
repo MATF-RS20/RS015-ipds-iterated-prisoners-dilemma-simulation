@@ -2,6 +2,7 @@
 #include "estrategy.h"
 const QColor TitForTwoTats::COLOR = Qt::GlobalColor::darkGreen;
 const QColor TitForTwoTats::GRAPHCOLOR = QColor(0,139,0,0);
+const std::string TitForTwoTats::NAME = "TitForTwoTats";
 const std::string TitForTwoTats::IMG_PATH = ":/chickPics/green1";
 
 TitForTwoTats::TitForTwoTats() : Specimen() {}

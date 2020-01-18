@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     this->setAttribute(Qt::WA_DeleteOnClose);
     ui.setupUi(this);
-
+    QObject::connect(ui.listWidget,SIGNAL(itemSelectionChanged()),this,SLOT(updateUI()));
     qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
 }
 
@@ -23,9 +23,9 @@ void MainWindow::addDefaultScene(void){
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
 
-    ui.listWidget->setCurrentRow(0);
     ui.foodNo->setValue(15);
-    m_currentStratNo=0;
+
+
 }
 
 QPixmap MainWindow::getCurrentSpecimenPhoto() {
@@ -274,11 +274,8 @@ void MainWindow::on_pushButtonPause_clicked()
         paused = true;
     }
 }
-
-
-void MainWindow::on_changeSpecimenNumber_clicked()
+void MainWindow::updateUI()
 {
-
     /*Changes the values in the ui to match the current number of specimens for the selected strategy*/
     m_currentStratNo = ui.listWidget->currentRow();
     setCurrentSpecimenDescription();
@@ -298,18 +295,36 @@ void MainWindow::on_changeSpecimenNumber_clicked()
 
 void MainWindow::on_updateButton_clicked()
 {
-    m_specimenNoInfo[m_currentStratNo]=ui.specimenNo->value();
-    ui.specimenNo->setValue(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
-    //ui.listWidget->currentItem()->setText()
-    //ui.specimenDescription->setText(curStratName);
+    int newValue = m_specimenNoInfo[m_currentStratNo] = ui.specimenNo->value();
+    ui.specimenNo->setValue(newValue);
+
+
+    switch(m_currentStratNo) {
+        case 1:
+            ui.listWidget->currentItem()->setText(QString::fromStdString(Hawk::NAME + " - " + std::to_string(newValue)));
+            break;
+        case 2:
+            ui.listWidget->currentItem()->setText(QString::fromStdString(Pavlov::NAME + " - " + std::to_string(newValue)));
+            break;
+        case 3:
+            ui.listWidget->currentItem()->setText(QString::fromStdString(AllRandom::NAME + " - " + std::to_string(newValue)));
+            break;
+        case 4:
+            ui.listWidget->currentItem()->setText(QString::fromStdString(TitForTat::NAME + " - " + std::to_string(newValue)));
+            break;
+        case 5:
+            ui.listWidget->currentItem()->setText(QString::fromStdString(TitForTwoTats::NAME + " - " + std::to_string(newValue)));
+            break;
+        case 6:
+           ui.listWidget->currentItem()->setText(QString::fromStdString(TwoTitsForTat::NAME + " - " + std::to_string(newValue)));
+            break;
+        default:
+            ui.listWidget->currentItem()->setText(QString::fromStdString(Dove::NAME + " - " + std::to_string(newValue)));
+    }
 }
 
-void MainWindow::on_foodCounter_overflow()
-{
 
-}
-
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_newWindowButton_clicked()
 {
     m_secondWindow = new Help();
     m_secondWindow->setAttribute( Qt::WA_DeleteOnClose );

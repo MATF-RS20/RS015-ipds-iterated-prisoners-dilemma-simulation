@@ -3,6 +3,7 @@
 
 const QColor TitForTat::COLOR = Qt::GlobalColor::green;
 const QColor TitForTat::GRAPHCOLOR = QColor(0,255,0,0);
+const std::string TitForTat::NAME = "TitForTat";
 const std::string TitForTat::IMG_PATH = ":/chickPics/green";
 
 TitForTat::TitForTat() : Specimen() {}

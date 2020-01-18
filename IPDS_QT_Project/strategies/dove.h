@@ -14,6 +14,7 @@ public:
 
     QColor getColor() override;
     std::string getPathBase() override;
+    static const std::string NAME;
     static const QColor COLOR;
     static const QColor GRAPHCOLOR;
     static const std::string IMG_PATH;

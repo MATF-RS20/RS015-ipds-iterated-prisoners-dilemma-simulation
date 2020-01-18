@@ -5,6 +5,7 @@
 
 const QColor AllRandom::COLOR = QColor(255,105,180,100);
 const QColor AllRandom::GRAPHCOLOR = QColor(255,105,180,0);
+const std::string AllRandom::NAME = "Random";
 const std::string AllRandom::IMG_PATH = ":/chickPics/pink";
 
 AllRandom::AllRandom() : Specimen() {
