@@ -195,25 +195,25 @@ void MainWindow::plot()
         QString curStratName;
         switch(i) {
             case 1:
-                curStratName = "Hawk";
+                curStratName = QString::fromStdString(Hawk::NAME);
                 break;
             case 2:
-                curStratName = "Pavlov";
+                curStratName = QString::fromStdString(Pavlov::NAME);
                 break;
             case 3:
-                curStratName = "Random";
+                curStratName = QString::fromStdString(AllRandom::NAME);
                 break;
             case 4:
-                curStratName = "Tit for Tat";
+                curStratName = QString::fromStdString(TitForTat::NAME);
                 break;
             case 5:
-                curStratName = "Tit for Two Tats";
+                curStratName = QString::fromStdString(TitForTwoTats::NAME);
                 break;
             case 6:
-                curStratName = "Two Tits for Tat";
+                curStratName = QString::fromStdString(TwoTitsForTat::NAME);
                 break;
             default:
-                curStratName = "Dove";
+                curStratName = QString::fromStdString(Dove::NAME);
         }
 
         ui.plotWidget->graph(i)->setName(curStratName);
