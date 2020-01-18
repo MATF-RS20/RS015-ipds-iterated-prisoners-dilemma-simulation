@@ -192,8 +192,31 @@ void MainWindow::plot()
 
     for(int i=COUNT-1; i>=0; i--)
     {
+        QString curStratName;
+        switch(i) {
+            case 1:
+                curStratName = "Hawk";
+                break;
+            case 2:
+                curStratName = "Pavlov";
+                break;
+            case 3:
+                curStratName = "Random";
+                break;
+            case 4:
+                curStratName = "Tit for Tat";
+                break;
+            case 5:
+                curStratName = "Tit for Two Tats";
+                break;
+            case 6:
+                curStratName = "Two Tits for Tat";
+                break;
+            default:
+                curStratName = "Dove";
+        }
 
-        ui.plotWidget->graph(i)->setName(ui.listWidget->item(i)->text());
+        ui.plotWidget->graph(i)->setName(curStratName);
         if(isPresent[i]==false)continue;
         ui.plotWidget->graph(i)->setData(x, y[i]);
 
@@ -325,6 +348,8 @@ void MainWindow::on_updateButton_clicked()
             ui.listWidget->currentItem()->setText(QString::fromStdString(Dove::NAME + " - " + std::to_string(newValue)));
     }
 }
+
+
 
 
 void MainWindow::on_newWindowButton_clicked()
