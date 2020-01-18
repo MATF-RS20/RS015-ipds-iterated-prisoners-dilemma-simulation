@@ -48,6 +48,7 @@ public:
 
     void specimenDeath(unsigned r, unsigned c);
     void specimenReproduce(unsigned r);
+    void loadFoodsVectorWithNullptrs();
 
     const StateHistory graphInfo() const;
 
@@ -57,6 +58,7 @@ public slots:
 protected:
     // Number of foods used in that exact simulation
     unsigned m_foodNo;
+    int m_minimumFoodsVectorSize;
     std::vector<Food*> m_foodsActive;
 
     /* Matrix of pointers to all the active specimen

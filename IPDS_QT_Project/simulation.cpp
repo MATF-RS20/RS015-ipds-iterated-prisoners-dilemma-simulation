@@ -75,8 +75,31 @@ const StateHistory Simulation::graphInfo() const
     return m_graphInfo;
 }
 
-void Simulation::initializeFood()
+void Simulation::loadFoodsVectorWithNullptrs()
 {
+    m_minimumFoodsVectorSize = m_foodNo + m_specimenNo - 2*m_foodNo;
+
+    if(m_minimumFoodsVectorSize > 0) {
+        for(unsigned i = m_foodNo - 1; i < (m_minimumFoodsVectorSize-1); i++)
+        {
+            m_foodsActive.push_back(nullptr);
+        }
+    }
+
+    for(unsigned i = 0; i < m_foodsActive.size(); i++)
+    {
+        if(m_foodsActive[i] != nullptr)
+            std::cout << i << ":OK ";
+        else
+            std::cout << i << ":NULL ";
+    }
+
+    std::cout << std::endl;
+
+}
+
+void Simulation::initializeFood()
+{    
     // TODO add global drawing center,scale to R
     double randa;
 
@@ -101,10 +124,7 @@ void Simulation::initializeFood()
         m_foodsActive.push_back(tmpFood);
     }
 
-//    for(unsigned i = m_foodNo - 1; i < m_specimenNo; i++)
-//    {
-//        m_foodsActive.push_back(nullptr);
-//    }
+    loadFoodsVectorWithNullptrs();
 
 }
 
@@ -145,7 +165,7 @@ int Simulation::randomFoodIndexPicker(unsigned foodsRndCounter)
      * number from a range has equal likelihood to
      * be produced
      */
-    std::uniform_int_distribution<> distr(foodsRndCounter, m_foodNo);
+    std::uniform_int_distribution<> distr(foodsRndCounter, m_foodsActive.size()-1);
 
     return static_cast<unsigned>(distr(eng));
 }
@@ -155,6 +175,7 @@ void Simulation::swapFoods(unsigned a, unsigned b)
     Food* tmp = m_foodsActive[a];
     m_foodsActive[a] = m_foodsActive[b];
     m_foodsActive[b] = tmp;
+    std::cout << " ----- SWAPPED " << a << " with " << b << std::endl;
 }
 
 void Simulation::assignFoods()
@@ -167,15 +188,20 @@ void Simulation::assignFoods()
         for(unsigned j = 0; j < m_specimen[i].size() ; j++)
         {
             assFood = randomFoodIndexPicker(foodsRndCounter);
-            //std::cout << "Assigned food index: " << assFood << std::endl;
             if(m_foodsActive[assFood] != nullptr)
             {
+                std::cout << "Assigned food index: " << assFood << " NOT NULLPTR" << std::endl;
                 m_foodsActive[assFood]->addSpecimen(m_specimen[i][j]);
                 if(m_foodsActive[assFood]->noOfSpecimen() == 2)
                 {
-                    swapFoods(foodsRndCounter, assFood);
+                    swapFoods(foodsRndCounter, assFood);                 
                     foodsRndCounter++;
                 }
+            }
+            else {
+               std::cout << "Assigned food index: " << assFood << " YESS NULLPTR" << std::endl;
+               swapFoods(foodsRndCounter, assFood);
+               foodsRndCounter++;
             }
         }
     }
@@ -251,39 +277,41 @@ void Simulation::fightForFood(void){
 
     // Fight it out
     for(auto food : m_foodsActive){
-        switch(food->noOfSpecimen()){
-            case 0:
-                // no specimen fighting over this food
-            break;
+        if(food != nullptr) {
+            switch(food->noOfSpecimen()){
+                case 0:
+                    // no specimen fighting over this food
+                break;
 
-            case 1:
-                // food claimed by the first specimen
-            food->specimen1->update(T,-1);
-            break;
+                case 1:
+                    // food claimed by the first specimen
+                food->specimen1->update(T,-1);
+                break;
 
-            case 2:
-                // two specimen fighting over food
-                std::shared_ptr<Specimen> spec1 = food->specimen1;
-                std::shared_ptr<Specimen> spec2 = food->specimen2;
-                bool coop1 = spec1->isCooperating(spec2->SPECIMEN_ID);
-                bool coop2 = spec2->isCooperating(spec1->SPECIMEN_ID);
-                if(coop1 && coop2){
-                    spec1->update(R,spec2->SPECIMEN_ID);
-                    spec2->update(R,spec2->SPECIMEN_ID);
-                }
-                else if(coop1){
-                    spec1->update(S,spec2->SPECIMEN_ID);
-                    spec2->update(T,spec1->SPECIMEN_ID);
-                }
-                else if(coop2){
-                    spec1->update(T,spec2->SPECIMEN_ID);
-                    spec2->update(S,spec1->SPECIMEN_ID);
-                }
-                else{
-                    spec1->update(P,spec2->SPECIMEN_ID);
-                    spec2->update(P,spec2->SPECIMEN_ID);
-                }
-            break;
+                case 2:
+                    // two specimen fighting over food
+                    std::shared_ptr<Specimen> spec1 = food->specimen1;
+                    std::shared_ptr<Specimen> spec2 = food->specimen2;
+                    bool coop1 = spec1->isCooperating(spec2->SPECIMEN_ID);
+                    bool coop2 = spec2->isCooperating(spec1->SPECIMEN_ID);
+                    if(coop1 && coop2){
+                        spec1->update(R,spec2->SPECIMEN_ID);
+                        spec2->update(R,spec2->SPECIMEN_ID);
+                    }
+                    else if(coop1){
+                        spec1->update(S,spec2->SPECIMEN_ID);
+                        spec2->update(T,spec1->SPECIMEN_ID);
+                    }
+                    else if(coop2){
+                        spec1->update(T,spec2->SPECIMEN_ID);
+                        spec2->update(S,spec1->SPECIMEN_ID);
+                    }
+                    else{
+                        spec1->update(P,spec2->SPECIMEN_ID);
+                        spec2->update(P,spec2->SPECIMEN_ID);
+                    }
+                break;
+            }
         }
     }
 
@@ -341,5 +369,6 @@ void Simulation::updateSpecimenNo(void){
     for(auto strategy : m_specimen){
         m_specimenNo += strategy.size();
     }
+    loadFoodsVectorWithNullptrs();
     printf("SpecimenNo: %d\n", m_specimenNo);
 }

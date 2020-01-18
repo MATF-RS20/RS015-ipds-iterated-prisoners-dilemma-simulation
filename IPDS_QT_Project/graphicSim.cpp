@@ -70,7 +70,8 @@ void GraphicSim::show() {
     for (unsigned i = 0; i < tmpFoodNo; ++i)
     {
        // std::cout << m_foodVector[i].toString() << std::endl ;
-       m_foodsActive[i]->show();
+        if(m_foodsActive[i] != nullptr)
+            m_foodsActive[i]->show();
     }
 }
 
@@ -81,8 +82,10 @@ void GraphicSim::addItems(QGraphicsScene &scene) {
           scene.addItem(tmpSpecimen.get());
         }
     }
-    for (auto food : m_foodsActive) {
-        scene.addItem(food);
+    for (unsigned i = 0; i < m_foodsActive.size(); ++i)
+    {
+        if(m_foodsActive[i] != nullptr)
+            scene.addItem(m_foodsActive[i]);
     }
 }
 
