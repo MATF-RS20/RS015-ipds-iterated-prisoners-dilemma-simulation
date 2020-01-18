@@ -192,8 +192,31 @@ void MainWindow::plot()
 
     for(int i=COUNT-1; i>=0; i--)
     {
+        QString curStratName;
+        switch(i) {
+            case 1:
+                curStratName = QString::fromStdString(Hawk::NAME);
+                break;
+            case 2:
+                curStratName = QString::fromStdString(Pavlov::NAME);
+                break;
+            case 3:
+                curStratName = QString::fromStdString(AllRandom::NAME);
+                break;
+            case 4:
+                curStratName = QString::fromStdString(TitForTat::NAME);
+                break;
+            case 5:
+                curStratName = QString::fromStdString(TitForTwoTats::NAME);
+                break;
+            case 6:
+                curStratName = QString::fromStdString(TwoTitsForTat::NAME);
+                break;
+            default:
+                curStratName = QString::fromStdString(Dove::NAME);
+        }
 
-        ui.plotWidget->graph(i)->setName(ui.listWidget->item(i)->text());
+        ui.plotWidget->graph(i)->setName(curStratName);
         if(isPresent[i]==false)continue;
         ui.plotWidget->graph(i)->setData(x, y[i]);
 
@@ -274,13 +297,16 @@ void MainWindow::on_pushButtonPause_clicked()
         paused = true;
     }
 }
+
+
 void MainWindow::updateUI()
 {
     /*Changes the values in the ui to match the current number of specimens for the selected strategy*/
     m_currentStratNo = ui.listWidget->currentRow();
     setCurrentSpecimenDescription();
     setCurrentSpecimenPhoto();
-    QString curStratName = ui.listWidget->currentItem()->text();
+    std::string tmpStratName = ui.listWidget->currentItem()->text().toStdString();
+    QString curStratName = QString::fromStdString(tmpStratName.substr(0,tmpStratName.find('-')-1));
     ui.specimenName->setText(curStratName);
     ui.specimenNo->setValue(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
     ui.specimenDescription->setText(getCurrentSpecimenDescription());
@@ -322,6 +348,8 @@ void MainWindow::on_updateButton_clicked()
             ui.listWidget->currentItem()->setText(QString::fromStdString(Dove::NAME + " - " + std::to_string(newValue)));
     }
 }
+
+
 
 
 void MainWindow::on_newWindowButton_clicked()

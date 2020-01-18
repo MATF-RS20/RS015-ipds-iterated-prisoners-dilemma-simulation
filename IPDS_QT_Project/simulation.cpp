@@ -321,35 +321,67 @@ void Simulation::fightForFood(void){
 void Simulation::generationalChange(void){
     m_newSpecimen.clear();
 
+    enum res{
+        SURVIVE,
+        DIE,
+        REPRODUCE
+    };
+
+    std::vector<std::vector<res>> resVec;
+
     double p = 0.75;
     for(unsigned i=0; i<strategy::COUNT; i++){
+        resVec.push_back(std::vector<res>());
         for(unsigned j=0; j<m_specimen[i].size(); j++){
             int ate = m_specimen[i][j]->getTotalFoodEaten();
             m_specimen[i][j]->resetTotalFoodEaten();
 
             switch(ate){
                 case 0:
-                    specimenDeath(i,j);
+                    resVec[i].push_back(DIE);
                 break;
 
                 case 1:
                     if(randomUniform(0.0,1.0)<p){
-                        specimenDeath(i,j);
+                        resVec[i].push_back(DIE);
+                    }
+                    else{
+                        resVec[i].push_back(SURVIVE);
                     }
                 break;
 
                 case 3:
                     if(randomUniform(0.0,1.0)<p){
-                        specimenReproduce(i);
+                        resVec[i].push_back(REPRODUCE);
+                    }
+                    else{
+                        resVec[i].push_back(SURVIVE);
                     }
                 break;
 
                 case 4:
-                    specimenReproduce(i);
+                    resVec[i].push_back(REPRODUCE);
                 break;
             }
         }
     }
+
+    int size = static_cast<int>(resVec.size());
+    for(int i=0; i<size; i++){
+        if(resVec[i].empty())
+            continue;
+
+        int iSize = static_cast<int>(resVec[i].size());
+        for(int j=iSize-1; j>=0; j--){
+            if(resVec[i][j]==DIE){
+                specimenDeath(i,j);
+            }
+            else if(resVec[i][j]==REPRODUCE){
+                specimenReproduce(i);
+            }
+        }
+    }
+
     updateSpecimenNo();
 }
 
