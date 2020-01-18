@@ -75,17 +75,14 @@ int Food::noOfSpecimen() const
     return m_noOfSpecimen;
 }
 
-void Food::setNoOfSpecimen(unsigned n)
-{
-    m_noOfSpecimen = n;
-}
-
 unsigned Food::id() const
 {
     return m_ID;
 }
 
-
+void Food::resetNoOfSpecimen(void){
+    m_noOfSpecimen = 0;
+}
 
 QRectF Food::boundingRect() const {
     qreal adjust = -0.5;

@@ -18,11 +18,12 @@
  ** P - Punishment
  **     Both parties deflected and get punished. */
 
-/* Pavlov cooperates if he got T or S last round against
- * the same oppontent. It delfects if it got R or P.
+/* Pavlov cooperates if he got P or R last round against
+ * the same oppontent. It delfects if it got S or T.
  * Essentially, if it profited from the last round (R or T)
  * it repeats the behavior, and if it lost (S or P) it changes
- * its behavior to the opposite. */
+ * its behavior to the opposite. Pavlov is also known as
+ * Win-Stay Lose-Switch strategy. */
 
 class Pavlov : public Specimen
 {
