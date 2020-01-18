@@ -14,7 +14,6 @@ Team members:
 Libraries used:
 - [qCustomPlot](https://www.qcustomplot.com/)
 - [Qt](https://www.qt.io/)
-- [Range-v3](https://ericniebler.github.io/range-v3/)
 
 ## ENG
 
