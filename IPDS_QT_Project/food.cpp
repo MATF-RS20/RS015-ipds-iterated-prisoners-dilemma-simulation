@@ -125,7 +125,7 @@ void Food::paint(QPainter *painter,
     /*
      * We draw the actual image with it's top-left corner being point.
     */
-    painter->drawImage(point, image.scaled(49,53));
+    painter->drawImage(point, image);
 
     //painter->drawEllipse(3,3,3,3);
 }
