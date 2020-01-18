@@ -24,8 +24,13 @@ public:
     Specimen(Specimen&& s);
     Specimen& operator=(Specimen&& s);
 
+    /* Returns a total amount of food this Specimen ate
+     * in the last iteration. Named so the app would
+     * be easily modifiable to include multiple fights in
+     * an iteration. */
     int getTotalFoodEaten(void) const;
 
+    /* Sets total food eaten to 0 */
     int resetTotalFoodEaten(void);
 
     /* Checks whether specimen will choose to cooperate
@@ -35,26 +40,21 @@ public:
 
     /* Based on the outcome of a round, updates given Specimen's
      * info on the opponent it has encountered and food it has
-     * eaten.
-     */
+     * eaten. */
     void update(outcome res, int enemyID);
 
-    /*  Getters and setters for current x and y coordinates
-     */
+    /* Getters and setters for current x and y coordinates */
     double getX();
     double getY();
 
     void setX(double x);
     void setY(double y);
 
-    /* Method that fetches the color of the specimen,
-     * used mostly for plotting
-     */
+    /* Method that fetches the color of the specimen */
     virtual QColor getColor()=0;
 
     /* Method that fetches the base of the path for the derived
-     * specimen type, used for graphic simulation
-     */
+     * specimen type, used for graphic simulation */
     virtual std::string getPathBase()=0;
 
     /* Defines rough boundries for this graphic item*/
@@ -88,6 +88,7 @@ public:
     /* Current target food coordinates */
     qreal m_targetX;
     qreal m_targetY;
+
 protected:
     void advance(int step) override;
     int m_foodEatenLastRound = 0;
@@ -105,7 +106,7 @@ private:
     /* Used to ensure IDs are unique */
     static unsigned ID;
 
-    /* Payoffs for each outcome */
+    /* Payoffs for each outcome (refer to eoutcome) */
     const int T_PAYOFF = 4;
     const int R_PAYOFF = 3;
     const int P_PAYOFF = 1;

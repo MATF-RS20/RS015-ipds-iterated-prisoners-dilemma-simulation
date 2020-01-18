@@ -32,8 +32,6 @@ public:
 
     void addDefaultScene(void);
 
-
-
     void refreshUI();
 
 
