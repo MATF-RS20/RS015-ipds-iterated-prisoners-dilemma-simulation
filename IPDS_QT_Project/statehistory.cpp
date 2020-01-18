@@ -23,14 +23,16 @@ void StateHistory::update(std::vector<unsigned> iterationInfo)
 
 std::vector<unsigned> StateHistory::getIteration(unsigned iterationNo) const
 {
-    return m_innerGraphInfo[iterationNo];
+    if(iterationNo < m_innerGraphInfo.size())
+        return m_innerGraphInfo[iterationNo];
+    else
+        return std::vector<unsigned>();
 }
 
 std::vector<std::vector<unsigned>> StateHistory::getAllIterations()
 {
     return m_innerGraphInfo;
 }
-
 
 std::vector<unsigned> StateHistory::getByStrategy(strategy s) const {
     std::vector<unsigned> res;
