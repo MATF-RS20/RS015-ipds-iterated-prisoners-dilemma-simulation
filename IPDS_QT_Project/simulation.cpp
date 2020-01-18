@@ -77,21 +77,21 @@ const StateHistory Simulation::graphInfo() const
 
 void Simulation::updateFoodsVectorWithNullptrs()
 {
-    m_minimumFoodsVectorSize = m_specimenNo - 2*m_foodNo;
+    m_noOfNullptrsAdditions = m_specimenNo - 2*m_foodNo;
 
-    if(m_minimumFoodsVectorSize > 0) {
+    if(m_noOfNullptrsAdditions > 0) {
         m_foodsActive.erase(std::begin(m_foodsActive) + m_foodNo, std::end(m_foodsActive));
-        for(unsigned i = 0; i < m_minimumFoodsVectorSize; i++)
+        for(unsigned i = 0; i < m_noOfNullptrsAdditions; i++)
         {
             m_foodsActive.push_back(nullptr);
         }
     }
-    else if(m_minimumFoodsVectorSize <= 0)
+    else if(m_noOfNullptrsAdditions <= 0)
         m_foodsActive.erase(std::begin(m_foodsActive) + m_foodNo, std::end(m_foodsActive));
 
 
     std::cout << "No of specimen: " << m_specimenNo << std::endl;
-    std::cout << "Addition: " << m_minimumFoodsVectorSize << std::endl;
+    std::cout << "Addition: " << m_noOfNullptrsAdditions << std::endl;
     for(unsigned i = 0; i < m_foodsActive.size(); i++)
     {
         if(m_foodsActive[i] != nullptr)
