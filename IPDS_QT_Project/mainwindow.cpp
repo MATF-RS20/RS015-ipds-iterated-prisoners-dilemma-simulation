@@ -274,13 +274,16 @@ void MainWindow::on_pushButtonPause_clicked()
         paused = true;
     }
 }
+
+
 void MainWindow::updateUI()
 {
     /*Changes the values in the ui to match the current number of specimens for the selected strategy*/
     m_currentStratNo = ui.listWidget->currentRow();
     setCurrentSpecimenDescription();
     setCurrentSpecimenPhoto();
-    QString curStratName = ui.listWidget->currentItem()->text();
+    std::string tmpStratName = ui.listWidget->currentItem()->text().toStdString();
+    QString curStratName = QString::fromStdString(tmpStratName.substr(0,tmpStratName.find('-')-1));
     ui.specimenName->setText(curStratName);
     ui.specimenNo->setValue(static_cast<int>(m_specimenNoInfo[m_currentStratNo]));
     ui.specimenDescription->setText(getCurrentSpecimenDescription());
