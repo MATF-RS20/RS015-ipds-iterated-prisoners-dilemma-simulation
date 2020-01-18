@@ -48,7 +48,7 @@ public:
 
     void specimenDeath(unsigned r, unsigned c);
     void specimenReproduce(unsigned r);
-    void loadFoodsVectorWithNullptrs();
+    void updateFoodsVectorWithNullptrs();
 
     const StateHistory graphInfo() const;
 

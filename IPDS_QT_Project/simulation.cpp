@@ -75,17 +75,23 @@ const StateHistory Simulation::graphInfo() const
     return m_graphInfo;
 }
 
-void Simulation::loadFoodsVectorWithNullptrs()
+void Simulation::updateFoodsVectorWithNullptrs()
 {
-    m_minimumFoodsVectorSize = m_foodNo + m_specimenNo - 2*m_foodNo;
+    m_minimumFoodsVectorSize = m_specimenNo - 2*m_foodNo;
 
     if(m_minimumFoodsVectorSize > 0) {
-        for(unsigned i = m_foodNo - 1; i < (m_minimumFoodsVectorSize-1); i++)
+        m_foodsActive.erase(std::begin(m_foodsActive) + m_foodNo, std::end(m_foodsActive));
+        for(unsigned i = 0; i < m_minimumFoodsVectorSize; i++)
         {
             m_foodsActive.push_back(nullptr);
         }
     }
+    else if(m_minimumFoodsVectorSize <= 0)
+        m_foodsActive.erase(std::begin(m_foodsActive) + m_foodNo, std::end(m_foodsActive));
 
+
+    std::cout << "No of specimen: " << m_specimenNo << std::endl;
+    std::cout << "Addition: " << m_minimumFoodsVectorSize << std::endl;
     for(unsigned i = 0; i < m_foodsActive.size(); i++)
     {
         if(m_foodsActive[i] != nullptr)
@@ -124,7 +130,7 @@ void Simulation::initializeFood()
         m_foodsActive.push_back(tmpFood);
     }
 
-    loadFoodsVectorWithNullptrs();
+    updateFoodsVectorWithNullptrs();
 
 }
 
@@ -175,7 +181,7 @@ void Simulation::swapFoods(unsigned a, unsigned b)
     Food* tmp = m_foodsActive[a];
     m_foodsActive[a] = m_foodsActive[b];
     m_foodsActive[b] = tmp;
-    std::cout << " ----- SWAPPED " << a << " with " << b << std::endl;
+    //std::cout << " ----- SWAPPED " << a << " with " << b << std::endl;
 }
 
 void Simulation::assignFoods()
@@ -190,7 +196,7 @@ void Simulation::assignFoods()
             assFood = randomFoodIndexPicker(foodsRndCounter);
             if(m_foodsActive[assFood] != nullptr)
             {
-                std::cout << "Assigned food index: " << assFood << " NOT NULLPTR" << std::endl;
+                //std::cout << "Assigned food index: " << assFood << " NOT NULLPTR" << std::endl;
                 m_foodsActive[assFood]->addSpecimen(m_specimen[i][j]);
                 if(m_foodsActive[assFood]->noOfSpecimen() == 2)
                 {
@@ -199,7 +205,7 @@ void Simulation::assignFoods()
                 }
             }
             else {
-               std::cout << "Assigned food index: " << assFood << " YESS NULLPTR" << std::endl;
+               //std::cout << "Assigned food index: " << assFood << " YESS NULLPTR" << std::endl;
                swapFoods(foodsRndCounter, assFood);
                foodsRndCounter++;
             }
@@ -401,6 +407,5 @@ void Simulation::updateSpecimenNo(void){
     for(auto strategy : m_specimen){
         m_specimenNo += strategy.size();
     }
-    loadFoodsVectorWithNullptrs();
-    printf("SpecimenNo: %d\n", m_specimenNo);
+    updateFoodsVectorWithNullptrs();
 }
