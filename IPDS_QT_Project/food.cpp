@@ -75,11 +75,6 @@ int Food::noOfSpecimen() const
     return m_noOfSpecimen;
 }
 
-void Food::setNoOfSpecimen(unsigned n)
-{
-    m_noOfSpecimen = n;
-}
-
 unsigned Food::id() const
 {
     return m_ID;

@@ -46,17 +46,24 @@ public:
      */
     std::shared_ptr<Specimen> specimenFactory(strategy indicator);
 
+    /* Deletes a cth Specimen of rth strategy in a row */
     void specimenDeath(unsigned r, unsigned c);
+
+    /* Adds a new Specimen of rth strategy */
     void specimenReproduce(unsigned r);
 
+    /* Returns full history of this simulation */
     const StateHistory graphInfo() const;
 
 public slots:
+    /* Calls one iteration of the simulation and updates
+     * relevant parameters */
     void simulate();
 
 protected:
-    // Number of foods used in that exact simulation
+    /* Number of foods for the simulation */
     unsigned m_foodNo;
+    /* Vector of active foods */
     std::vector<Food*> m_foodsActive;
 
     /* Matrix of pointers to all the active specimen
@@ -70,31 +77,31 @@ protected:
      *
      */
     std::vector<std::vector<std::shared_ptr<Specimen>>> m_specimen;
+
+    /* A list of new Specimen used to be added to the QGraphicScene */
     std::vector<std::shared_ptr<Specimen>> m_newSpecimen;
 
-    // Keeps track of number of all specimen
+    /* Keeps track of the number of all specimen */
     unsigned m_specimenNo;
 
     /* Keeps info on all previous rounds and number
-     * of each type of specimen at that moment
-     */
+     * of each type of specimen at that moment */
     StateHistory m_graphInfo;
 
 private:
-    // Creates vector of foods with random coordinates
+    /* Creates vector of foods with random coordinates */
     void initializeFood();
 
     /* Using m_foodsRndCounter returns range from that
-     * number to m_foodNo
-     */
+     * number to m_foodNo */
     int randomFoodIndexPicker(unsigned foodsRndCounter);
 
     /* Assigns random food to each specimen,
      * increments counter if the given food is full
      * and swaps it using the method below
-     * and in the end sorts them by ID
-     */
+     * and in the end sorts them by ID */
     void assignFoods();
+
     void swapFoods(unsigned a, unsigned b);
     void clearAssignedFoods();
 
