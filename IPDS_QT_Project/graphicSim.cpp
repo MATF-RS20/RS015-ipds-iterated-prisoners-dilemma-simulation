@@ -58,7 +58,7 @@ void GraphicSim::show() {
 
                 m_specimen[i][j]->show();
             }else{
-                m_specimen[i][j]->setCoordinates( m_specimen[i][j]->getTargetX() , m_specimen[i][j]->getTargetY() );
+                m_specimen[i][j]->setCoordinatesToTarget();
                 m_specimen[i][j]->show();
 
             }

@@ -6,11 +6,10 @@
 #define __RADIUS__ 300
 unsigned Specimen::ID = 0;
 
-Specimen::Specimen() : SPECIMEN_ID(ID) { ID++; }
+Specimen::Specimen() : SPECIMEN_ID(ID),m_gotLeftOut(false) { ID++; }
 
 Specimen::Specimen(const Specimen &s)
-    : QGraphicsItem(),
-    SPECIMEN_ID(s.ID) {}
+    : QGraphicsItem(),SPECIMEN_ID(s.ID),m_gotLeftOut(s.m_gotLeftOut) {}
 
 double Specimen::getX() { return this->m_x; }
 double Specimen::getY() { return this->m_y; }
@@ -109,6 +108,19 @@ void Specimen::setCoordinates(double x, double y){
     m_x = x;
     m_y = y;
 }
+void Specimen::setCoordinatesToTarget(){
+    if(m_gotLeftOut || m_targetX == 420.0 || m_targetY == 420.0)
+    {
+        m_gotLeftOut = false;
+
+    }else
+    {
+        m_x = m_targetX;
+        m_y = m_targetY;
+    }
+
+}
+
 
 qreal Specimen::getX(void) const{
     return m_x;
@@ -132,7 +144,10 @@ qreal Specimen::getTargetY()
     return this->m_targetY;
 }
 
-
+void Specimen::toggleGotLeftOut()
+{
+    m_gotLeftOut = true;
+}
 
 void Specimen::advance(int step)
 {

@@ -206,6 +206,8 @@ void Simulation::assignFoods()
             }
             else {
                //std::cout << "Assigned food index: " << assFood << " YESS NULLPTR" << std::endl;
+               m_specimen[i][j]->setTarget(420.0,420.0);
+               m_specimen[i][j]->toggleGotLeftOut();
                swapFoods(foodsRndCounter, assFood);
                foodsRndCounter++;
             }

@@ -73,6 +73,7 @@ public:
 
     /* Set coordinates for drawing */
     void setCoordinates(double x, double y);
+    void setCoordinatesToTarget();
 
     /* Get coordinates */
     qreal getX(void) const;
@@ -88,6 +89,9 @@ public:
     /* Current target food coordinates */
     qreal m_targetX;
     qreal m_targetY;
+
+    void toggleGotLeftOut();
+    bool m_gotLeftOut;
 
 protected:
     void advance(int step) override;
