@@ -77,7 +77,6 @@ private:
     QPixmap m_currentSpecimenPhoto;
     std::vector<QString> stratNames;
 
-
     /*Trivial*/
     void setPlotColors();
     void setCurrentSpecimenDescription();
