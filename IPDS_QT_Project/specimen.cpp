@@ -74,6 +74,8 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     Q_UNUSED(option)
     Q_UNUSED(widget)
 
+    //BEGONE THOT
+    if(m_x*m_x + m_y*m_y > 200*200)return;
 
     //std::cout << "ID:" << ID << "\n" << "staticCount:" << SPECIMEN_ID <<"\n" <<std::endl;
 

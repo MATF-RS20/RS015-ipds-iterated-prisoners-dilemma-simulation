@@ -124,6 +124,7 @@ void Simulation::initializeFood()
         double tmpX = r * std::cos(randa * 2 * M_PI);
         double tmpY = r * std::sin(randa * 2 * M_PI);
 
+
         /*Adds the generated food to the appropriate attribute*/
         Food* tmpFood = new Food(tmpX, tmpY, i);
 
@@ -337,7 +338,7 @@ void Simulation::generationalChange(void){
 
     std::vector<std::vector<res>> resVec;
 
-    double p = 0.75;
+    double p = 0.25;
     for(unsigned i=0; i<strategy::COUNT; i++){
         resVec.push_back(std::vector<res>());
         for(unsigned j=0; j<m_specimen[i].size(); j++){

@@ -19,7 +19,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::addDefaultScene(void){
     m_scene = new QGraphicsScene();
-    m_scene->setSceneRect(-300, -300, 600, 600);
+    m_scene->setSceneRect(-150, -150, 300, 300);
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
 
