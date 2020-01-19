@@ -62,6 +62,7 @@ private:
     QGraphicsScene* m_scene;
     bool m_playing = false;
     bool paused = false;
+    bool m_smtIsSelected = false;
     QString m_currentSpecimenDescriptionText;
     QPixmap m_currentSpecimenPhoto;
 

@@ -154,28 +154,48 @@ void MainWindow::setPlotColors(){
 
 void MainWindow::plot()
 {
+    /*Fetching history of specimen numbers up until now*/
     StateHistory sh = m_gs->graphInfo();
     QVector<double> x(sh.iterationNo());
     std::iota(x.begin(), x.end(), 0);
     QVector<double> xSums(sh.iterationNo(),0);
 
+    /*Variable that will be used for upper limit of y, for it can very easily skyrocket*/
     int yMax=0;
 
+    /*
+     * Because we'll be using the same graph widget multiple times for different graphs to create the illusion of motion
+     * we need to clear all previous data so that the graphs don't overlap
+     */
     ui.plotWidget->clearGraphs();
+
+    /*Vector of y values (current number of specimen of a certain type in the current population) for every strategy*/
     QVector<QVector<double>> y;
+
+    /*Vector that indicates whether the i-th type of specimen is present in the current simulation*/
     std::vector<bool> isPresent(COUNT,true);
+
     for(int i=0; i<COUNT; ++i){
+
         y.append(QVector<double>());
 
-
+        /*Fetches from state history the number of specimen over time of a specific type*/
         std::vector<unsigned> y_tmp = sh.getByStrategy(static_cast<strategy>(i));
+
+        /*If a specimen ain't present at the begining, he sure ain't gonna suddenly appear in the middle of the simulation*/
         if(y_tmp[0]==0)isPresent[i]=false;
 
-
+        /*Appends number of specimen in a certain iteration until it hits 0*/
         for(int j=0; j<y_tmp.size(); ++j)
         {
+            if(y_tmp[j]==0)
+            {
+                y[i].append(static_cast<double>(y_tmp[j])+xSums[j]);
+                break;
+            }
             y[i].append(static_cast<double>(y_tmp[j])+xSums[j]);
 
+            /*We keep track of the sum in a certain iteration for upcoming strategies*/
             xSums[j]+=y_tmp[j];
             yMax = yMax>xSums[j] ? yMax : xSums[j];
 
@@ -183,13 +203,14 @@ void MainWindow::plot()
 
 
     }
-    /*Generates the graphs in reverse order to prevent overlaping*/
+    /*Generates the graphs in reverse order to prevent overlaping (this is in case we ever want to use brushes to paint the seperate graphs)*/
 
     for(int i=0; i<COUNT; ++i)
     {
         ui.plotWidget->addGraph();
     }
 
+    /*Deduces the strategy name from it's index*/
     for(int i=COUNT-1; i>=0; i--)
     {
         QString curStratName;
@@ -269,6 +290,8 @@ void MainWindow::on_pushButtonPlay_clicked()
 
 
 
+    }else{
+        QMessageBox::information(this,tr("Note"),tr("The quantity of food must be in the interval [15,100]"));
     }
 }
 
@@ -301,6 +324,7 @@ void MainWindow::on_pushButtonPause_clicked()
 
 void MainWindow::updateUI()
 {
+    m_smtIsSelected=true;
     /*Changes the values in the ui to match the current number of specimens for the selected strategy*/
     m_currentStratNo = ui.listWidget->currentRow();
     setCurrentSpecimenDescription();
@@ -321,6 +345,7 @@ void MainWindow::updateUI()
 
 void MainWindow::on_updateButton_clicked()
 {
+    if(!m_smtIsSelected) return;
     int newValue = m_specimenNoInfo[m_currentStratNo] = ui.specimenNo->value();
     ui.specimenNo->setValue(newValue);
 
