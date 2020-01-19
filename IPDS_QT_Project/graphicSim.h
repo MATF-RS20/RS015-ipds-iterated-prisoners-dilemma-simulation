@@ -13,6 +13,7 @@
 #include <QObject>
 #include <QTimer>
 
+
 #ifndef GRAPHICSPECIMEN_HPP
 #define GRAPHICSPECIMEN_HPP
 
@@ -24,31 +25,32 @@ public:
 
     GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo);
     ~GraphicSim();
-    void drawGraphIter();
+
+    /*Function that is used for iterated "animation" */
     void show();
+
+    /*Unified function for adding all specimen and food from the scene*/
     void addItems(QGraphicsScene& scene);
 
-    void moveSpecimen();
-
-    std::vector<int> m_posVector;
-
 public slots:
+    /*Used as a simulation wrapper*/
     void iterate(void);
 
 
-protected:
-
-    /*function that is used for iterated animation, is called for every change*/
-    void advance(int step);
 
 private:
     QGraphicsScene* m_scene;
+
+    /*Specimen draw radius*/
     double m_radius;
+
+    /*Indicator that tells us if it's time to chase food or repaint the specimen in their
+    * starting positions.
+    */
     bool m_isFoodStage;
     int m_iterCount;
     QTimer m_timer;
-    qreal  m_xPosition;
-    qreal  m_yPosition;
+
 };
 
 #endif // GRAPHICSPECIMEN_HPP

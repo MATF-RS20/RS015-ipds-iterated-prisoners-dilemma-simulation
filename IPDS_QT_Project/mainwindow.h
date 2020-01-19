@@ -38,17 +38,25 @@ public:
     std::vector<unsigned> m_specimenNoInfo{0,0,0,0,0,0,0};
     int m_currentStratNo;
 private slots:
+
+    /*Updates all GUI parameters when a new strategy is selected*/
     void updateUI();
+
     void plot();
 
+    /*Runs the simulation if the criteria are met*/
     void on_pushButtonPlay_clicked();
 
+    /*Completely stops and closes the simulation*/
     void on_pushButtonStop_clicked();
 
+    /*Pauses the simulation*/
     void on_pushButtonPause_clicked();
 
+    /*Updates the number of specimen of a certain strategy to the selected number in the GUI*/
     void on_updateButton_clicked();
 
+    /*Opens help window*/
     void on_newWindowButton_clicked();
 
 private:
@@ -63,14 +71,19 @@ private:
     bool m_playing = false;
     bool paused = false;
     bool m_smtIsSelected = false;
+
+
     QString m_currentSpecimenDescriptionText;
     QPixmap m_currentSpecimenPhoto;
+    std::vector<QString> stratNames;
 
+
+    /*Trivial*/
     void setPlotColors();
     void setCurrentSpecimenDescription();
     QString getCurrentSpecimenDescription();
     QPixmap getCurrentSpecimenPhoto();
     void setCurrentSpecimenPhoto();
-    std::vector<QString> stratNames;
+
 };
 #endif // MAINWINDOW_H

@@ -2,6 +2,11 @@
 #define HELP_HPP
 
 #include <QWidget>
+#include <QtGui>
+#include <QApplication>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QTimer>
 
 namespace Ui {
 class Help;

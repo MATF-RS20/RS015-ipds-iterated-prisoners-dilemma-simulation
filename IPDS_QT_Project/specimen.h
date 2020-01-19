@@ -90,6 +90,10 @@ public:
     qreal m_targetX;
     qreal m_targetY;
 
+    /*Got left out means that the specimen didn't receive food in this iteration and will most likely die,
+    * In practical terms this means it was assigned a nullptr of Food.
+    * Below is a function that sets the left out indicator to true.
+    */
     void toggleGotLeftOut();
     bool m_gotLeftOut;
 
@@ -98,6 +102,7 @@ protected:
     int m_foodEatenLastRound = 0;
     int m_totalFoodEaten = 0;
 
+    /*Calculates payoff*/
     void calculateFood(outcome o);
 
 private:

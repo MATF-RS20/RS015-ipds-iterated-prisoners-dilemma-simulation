@@ -29,5 +29,6 @@
         <file>hrChicks/titfortat.png</file>
         <file>hrChicks/titfortwotats.png</file>
         <file>hrChicks/twotitsfortat.png</file>
+        <file>chickPics/icon.png</file>
     </qresource>
 </RCC>

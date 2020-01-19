@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     this->setAttribute(Qt::WA_DeleteOnClose);
     ui.setupUi(this);
+    setWindowIcon(QIcon(":/chickPics/icon.png"));
+
     QObject::connect(ui.listWidget,SIGNAL(itemSelectionChanged()),this,SLOT(updateUI()));
     qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
 }
@@ -21,8 +23,6 @@ void MainWindow::addDefaultScene(void){
     m_scene = new QGraphicsScene();
     m_scene->setSceneRect(-150, -150, 300, 300);
     m_scene->setItemIndexMethod(QGraphicsScene::NoIndex);
-
-
     ui.foodNo->setValue(15);
 
 
@@ -186,7 +186,7 @@ void MainWindow::plot()
         if(y_tmp[0]==0)isPresent[i]=false;
 
         /*Appends number of specimen in a certain iteration until it hits 0*/
-        for(int j=0; j<y_tmp.size(); ++j)
+        for(int j=0; j<static_cast<int>(y_tmp.size()); ++j)
         {
             if(y_tmp[j]==0)
             {
@@ -261,29 +261,24 @@ void MainWindow::plot()
 void MainWindow::on_pushButtonPlay_clicked()
 {
     unsigned foodCount = ui.foodNo->value();
-    //TODO: warning prompt
     if(!m_playing && foodCount >= 15 && foodCount <= 100){
-
-        /* TODO: get specimenNoInfo from GUI */
 
 
         m_gs = new GraphicSim(foodCount, m_specimenNoInfo);
 
         /* Adding items of type specimen to the scene*/
         m_gs->addItems(*m_scene);
-
         m_view = new QGraphicsView(m_scene);
 
-        m_view->setWindowTitle("Simulacija");
+
+        m_view->setWindowTitle("Simulation");
         m_view->resize(800, 600);
 
         m_view->show();
 
         m_playing = true;
 
-        /*TODO: Implement food counter lcd*/
-
-        //QObject::connect(&foodCount, SIGNAL(), m_scene, SLOT(update()));
+        /*Connects the same timer to the plot and simulation for parallel ploting and simulating*/
         QObject::connect(&m_timer, SIGNAL(timeout()), m_scene, SLOT(update()));
         QObject::connect(&m_timer, SIGNAL(timeout()), this, SLOT(plot()));
         m_timer.start(100);
@@ -291,7 +286,8 @@ void MainWindow::on_pushButtonPlay_clicked()
 
 
     }else{
-        QMessageBox::information(this,tr("Note"),tr("The quantity of food must be in the interval [15,100]"));
+        /*Warning prompt*/
+        QMessageBox::information(this,tr("Warning"),tr("The quantity of food must be in the interval [15,100]"));
     }
 }
 
@@ -349,7 +345,7 @@ void MainWindow::on_updateButton_clicked()
     int newValue = m_specimenNoInfo[m_currentStratNo] = ui.specimenNo->value();
     ui.specimenNo->setValue(newValue);
 
-
+    /*Generates the new entry so that it contains the current number of specimen of a certain type*/
     switch(m_currentStratNo) {
         case 1:
             ui.listWidget->currentItem()->setText(QString::fromStdString(Hawk::NAME + " - " + std::to_string(newValue)));

@@ -45,11 +45,12 @@ void GraphicSim::show() {
         for (unsigned long j = 0; j < m_specimen[i].size(); ++j) {
 
             if(!m_isFoodStage){
-                // specimenIndex * 2PI / totalNoOfSpecimen
+
+                /*Calculates angle so that the specimen are all evenly spaced*/
                 double angle = sum * (2*M_PI) / m_specimenNo;
                 sum++;
 
-                // Polar coordinates
+                // Polar coordinates of the current specimen
                 double tmpX = m_radius * std::cos(angle);
                 double tmpY = m_radius * std::sin(angle);
 
@@ -58,18 +59,21 @@ void GraphicSim::show() {
 
                 m_specimen[i][j]->show();
             }else{
+                /*Move the specimen to their targeted food and pain them*/
                 m_specimen[i][j]->setCoordinatesToTarget();
                 m_specimen[i][j]->show();
 
             }
         }
     }
+
     m_isFoodStage = m_isFoodStage ? false : true ;
 
+    /*Show all active food*/
     unsigned tmpFoodNo = m_foodsActive.size();
     for (unsigned i = 0; i < tmpFoodNo; ++i)
     {
-       // std::cout << m_foodVector[i].toString() << std::endl ;
+
         if(m_foodsActive[i] != nullptr)
             m_foodsActive[i]->show();
     }
@@ -90,29 +94,4 @@ void GraphicSim::addItems(QGraphicsScene &scene) {
 }
 
 
-void GraphicSim::moveSpecimen()
-{
-    double dx(0.1),dy(0.1);
-    for ( auto stratVector : this->m_specimen )
-    {
-        for( auto tSpecimenPtr : stratVector )
-        {
-            Specimen* tSpecimen = tSpecimenPtr.get();
-            auto tX = tSpecimen->getX();
-            auto tY = tSpecimen->getY();
-            tSpecimen->setCoordinates(tX+dx,tY+dy);
-        }
-    }
-    return;
-}
 
-void GraphicSim::advance(int step){
-    if(step == 0)
-        return;
-    else
-    {
-
-    }
-
-    show();
-}

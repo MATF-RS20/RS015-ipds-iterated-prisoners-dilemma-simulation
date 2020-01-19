@@ -8,6 +8,7 @@ Help::Help(QWidget *parent) :
     ui(new Ui::Help)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":/chickPics/icon.png"));
 }
 
 Help::~Help()
