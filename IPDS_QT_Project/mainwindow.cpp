@@ -74,12 +74,12 @@ void MainWindow::setCurrentSpecimenDescription() {
                                              "They do not take into account previous encounters.");
             break;
         case 2:
-            m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Pavlovs have put some thought in this. After realizing it's best for them to be careful around others and make sure ") +
-                                             "that as much as possible resources end up in their possession, they developed a strategy.\n" +
-                                             "If they encounter a creature known from before they will repeat the same action from the last encounter, " +
-                                             "if the last encounter was a win for them (they deflected and enemy didn't, or both sides were nice to each other), or " +
-                                             "change their behavior, if the last encounter was a loss.\n" +
-                                             "However, they believe that everybody deserves a chance, so if they encounter an unknown creature, they will cooperate and be kind.");
+            m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Pavlovs have put some thought in this. After realizing it's best for them to be careful around others and make sure that as")+
+                                                                                  "many resources as possible end up in their possession, they developed a strategy."+
+                                                                                  " If they encounter a creature known from before they will decide what to do based on their last encounter."+
+                                                                                  " If the last encounter was a win for them (they deflected and enemy didn't, or both sides were nice to each other)"
+                                                                                  " they'll repeat the behavior that earned them the win. If the last encounter was a loss, they'll change their behavior."+
+                                                                                  " However, they believe that everybody deserves a chance, so if they encounter an unknown creature, they will cooperate and be kind.");
             break;
         case 3:
             m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Randoms do not believe in strategies or principles.\nYou never know what to expect from them, since the chance that they'll ") +
@@ -101,7 +101,7 @@ void MainWindow::setCurrentSpecimenDescription() {
             break;
         default:
             m_currentSpecimenDescriptionText = QString::fromStdString(std::string("Doves are good creatures! They always cooperate with the other creature no matter what.\nThey do not take into account ") +
-                                            "previous encounters nor they holds any grudges.");
+                                            "previous encounters nor do they hold any grudges.");
     }
 }
 
