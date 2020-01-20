@@ -17,6 +17,8 @@ public:
 
     unsigned id() const;
 
+    /* Sets number of specimen on
+     * 0 (used in clearing foods for next round) */
     void resetNoOfSpecimen(void);
 
     /* Specimen assigned to fight over this food,

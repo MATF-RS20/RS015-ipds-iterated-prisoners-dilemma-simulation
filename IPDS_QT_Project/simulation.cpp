@@ -81,32 +81,17 @@ void Simulation::updateFoodsVectorWithNullptrs()
 
     if(m_noOfNullptrsAdditions > 0) {
         m_foodsActive.erase(std::begin(m_foodsActive) + m_foodNo, std::end(m_foodsActive));
-        for(unsigned i = 0; i < m_noOfNullptrsAdditions; i++)
+        for(int i = 0; i < m_noOfNullptrsAdditions; i++)
         {
             m_foodsActive.push_back(nullptr);
         }
     }
     else if(m_noOfNullptrsAdditions <= 0)
         m_foodsActive.erase(std::begin(m_foodsActive) + m_foodNo, std::end(m_foodsActive));
-
-/*
-    std::cout << "No of specimen: " << m_specimenNo << std::endl;
-    std::cout << "Addition: " << m_noOfNullptrsAdditions << std::endl;
-    for(unsigned i = 0; i < m_foodsActive.size(); i++)
-    {
-        if(m_foodsActive[i] != nullptr)
-            std::cout << i << ":OK ";
-        else
-            std::cout << i << ":NULL ";
-    }
-
-    std::cout << std::endl;*/
-
 }
 
 void Simulation::initializeFood()
 {    
-    // TODO add global drawing center,scale to R
     double randa;
 
     // Generates random position inside a circle
@@ -114,16 +99,12 @@ void Simulation::initializeFood()
     // randa signifies the angle for the polar coordinates
     for(unsigned i = 0; i < m_foodNo; i++)
     {
-        // TODO clean up this blasphemous random number generation and pi representation
-        // TODO tweak size of r to match window size
-
         double r = static_cast<double>(qrand())/RAND_MAX;
         r = r*100;
 
         randa = static_cast<double>(qrand())/RAND_MAX;
         double tmpX = r * std::cos(randa * 2 * M_PI);
         double tmpY = r * std::sin(randa * 2 * M_PI);
-
 
         /*Adds the generated food to the appropriate attribute*/
         Food* tmpFood = new Food(tmpX, tmpY, i);

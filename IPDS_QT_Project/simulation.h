@@ -51,6 +51,11 @@ public:
 
     /* Adds a new Specimen of rth strategy */
     void specimenReproduce(unsigned r);
+
+    /* Fills foodsActive vector with nullptrs so that all specimen
+     * can be assigned to either food or nullptr if there's not
+     * enough food for everyone.
+     */
     void updateFoodsVectorWithNullptrs();
 
     /* Returns full history of this simulation */
@@ -64,6 +69,7 @@ public slots:
 protected:
     /* Number of foods for the simulation */
     unsigned m_foodNo;
+    /* How many nullptrs should be added to food vector? */
     int m_noOfNullptrsAdditions;
 
     /* Vector of active foods */
@@ -105,6 +111,12 @@ private:
      * and in the end sorts them by ID */
     void assignFoods();
 
+    /* Puts used food or nullptr to the first part of the vector
+     * so that it won't be picked anymore
+     * e.g.: [*][*][*][*][*][*] | [+][+][+]
+     *              ^                ^
+     *            used          open for random pick
+     */
     void swapFoods(unsigned a, unsigned b);
     void clearAssignedFoods();
 
