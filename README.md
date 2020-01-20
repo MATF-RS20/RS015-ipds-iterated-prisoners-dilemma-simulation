@@ -14,6 +14,7 @@ Team members:
 Libraries used:
 - [qCustomPlot](https://www.qcustomplot.com/)
 - [Qt](https://www.qt.io/)
+- [Catch2](https://github.com/catchorg/Catch2)
 
 ## ENG
 
