@@ -13,6 +13,8 @@ AllRandom::AllRandom() : Specimen() {
 }
 
 bool AllRandom::isCooperating(int){
+    // always deflects or cooperates
+    // with the same probability
     if(rand() % 2 == 0)
         return true;
     else

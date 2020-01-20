@@ -105,9 +105,6 @@ void Food::paint(QPainter *painter,
     Q_UNUSED(widget)
 
 
-    //std::cout << "ID:" << ID << "\n" << "staticCount:" << SPECIMEN_ID <<"\n" <<std::endl;
-
-
     /*
      * Point that will signify the top-left corner of where the image will be placed.
      */

@@ -23,7 +23,6 @@ GraphicSim::GraphicSim(unsigned foodNo, std::vector<unsigned> &specimenNoInfo)
 GraphicSim::~GraphicSim() {}
 
 void GraphicSim::iterate(void){
-    std::cout << "iteration:"<< m_iterCount << std::endl;
     m_iterCount++;
 
     if(m_isFoodStage){
@@ -39,9 +38,9 @@ void GraphicSim::iterate(void){
 
 void GraphicSim::show() {
     int sum = 0;
-    //std::cout << "No of specimen:" << m_specimenNo << std::endl;
+    std::cout << "No of specimen:" << m_specimenNo << std::endl;
     for (unsigned i = 0; i < strategy::COUNT; ++i) {
-        //std::cout << "No of specimen of type "<< i << ": " << m_specimen[i].size() << std::endl;
+        std::cout << "No of specimen of type "<< i << ": " << m_specimen[i].size() << std::endl;
         for (unsigned long j = 0; j < m_specimen[i].size(); ++j) {
 
             if(!m_isFoodStage){

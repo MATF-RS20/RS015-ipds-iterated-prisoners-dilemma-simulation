@@ -9,6 +9,7 @@ const std::string Hawk::IMG_PATH = ":/chickPics/red";
 Hawk::Hawk() : Specimen() {}
 
 bool Hawk::isCooperating(int){
+    // never cooperates
     return false;
 }
 

@@ -8,12 +8,17 @@ const std::string TitForTwoTats::IMG_PATH = ":/chickPics/green1";
 TitForTwoTats::TitForTwoTats() : Specimen() {}
 
 bool TitForTwoTats::isCooperating(int enemyID){
+    // if it's interacted with this enemy before
     if(m_mapDeflectionInARow.count(enemyID)>0){
+        // if the enemy cooperated in
+        //the last two moves, cooperate
         if(m_mapDeflectionInARow[enemyID]<2)
             return true;
+        // if enemy deflected twice in a row, deflect
         else
             return false;
     }
+    // if it's their first encounter, cooperate
     else
         return true;
 }

@@ -39,22 +39,24 @@ int Specimen::resetTotalFoodEaten(void) {
 }
 
 void Specimen::calculateFood(outcome o) {
-  switch (o) {
-  case R:
-    m_foodEatenLastRound = R_PAYOFF;
-    break;
-  case T:
-    m_foodEatenLastRound = T_PAYOFF;
-    break;
-  case S:
-    m_foodEatenLastRound = S_PAYOFF;
-    break;
-  case P:
-    m_foodEatenLastRound = P_PAYOFF;
-    break;
-  }
+    // depending on the total amount of food eaten
+    // and outcome
+    switch (o) {
+      case R: // reward
+        m_foodEatenLastRound = R_PAYOFF;
+        break;
+      case T: // temptation reward
+        m_foodEatenLastRound = T_PAYOFF;
+        break;
+      case S: // sucker's punishment
+        m_foodEatenLastRound = S_PAYOFF;
+        break;
+      case P: // punishment
+        m_foodEatenLastRound = P_PAYOFF;
+        break;
+    }
 
-  m_totalFoodEaten += m_foodEatenLastRound;
+    m_totalFoodEaten += m_foodEatenLastRound;
 }
 
 QRectF Specimen::boundingRect() const {
@@ -77,8 +79,6 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     //BEGONE THOT
     if(m_x*m_x + m_y*m_y > 201*201)return;
 
-    //std::cout << "ID:" << ID << "\n" << "staticCount:" << SPECIMEN_ID <<"\n" <<std::endl;
-
 
     /*
      * Point that will signify the top-left corner of where the image will be placed.
@@ -92,7 +92,6 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
      * we append the suffix MIRROR.png or just .png, for we want our chick to look
      * it's defeated opponent straight in the eyes when victorious.
      */
-    //std::cout << getPathBase() <<std::endl;
     QString  imgSrc = QString::fromStdString(getPathBase());
     if(m_x>=0) imgSrc+="Mirror";
     imgSrc+=".png";
@@ -100,7 +99,7 @@ void Specimen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     QImage image(imgSrc);
 
     /*
-     * We draw the actual image with it's top-left corner being point.
+     We draw the actual image with it's top-left corner being point.
     */
     painter->drawImage(point, image);
 
@@ -110,13 +109,18 @@ void Specimen::setCoordinates(double x, double y){
     m_x = x;
     m_y = y;
 }
+
 void Specimen::setCoordinatesToTarget(){
+    // if no food is selected, Specimen will point to flag values
     if(m_gotLeftOut || m_targetX == 420.0 || m_targetY == 420.0)
     {
+        // setting a flag to not move a specimen who hasn't
+        // gotten a piece of food for himself
         m_gotLeftOut = false;
 
     }else
     {
+        // move specimen to target
         m_x = m_targetX;
         m_y = m_targetY;
     }
@@ -131,6 +135,7 @@ qreal Specimen::getX(void) const{
 qreal Specimen::getY(void) const{
     return m_y;
 }
+
 void Specimen::setTarget(double x, double y)
 {
     m_targetX = x;
@@ -139,11 +144,12 @@ void Specimen::setTarget(double x, double y)
 
 qreal Specimen::getTargetX()
 {
-    return this->m_targetX;
+    return m_targetX;
 }
+
 qreal Specimen::getTargetY()
 {
-    return this->m_targetY;
+    return m_targetY;
 }
 
 void Specimen::toggleGotLeftOut()
@@ -155,10 +161,10 @@ void Specimen::advance(int step)
 {
     Q_UNUSED(step)
 
-      /* If invoked in phase 0, pass*/
+      /* If invoked in phase 0, pass */
       if( step == 0 ) return;
 
-      /* Postavljanje pozicije u QGraphicsItemu */
+      /* Setting QGraphicsItem position */
       setPos(m_x,m_y);
 
 

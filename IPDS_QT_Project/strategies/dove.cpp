@@ -9,6 +9,7 @@ const std::string Dove::IMG_PATH = ":/chickPics/blue";
 Dove::Dove() : Specimen() {}
 
 bool Dove::isCooperating(int){
+    // always cooperates
     return true;
 }
 

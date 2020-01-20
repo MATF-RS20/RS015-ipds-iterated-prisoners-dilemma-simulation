@@ -89,7 +89,7 @@ void Simulation::updateFoodsVectorWithNullptrs()
     else if(m_noOfNullptrsAdditions <= 0)
         m_foodsActive.erase(std::begin(m_foodsActive) + m_foodNo, std::end(m_foodsActive));
 
-
+/*
     std::cout << "No of specimen: " << m_specimenNo << std::endl;
     std::cout << "Addition: " << m_noOfNullptrsAdditions << std::endl;
     for(unsigned i = 0; i < m_foodsActive.size(); i++)
@@ -100,7 +100,7 @@ void Simulation::updateFoodsVectorWithNullptrs()
             std::cout << i << ":NULL ";
     }
 
-    std::cout << std::endl;
+    std::cout << std::endl;*/
 
 }
 
@@ -182,7 +182,6 @@ void Simulation::swapFoods(unsigned a, unsigned b)
     Food* tmp = m_foodsActive[a];
     m_foodsActive[a] = m_foodsActive[b];
     m_foodsActive[b] = tmp;
-    //std::cout << " ----- SWAPPED " << a << " with " << b << std::endl;
 }
 
 void Simulation::assignFoods()
@@ -197,7 +196,6 @@ void Simulation::assignFoods()
             assFood = randomFoodIndexPicker(foodsRndCounter);
             if(m_foodsActive[assFood] != nullptr)
             {
-                //std::cout << "Assigned food index: " << assFood << " NOT NULLPTR" << std::endl;
                 m_foodsActive[assFood]->addSpecimen(m_specimen[i][j]);
                 if(m_foodsActive[assFood]->noOfSpecimen() == 2)
                 {
@@ -206,7 +204,6 @@ void Simulation::assignFoods()
                 }
             }
             else {
-               //std::cout << "Assigned food index: " << assFood << " YESS NULLPTR" << std::endl;
                m_specimen[i][j]->setTarget(420.0,420.0);
                m_specimen[i][j]->toggleGotLeftOut();
                swapFoods(foodsRndCounter, assFood);
@@ -338,7 +335,7 @@ void Simulation::generationalChange(void){
 
     std::vector<std::vector<res>> resVec;
 
-    double p = 0.25;
+    double p = 0.75;
     for(unsigned i=0; i<strategy::COUNT; i++){
         resVec.push_back(std::vector<res>());
         for(unsigned j=0; j<m_specimen[i].size(); j++){
@@ -397,7 +394,6 @@ void Simulation::generationalChange(void){
 void Simulation::log()
 {
     std::vector<unsigned> iterationInfo(strategy::COUNT);
-    unsigned count = 0;
     for(unsigned i = 0; i < strategy::COUNT; i++){
         iterationInfo[i] = m_specimen[i].size();
     }

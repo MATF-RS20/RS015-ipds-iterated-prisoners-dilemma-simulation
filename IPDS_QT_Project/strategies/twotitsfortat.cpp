@@ -9,13 +9,19 @@ const std::string TwoTitsForTat::IMG_PATH = ":/chickPics/normal";
 TwoTitsForTat::TwoTitsForTat() : Specimen() {}
 
 bool TwoTitsForTat::isCooperating(int enemyID){
+    // if it's interacted with this enemy before
     if(m_mapCooperatedCount.count(enemyID)>0){
+        // if the enemy didn't cooperate
+        // twice in a row, deflect
         if(m_mapCooperatedCount[enemyID]<2){
             return false;
         }
+        // if the enemy cooperated twice in
+        // a row, cooperate
         else
             return true;
     }
+    // if it's their first encounter, cooperate
     else
         return true;
 }

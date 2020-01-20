@@ -9,12 +9,16 @@ const std::string TitForTat::IMG_PATH = ":/chickPics/green";
 TitForTat::TitForTat() : Specimen() {}
 
 bool TitForTat::isCooperating(int enemyID){
+    // if it's interacted with this enemy before
     if(m_mapCooperated.count(enemyID)>0){
+        // if the enemy cooperated last move, cooperate
         if(m_mapCooperated[enemyID]==true)
             return true;
+        // if the enemy deflected last move, deflect
         else
             return false;
     }
+    // if it's their first encounter, cooperate
     else
         return true;
 }
